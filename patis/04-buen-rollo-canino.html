@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buen Rollo Canino — El problema casi nunca es el perro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;800;900&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --amarillo:#FFE600;
+    --amarillo-osc:#E5CF00;
+    --negro:#141210;
+    --negro-soft:#211E1A;
+    --crema:#F7F1E3;
+    --crema-osc:#EDE4CC;
+    --tinta:#2A2622;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Archivo',sans-serif;
+    background:var(--crema);
+    color:var(--negro);
+    line-height:1.55;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;line-height:0.92;letter-spacing:-0.01em}
+  .hand{font-family:'Caveat',cursive;text-transform:none;letter-spacing:0}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%}
+  .wrap{width:100%;max-width:1100px;margin:0 auto;padding:0 22px}
+  .wa-btn{
+    display:inline-flex;align-items:center;gap:9px;
+    background:var(--negro);color:var(--amarillo);
+    font-family:'Archivo',sans-serif;font-weight:800;
+    padding:14px 22px;border-radius:50px;font-size:15px;
+    letter-spacing:0.01em;border:3px solid var(--negro);
+    transition:transform .18s ease, background .18s ease, color .18s ease;
+    cursor:pointer;
+  }
+  .wa-btn:hover{transform:translateY(-3px) rotate(-1deg);background:var(--amarillo);color:var(--negro)}
+  .wa-btn svg{width:20px;height:20px;flex-shrink:0}
+
+  /* ---------- TOPBAR ---------- */
+  .topbar{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:rgba(247,241,227,0.92);backdrop-filter:blur(8px);
+    border-bottom:3px solid var(--negro);
+  }
+  .topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .wordmark{display:flex;align-items:center;gap:10px;font-family:'Anton',sans-serif;font-size:21px;letter-spacing:0.02em}
+  .wordmark .dot{
+    width:30px;height:30px;background:var(--amarillo);border:3px solid var(--negro);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .wordmark .dot svg{width:17px;height:17px}
+  .wordmark span small{display:block;font-family:'Archivo';font-weight:600;text-transform:uppercase;font-size:8.5px;letter-spacing:0.28em;color:var(--tinta);line-height:1;margin-top:2px}
+  .topbar .wa-btn{padding:9px 16px;font-size:13px}
+  .topbar .wa-btn .lbl-long{display:none}
+  @media(min-width:560px){.topbar .wa-btn .lbl-long{display:inline}.topbar .wa-btn .lbl-short{display:none}}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;padding:108px 0 60px;overflow:hidden;
+    background:var(--amarillo);
+    border-bottom:4px solid var(--negro);
+  }
+  .hero .paws{position:absolute;inset:0;pointer-events:none;opacity:0.13}
+  .hero-inner{position:relative;z-index:2}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--negro);color:var(--amarillo);
+    font-weight:800;font-size:11.5px;letter-spacing:0.18em;text-transform:uppercase;
+    padding:7px 14px;border-radius:50px;margin-bottom:22px;
+  }
+  .eyebrow .blink{width:8px;height:8px;border-radius:50%;background:var(--amarillo);animation:blink 1.4s infinite}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:0.25}}
+  .hero h1{font-size:clamp(52px,15.5vw,118px);margin-bottom:8px}
+  .hero h1 .line{display:block;overflow:hidden}
+  .hero h1 .line span{display:block;animation:riseUp .9s cubic-bezier(.2,.7,.2,1) both}
+  .hero h1 .l2 span{animation-delay:.12s}
+  .hero h1 .l3 span{animation-delay:.24s}
+  .hero h1 .hl{position:relative;display:inline-block}
+  .hero h1 .hl::after{
+    content:"";position:absolute;left:-4px;right:-4px;bottom:7px;height:0.34em;z-index:-1;
+    background:var(--crema);transform:skewX(-7deg);
+    animation:wipe .6s ease both .9s;
+  }
+  @keyframes wipe{from{transform:skewX(-7deg) scaleX(0);transform-origin:left}to{transform:skewX(-7deg) scaleX(1)}}
+  @keyframes riseUp{from{transform:translateY(105%)}to{transform:translateY(0)}}
+  .hero p.sub{
+    font-size:18px;font-weight:500;max-width:480px;margin:24px 0 30px;color:var(--tinta);line-height:1.5;
+    animation:fadeUp .8s ease both .5s;
+  }
+  .hero .cta-row{display:flex;flex-wrap:wrap;gap:13px;align-items:center;animation:fadeUp .8s ease both .7s}
+  .hero .cta-note{font-family:'Caveat';font-size:21px;font-weight:700;color:var(--negro);transform:rotate(-3deg)}
+  .hero-tags{margin-top:34px;display:flex;flex-wrap:wrap;gap:9px;animation:fadeUp .8s ease both .9s}
+  .hero-tags span{
+    background:transparent;border:2.5px solid var(--negro);border-radius:50px;
+    font-weight:800;font-size:12px;padding:7px 14px;text-transform:uppercase;letter-spacing:0.04em;
+  }
+  @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+  /* floating dog mark */
+  .hero-dog{
+    position:absolute;right:-22px;bottom:-14px;width:min(46vw,310px);z-index:1;
+    animation:float 5s ease-in-out infinite;
+  }
+  @keyframes float{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-12px) rotate(1.5deg)}}
+  @media(max-width:720px){.hero-dog{opacity:0.22;right:-40px;width:62vw}}
+
+  /* ---------- MARQUEE ---------- */
+  .marquee{background:var(--negro);color:var(--amarillo);overflow:hidden;border-bottom:4px solid var(--negro);padding:13px 0}
+  .marquee-track{display:flex;gap:0;white-space:nowrap;animation:scroll 22s linear infinite;width:max-content}
+  .marquee-track span{font-family:'Anton';font-size:23px;letter-spacing:0.02em;padding:0 22px;display:flex;align-items:center;gap:22px}
+  .marquee-track span::after{content:"";width:11px;height:11px;background:var(--amarillo);border-radius:50%}
+  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* ---------- SECTION SHELL ---------- */
+  section{padding:66px 0}
+  .tag-label{
+    display:inline-block;font-weight:800;font-size:12px;letter-spacing:0.2em;text-transform:uppercase;
+    color:var(--negro);background:var(--amarillo);padding:5px 12px;border:2.5px solid var(--negro);border-radius:6px;margin-bottom:18px;
+  }
+  .reveal{opacity:0;transform:translateY(34px);transition:opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ---------- QUIEN SOY ---------- */
+  .soy{background:var(--crema)}
+  .soy-grid{display:grid;gap:34px}
+  @media(min-width:820px){.soy-grid{grid-template-columns:0.85fr 1.15fr;align-items:center}}
+  .photo-ph{
+    position:relative;background:var(--crema-osc);border:3px solid var(--negro);border-radius:18px;
+    aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;overflow:hidden;
+    box-shadow:10px 10px 0 var(--negro);
+  }
+  .photo-ph .grid-lines{position:absolute;inset:0;opacity:0.5;
+    background-image:linear-gradient(var(--negro) 1px,transparent 1px),linear-gradient(90deg,var(--negro) 1px,transparent 1px);
+    background-size:34px 34px;mask-image:radial-gradient(circle,#000 0%,transparent 75%)}
+  .photo-ph .ph-mark{position:relative;z-index:2;text-align:center}
+  .photo-ph .ph-mark svg{width:62px;height:62px;margin-bottom:8px}
+  .photo-ph .ph-mark small{display:block;font-weight:800;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--tinta);background:var(--amarillo);border:2px solid var(--negro);border-radius:50px;padding:5px 12px}
+  .soy h2{font-size:clamp(38px,9vw,66px);margin-bottom:18px}
+  .soy h2 em{font-style:normal;color:var(--amarillo-osc);-webkit-text-stroke:1.5px var(--negro)}
+  .soy p{font-size:17px;margin-bottom:16px;color:var(--tinta);font-weight:500;max-width:560px}
+  .soy .firma{font-family:'Caveat';font-size:34px;font-weight:700;margin-top:8px;color:var(--negro)}
+  .soy .credos{margin-top:24px;display:flex;flex-wrap:wrap;gap:10px}
+  .soy .credos b{display:inline-flex;align-items:center;gap:7px;font-weight:800;font-size:13px;background:var(--negro);color:var(--crema);padding:8px 14px;border-radius:50px}
+
+  /* ---------- SERVICIOS ---------- */
+  .serv{background:var(--negro);color:var(--crema)}
+  .serv .tag-label{background:var(--amarillo)}
+  .serv h2{font-size:clamp(38px,9vw,70px);color:var(--crema);margin-bottom:10px}
+  .serv h2 .y{color:var(--amarillo)}
+  .serv .lead{color:#C9C2B4;font-weight:500;font-size:17px;max-width:520px;margin-bottom:36px}
+  .serv-grid{display:grid;gap:18px}
+  @media(min-width:720px){.serv-grid{grid-template-columns:repeat(2,1fr)}}
+  .serv-card{
+    background:var(--negro-soft);border:3px solid var(--crema);border-radius:18px;padding:26px 24px;
+    position:relative;transition:transform .2s ease,background .2s ease;overflow:hidden;
+  }
+  .serv-card:hover{transform:translateY(-6px);background:var(--amarillo);color:var(--negro);border-color:var(--amarillo)}
+  .serv-card:hover .num,.serv-card:hover h3,.serv-card:hover p,.serv-card:hover .price{color:var(--negro)}
+  .serv-card .num{font-family:'Anton';font-size:15px;color:var(--amarillo);letter-spacing:0.1em;margin-bottom:14px;display:block}
+  .serv-card .ico{width:46px;height:46px;margin-bottom:14px}
+  .serv-card h3{font-size:25px;margin-bottom:9px;color:var(--crema)}
+  .serv-card p{font-size:15px;color:#BDB6A8;font-weight:500;margin-bottom:16px;line-height:1.5}
+  .serv-card .price{font-family:'Anton';font-size:20px;color:var(--amarillo);letter-spacing:0.02em}
+  .serv-card .price small{font-family:'Archivo';font-weight:600;font-size:12px;color:#9b958a;text-transform:uppercase;letter-spacing:0.08em}
+
+  /* ---------- POR QUE ---------- */
+  .porque{background:var(--amarillo)}
+  .porque h2{font-size:clamp(40px,11vw,90px);text-align:center;margin-bottom:6px}
+  .porque .sub-c{text-align:center;font-weight:600;font-size:17px;color:var(--tinta);margin-bottom:42px}
+  .ben-grid{display:grid;gap:16px}
+  @media(min-width:680px){.ben-grid{grid-template-columns:repeat(2,1fr)}}
+  .ben{
+    background:var(--crema);border:3px solid var(--negro);border-radius:16px;padding:24px 22px;
+    display:flex;gap:16px;align-items:flex-start;box-shadow:6px 6px 0 var(--negro);
+    transition:transform .18s ease,box-shadow .18s ease;
+  }
+  .ben:hover{transform:translate(-2px,-2px);box-shadow:9px 9px 0 var(--negro)}
+  .ben .b-ico{flex-shrink:0;width:48px;height:48px;background:var(--amarillo);border:3px solid var(--negro);border-radius:12px;display:flex;align-items:center;justify-content:center}
+  .ben .b-ico svg{width:26px;height:26px}
+  .ben h3{font-size:20px;margin-bottom:5px}
+  .ben p{font-size:14.5px;font-weight:500;color:var(--tinta);line-height:1.5}
+
+  /* ---------- GALERIA ---------- */
+  .galeria{background:var(--crema)}
+  .galeria h2{font-size:clamp(38px,9vw,66px);margin-bottom:8px}
+  .galeria .lead{font-weight:500;font-size:17px;color:var(--tinta);margin-bottom:34px;max-width:520px}
+  .gal-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  @media(min-width:760px){.gal-grid{grid-template-columns:repeat(4,1fr)}}
+  .gal-item{
+    position:relative;background:var(--crema-osc);border:3px solid var(--negro);border-radius:14px;
+    aspect-ratio:1;overflow:hidden;display:flex;align-items:center;justify-content:center;
+    transition:transform .2s ease;
+  }
+  .gal-item:nth-child(1){grid-row:span 2;aspect-ratio:auto}
+  .gal-item:hover{transform:scale(0.97) rotate(-1deg)}
+  .gal-item .gico{width:40px;height:40px;opacity:0.55}
+  .gal-item .cap{position:absolute;bottom:8px;left:8px;right:8px;font-weight:800;font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--tinta);background:var(--amarillo);border:2px solid var(--negro);border-radius:50px;padding:4px 9px;text-align:center}
+  .gal-item .dots{position:absolute;inset:0;opacity:0.4;background-image:radial-gradient(var(--negro) 1.4px,transparent 1.4px);background-size:14px 14px}
+
+  /* ---------- GANCHO ---------- */
+  .gancho{background:var(--negro);color:var(--crema);text-align:center;position:relative;overflow:hidden}
+  .gancho .paws{position:absolute;inset:0;opacity:0.07}
+  .gancho-in{position:relative;z-index:2;max-width:680px;margin:0 auto}
+  .gancho .pill{display:inline-flex;align-items:center;gap:8px;background:var(--amarillo);color:var(--negro);font-weight:800;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;padding:8px 16px;border-radius:50px;margin-bottom:22px}
+  .gancho h2{font-size:clamp(36px,9vw,68px);color:var(--crema);margin-bottom:16px}
+  .gancho h2 .y{color:var(--amarillo)}
+  .gancho p{font-size:18px;font-weight:500;color:#C9C2B4;margin-bottom:14px}
+  .gancho .cuenta{font-family:'Anton';font-size:clamp(40px,13vw,82px);color:var(--amarillo);letter-spacing:0.02em;line-height:1;margin:8px 0 24px}
+  .gancho .wa-btn{background:var(--amarillo);color:var(--negro);border-color:var(--amarillo);font-size:16px;padding:16px 26px}
+  .gancho .wa-btn:hover{background:var(--crema);border-color:var(--crema)}
+
+  /* ---------- RESEÑAS ---------- */
+  .resenas{background:var(--crema)}
+  .resenas h2{font-size:clamp(38px,9vw,66px);margin-bottom:8px;text-align:center}
+  .resenas .stars-top{text-align:center;font-weight:700;color:var(--tinta);margin-bottom:38px;font-size:16px}
+  .resenas .stars-top b{color:var(--negro)}
+  .res-grid{display:grid;gap:18px}
+  @media(min-width:760px){.res-grid{grid-template-columns:repeat(3,1fr)}}
+  .res{background:var(--crema);border:3px solid var(--negro);border-radius:18px;padding:24px 22px;box-shadow:6px 6px 0 var(--amarillo)}
+  .res .stars{color:var(--amarillo-osc);-webkit-text-stroke:0.6px var(--negro);font-size:18px;letter-spacing:2px;margin-bottom:12px}
+  .res p{font-size:15.5px;font-weight:500;line-height:1.55;margin-bottom:18px;color:var(--tinta)}
+  .res .who{display:flex;align-items:center;gap:11px}
+  .res .av{width:42px;height:42px;border-radius:50%;background:var(--amarillo);border:2.5px solid var(--negro);display:flex;align-items:center;justify-content:center;font-family:'Anton';font-size:17px;flex-shrink:0}
+  .res .who b{display:block;font-weight:800;font-size:14px}
+  .res .who small{font-size:12px;color:var(--tinta);font-weight:600}
+
+  /* ---------- FAQ ---------- */
+  .faq{background:var(--amarillo)}
+  .faq h2{font-size:clamp(38px,9vw,66px);margin-bottom:30px;text-align:center}
+  .faq-list{max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+  details{background:var(--crema);border:3px solid var(--negro);border-radius:14px;overflow:hidden}
+  summary{
+    list-style:none;cursor:pointer;padding:18px 20px;font-weight:800;font-size:16.5px;
+    display:flex;justify-content:space-between;align-items:center;gap:14px;
+  }
+  summary::-webkit-details-marker{display:none}
+  summary .pm{flex-shrink:0;width:28px;height:28px;background:var(--amarillo);border:2.5px solid var(--negro);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Anton';font-size:20px;transition:transform .25s ease}
+  details[open] summary .pm{transform:rotate(135deg)}
+  details p{padding:0 20px 20px;font-size:15px;font-weight:500;color:var(--tinta);line-height:1.55}
+
+  /* ---------- CONTACTO ---------- */
+  .contacto{background:var(--negro);color:var(--crema)}
+  .cont-grid{display:grid;gap:30px}
+  @media(min-width:820px){.cont-grid{grid-template-columns:1.1fr 0.9fr;align-items:center}}
+  .contacto h2{font-size:clamp(40px,10vw,78px);color:var(--crema);margin-bottom:14px}
+  .contacto h2 .y{color:var(--amarillo)}
+  .contacto p.lead{font-size:18px;font-weight:500;color:#C9C2B4;margin-bottom:26px;max-width:440px}
+  .contacto .wa-btn{background:var(--amarillo);color:var(--negro);border-color:var(--amarillo);font-size:16px;padding:16px 26px;margin-bottom:22px}
+  .contacto .wa-btn:hover{background:var(--crema);border-color:var(--crema)}
+  .info-card{background:var(--negro-soft);border:3px solid var(--crema);border-radius:18px;padding:26px 24px}
+  .info-row{display:flex;align-items:flex-start;gap:14px;padding:13px 0;border-bottom:1px solid rgba(247,241,227,0.16)}
+  .info-row:last-child{border-bottom:none}
+  .info-row .ir-ico{flex-shrink:0;width:40px;height:40px;background:var(--amarillo);border-radius:10px;display:flex;align-items:center;justify-content:center}
+  .info-row .ir-ico svg{width:21px;height:21px}
+  .info-row b{display:block;font-weight:800;font-size:14px;color:var(--crema)}
+  .info-row small{font-size:13.5px;color:#BDB6A8;font-weight:500}
+  .map-ph{margin-top:18px;height:120px;border-radius:14px;border:3px solid var(--crema);background:var(--negro);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+  .map-ph .mlines{position:absolute;inset:0;opacity:0.35;background-image:linear-gradient(var(--amarillo) 1px,transparent 1px),linear-gradient(90deg,var(--amarillo) 1px,transparent 1px);background-size:26px 26px}
+  .map-ph small{position:relative;z-index:2;font-weight:800;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--negro);background:var(--amarillo);border-radius:50px;padding:6px 14px}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--negro);color:var(--crema);border-top:4px solid var(--amarillo);padding:40px 0 110px}
+  .foot-grid{display:flex;flex-wrap:wrap;justify-content:space-between;gap:26px;align-items:flex-start}
+  .foot-grid .wordmark{color:var(--crema)}
+  .foot-grid .wordmark span small{color:#9b958a}
+  .foot-links{display:flex;flex-wrap:wrap;gap:8px 20px}
+  .foot-links a{font-weight:600;font-size:14px;color:#C9C2B4;transition:color .15s}
+  .foot-links a:hover{color:var(--amarillo)}
+  .foot-bottom{margin-top:30px;padding-top:22px;border-top:1px solid rgba(247,241,227,0.14);display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;font-size:12.5px;color:#857f74;font-weight:500}
+  .foot-bottom .hand{font-family:'Caveat';font-size:18px;color:var(--amarillo)}
+
+  /* ---------- STICKY MOBILE WA ---------- */
+  .sticky-wa{
+    position:fixed;left:14px;right:14px;bottom:14px;z-index:200;
+    display:flex;align-items:center;justify-content:center;gap:10px;
+    background:var(--amarillo);color:var(--negro);border:3px solid var(--negro);
+    border-radius:50px;padding:14px;font-weight:800;font-size:15.5px;
+    box-shadow:0 6px 0 var(--negro);
+    animation:nudge 3s ease-in-out infinite;
+  }
+  .sticky-wa svg{width:22px;height:22px}
+  @keyframes nudge{0%,92%,100%{transform:translateY(0)}96%{transform:translateY(-4px)}}
+  @media(min-width:760px){.sticky-wa{display:none}}
+  @media(max-width:759px){footer{padding-bottom:110px}}
+</style>
+</head>
+<body>
+
+<!-- ========== TOPBAR ========== -->
+<header class="topbar">
+  <div class="wrap">
+    <a href="#top" class="wordmark">
+      <span class="dot">
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="7" cy="9" r="2" fill="#141210"/><circle cx="12" cy="7" r="2" fill="#141210"/><circle cx="17" cy="9" r="2" fill="#141210"/><path d="M12 11c-3 0-5 2-5 4.5 0 1.8 1.5 2.5 2.6 1.8.8-.5 1.6-.5 2.4 0 1.1.7 2.6 0 2.6-1.8 0-2.5-2-4.5-2.6-4.5z" fill="#141210"/></svg>
+      </span>
+      <span>BUEN ROLLO<small>Canino · Valencia</small></span>
+    </a>
+    <a href="https://wa.me/34600000000" class="wa-btn">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm5.8 14.1c-.2.6-1.2 1.2-1.7 1.2-.4 0-1 .1-3.2-.9-2.7-1.1-4.4-3.8-4.6-4-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2.1.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.4.5-.3.3c-.1.2-.3.3-.1.6.1.3.7 1.1 1.5 1.8 1 .9 1.8 1.1 2.1 1.3.3.1.5.1.6-.1.2-.2.7-.8.9-1.1.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.5 0 1z"/></svg>
+      <span class="lbl-long">Escríbeme</span><span class="lbl-short">Hola</span>
+    </a>
+  </div>
+</header>
+
+<!-- ========== HERO ========== -->
+<section class="hero" id="top">
+  <svg class="paws" viewBox="0 0 400 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g fill="#141210">
+      <g transform="translate(40,90) scale(0.7)"><circle cx="7" cy="9" r="3"/><circle cx="14" cy="6" r="3"/><circle cx="21" cy="9" r="3"/><path d="M14 13c-4 0-6 3-6 6 0 2 2 3 3.4 2 1-.7 2.2-.7 3.2 0 1.4 1 3.4 0 3.4-2 0-3-2.6-6-4-6z"/></g>
+      <g transform="translate(140,200) scale(0.9) rotate(20)"><circle cx="7" cy="9" r="3"/><circle cx="14" cy="6" r="3"/><circle cx="21" cy="9" r="3"/><path d="M14 13c-4 0-6 3-6 6 0 2 2 3 3.4 2 1-.7 2.2-.7 3.2 0 1.4 1 3.4 0 3.4-2 0-3-2.6-6-4-6z"/></g>
+      <g transform="translate(280,120) scale(0.6) rotate(-15)"><circle cx="7" cy="9" r="3"/><circle cx="14" cy="6" r="3"/><circle cx="21" cy="9" r="3"/><path d="M14 13c-4 0-6 3-6 6 0 2 2 3 3.4 2 1-.7 2.2-.7 3.2 0 1.4 1 3.4 0 3.4-2 0-3-2.6-6-4-6z"/></g>
+      <g transform="translate(320,340) scale(0.8) rotate(30)"><circle cx="7" cy="9" r="3"/><circle cx="14" cy="6" r="3"/><circle cx="21" cy="9" r="3"/><path d="M14 13c-4 0-6 3-6 6 0 2 2 3 3.4 2 1-.7 2.2-.7 3.2 0 1.4 1 3.4 0 3.4-2 0-3-2.6-6-4-6z"/></g>
+      <g transform="translate(60,420) scale(0.75) rotate(-25)"><circle cx="7" cy="9" r="3"/><circle cx="14" cy="6" r="3"/><circle cx="21" cy="9" r="3"/><path d="M14 13c-4 0-6 3-6 6 0 2 2 3 3.4 2 1-.7 2.2-.7 3.2 0 1.4 1 3.4 0 3.4-2 0-3-2.6-6-4-6z"/></g>
+    </g>
+  </svg>
+
+  <!-- silueta perro -->
+  <svg class="hero-dog" viewBox="0 0 300 300" aria-hidden="true">
+    <g fill="#141210">
+      <path d="M70 150c-8-22-6-48 8-62 4-4 9-2 9 4 0 6-3 12-1 18 6-10 18-18 32-20 22-3 44 6 58 24 6 8 16 10 26 10 8 0 14 6 14 14 0 6-4 11-10 13-3 14-13 26-27 32l4 30c1 6-3 11-9 11h-8c-5 0-9-4-9-9v-22c-10 2-22 2-32 0v22c0 5-4 9-9 9h-8c-6 0-10-5-9-11l5-34c-14-8-23-22-28-39z"/>
+      <circle cx="178" cy="118" r="6" fill="#FFE600"/>
+    </g>
+  </svg>
+
+  <div class="wrap hero-inner">
+    <span class="eyebrow"><span class="blink"></span>Educación canina · honesta y con energía</span>
+    <h1>
+      <span class="line"><span>El problema</span></span>
+      <span class="line l2"><span>casi nunca</span></span>
+      <span class="line l3"><span>es el <span class="hl">perro.</span></span></span>
+    </h1>
+    <p class="sub">No entreno perros — entreno <b>vuestra relación</b>. Sin gritos, sin trucos de feria. Cambio real, en tu casa, con las personas que viven con él. 🐾</p>
+    <div class="cta-row">
+      <a href="https://wa.me/34600000000" class="wa-btn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm5.8 14.1c-.2.6-1.2 1.2-1.7 1.2-.4 0-1 .1-3.2-.9-2.7-1.1-4.4-3.8-4.6-4-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2.1.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.4.5-.3.3c-.1.2-.3.3-.1.6.1.3.7 1.1 1.5 1.8 1 .9 1.8 1.1 2.1 1.3.3.1.5.1.6-.1.2-.2.7-.8.9-1.1.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.5 0 1z"/></svg>
+        Cuéntame qué pasa
+      </a>
+      <span class="cta-note">— primera charla gratis ↗</span>
+    </div>
+    <div class="hero-tags">
+      <span>Refuerzo positivo</span>
+      <span>A domicilio</span>
+      <span>Cachorros &amp; adultos</span>
+      <span>Sin jaulas</span>
+    </div>
+  </div>
+</section>
+
+<!-- ========== MARQUEE ========== -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>HONESTIDAD</span><span>ENERGÍA</span><span>CAMBIO REAL</span><span>EN CASA</span><span>SIN GRITOS</span><span>BUEN ROLLO</span>
+    <span>HONESTIDAD</span><span>ENERGÍA</span><span>CAMBIO REAL</span><span>EN CASA</span><span>SIN GRITOS</span><span>BUEN ROLLO</span>
+  </div>
+</div>
+
+<!-- ========== QUIEN SOY ========== -->
+<section class="soy">
+  <div class="wrap soy-grid">
+    <div class="photo-ph reveal">
+      <div class="grid-lines"></div>
+      <div class="ph-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#141210" stroke-width="1.6"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.2"/><path d="M8 6l1.5-2h5L16 6"/></svg>
+        <small>foto real aquí</small>
+      </div>
+    </div>
+    <div class="reveal">
+      <span class="tag-label">Quién está detrás</span>
+      <h2>Soy Marta — y trabajo con <em>los dos</em>.</h2>
+      <p>Llevo 9 años con correa en mano y manos llenas de pelo. Y te voy a ser sincera: la mayoría de las veces, el perro hace exactamente lo que aprendió que funciona — somos nosotros los que mandamos señales cruzadas.</p>
+      <p>Mi trabajo no es domarlo. Es traduciros. Que tú entiendas a tu perro, que tu perro te entienda a ti — y que la casa vuelva a tener <b>buen rollo</b>.</p>
+      <div class="firma">— Marta &amp; Tobi 🐕</div>
+      <div class="credos">
+        <b>✔ Educadora certificada</b>
+        <b>✔ +400 familias</b>
+        <b>✔ Cero castigo</b>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SERVICIOS ========== -->
+<section class="serv">
+  <div class="wrap">
+    <span class="tag-label reveal">Lo que hacemos juntos</span>
+    <h2 class="reveal">No son clases.<br>Son <span class="y">conversaciones.</span></h2>
+    <p class="lead reveal">Cada perro y cada familia es un mundo. Por eso no vendo paquetes cerrados — montamos un plan que cabe en tu vida real.</p>
+    <div class="serv-grid">
+      <div class="serv-card reveal">
+        <span class="num">01</span>
+        <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="#FFE600" stroke-width="2.4" stroke-linecap="round"><path d="M10 38V20l14-10 14 10v18"/><rect x="18" y="26" width="12" height="12" rx="1.5"/></svg>
+        <h3>Convivencia en casa</h3>
+        <p>Voy a tu hogar, veo el día a día real y arreglamos lo que de verdad os pasa — tirones, ladridos, ese sofá que es un campo de batalla.</p>
+        <div class="price">45€ <small>/ sesión a domicilio</small></div>
+      </div>
+      <div class="serv-card reveal">
+        <span class="num">02</span>
+        <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="#FFE600" stroke-width="2.4" stroke-linecap="round"><circle cx="24" cy="16" r="7"/><path d="M12 40c0-7 5-12 12-12s12 5 12 12"/></svg>
+        <h3>Cachorro recién llegado</h3>
+        <p>Las primeras semanas lo deciden todo. Socialización, pis en su sitio y noches sin drama — empezamos con buen pie desde el día uno.</p>
+        <div class="price">Pack 4 sesiones · 160€</div>
+      </div>
+      <div class="serv-card reveal">
+        <span class="num">03</span>
+        <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="#FFE600" stroke-width="2.4" stroke-linecap="round"><path d="M8 24h8l4-10 8 20 4-10h8"/></svg>
+        <h3>Miedos &amp; reactividad</h3>
+        <p>Cohetes, otros perros, la calle. Sin forzar y sin gritos — vamos a su ritmo hasta que el mundo deje de dar tanto miedo.</p>
+        <div class="price">Plan a medida</div>
+      </div>
+      <div class="serv-card reveal">
+        <span class="num">04</span>
+        <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="#FFE600" stroke-width="2.4" stroke-linecap="round"><path d="M24 8v8M24 32v8M8 24h8M32 24h8"/><circle cx="24" cy="24" r="6"/></svg>
+        <h3>Paseo &amp; obediencia útil</h3>
+        <p>Nada de circo. Que venga cuando llamas, que pasee suelto y disfrutéis la calle juntos. Lo que necesitas de verdad, nada más.</p>
+        <div class="price">35€ <small>/ sesión</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== POR QUE NOSOTROS ========== -->
+<section class="porque">
+  <div class="wrap">
+    <h2 class="reveal">¿Por qué yo?</h2>
+    <p class="sub-c reveal">Porque te diré la verdad — aunque no sea lo que quieres oír. 🐾</p>
+    <div class="ben-grid">
+      <div class="ben reveal">
+        <div class="b-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#141210" stroke-width="2.2" stroke-linecap="round"><path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5z"/></svg></div>
+        <div><h3>Honestidad brutal</h3><p>Si tu perro no necesita 10 sesiones, te lo digo. Cobro por resultados, no por estirar el chicle.</p></div>
+      </div>
+      <div class="ben reveal">
+        <div class="b-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#141210" stroke-width="2.2" stroke-linecap="round"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg></div>
+        <div><h3>Te entreno a ti</h3><p>El perro aprende rápido. Tú eres quien repite cada día. Por eso el foco está en las personas de la casa.</p></div>
+      </div>
+      <div class="ben reveal">
+        <div class="b-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#141210" stroke-width="2.2" stroke-linecap="round"><path d="M12 21s-7-4.5-9-9a4.5 4.5 0 0 1 9-2 4.5 4.5 0 0 1 9 2c-2 4.5-9 9-9 9z"/></svg></div>
+        <div><h3>Cero castigo, cero miedo</h3><p>Nada de collares de pinchos ni gritos. La confianza no se construye asustando — se construye entendiendo.</p></div>
+      </div>
+      <div class="ben reveal">
+        <div class="b-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#141210" stroke-width="2.2" stroke-linecap="round"><path d="M3 11l9-7 9 7M5 10v9h14v-9"/><path d="M10 19v-5h4v5"/></svg></div>
+        <div><h3>En tu casa, tu mundo</h3><p>Trabajamos donde pasan las cosas: tu salón, tu portal, tu parque. El cambio se queda donde vives.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== GALERIA ========== -->
+<section class="galeria">
+  <div class="wrap">
+    <span class="tag-label reveal">El día a día</span>
+    <h2 class="reveal">Caras felices,<br>correas flojas.</h2>
+    <p class="lead reveal">Aquí van las fotos reales de las familias con las que trabajo — sin filtros, con pelo en el sofá incluido.</p>
+    <div class="gal-grid">
+      <div class="gal-item reveal"><div class="dots"></div>
+        <svg class="gico" viewBox="0 0 24 24" fill="none" stroke="#141210" stroke-width="1.6"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.2"/></svg>
+        <span class="cap">Tobi en el parque</span>
+      </div>
+      <div class="gal-item reveal"><div class="dots"></div>
+        <svg class="gico" viewBox="0 0 24 24" fill="none" stroke="#141210" stroke-width="1.6"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.2"/></svg>
+        <span class="cap">Primer "quieto"</span>
+      </div>
+      <div class="gal-item reveal"><div class="dots"></div>
+        <svg class="gico" viewBox="0 0 24 24" fill="none" stroke="#141210" stroke-width="1.6"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.2"/></svg>
+        <span class="cap">Paseo suelto</span>
+      </div>
+      <div class="gal-item reveal"><div class="dots"></div>
+        <svg class="gico" viewBox="0 0 24 24" fill="none" stroke="#141210" stroke-width="1.6"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.2"/></svg>
+        <span class="cap">Sesión en casa</span>
+      </div>
+      <div class="gal-item reveal"><div class="dots"></div>
+        <svg class="gico" viewBox="0 0 24 24" fill="none" stroke="#141210" stroke-width="1.6"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.2"/></svg>
+        <span class="cap">Cachorro nuevo</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== GANCHO ESTACIONAL ========== -->
+<section class="gancho">
+  <svg class="paws" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g fill="#FFE600">
+      <g transform="translate(40,60) scale(0.9) rotate(15)"><circle cx="7" cy="9" r="3"/><circle cx="14" cy="6" r="3"/><circle cx="21" cy="9" r="3"/><path d="M14 13c-4 0-6 3-6 6 0 2 2 3 3.4 2 1-.7 2.2-.7 3.2 0 1.4 1 3.4 0 3.4-2 0-3-2.6-6-4-6z"/></g>
+      <g transform="translate(300,100) scale(1.1) rotate(-20)"><circle cx="7" cy="9" r="3"/><circle cx="14" cy="6" r="3"/><circle cx="21" cy="9" r="3"/><path d="M14 13c-4 0-6 3-6 6 0 2 2 3 3.4 2 1-.7 2.2-.7 3.2 0 1.4 1 3.4 0 3.4-2 0-3-2.6-6-4-6z"/></g>
+      <g transform="translate(180,200) scale(0.8) rotate(35)"><circle cx="7" cy="9" r="3"/><circle cx="14" cy="6" r="3"/><circle cx="21" cy="9" r="3"/><path d="M14 13c-4 0-6 3-6 6 0 2 2 3 3.4 2 1-.7 2.2-.7 3.2 0 1.4 1 3.4 0 3.4-2 0-3-2.6-6-4-6z"/></g>
+    </g>
+  </svg>
+  <div class="wrap gancho-in">
+    <span class="pill reveal">🎆 Antes de las fiestas</span>
+    <h2 class="reveal">Llegan los cohetes.<br>Que no le pillen <span class="y">temblando.</span></h2>
+    <p class="reveal">El miedo a los petardos se trabaja <b>antes</b>, no la noche de San Juan. Cada año me quedo sin huecos — así que esto va en serio:</p>
+    <div class="cuenta reveal">Solo 6 plazas</div>
+    <p class="reveal" style="margin-bottom:26px;">para empezar el plan antiruido este mes. Escríbeme y te guardo la tuya.</p>
+    <a href="https://wa.me/34600000000" class="wa-btn reveal">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm5.8 14.1c-.2.6-1.2 1.2-1.7 1.2-.4 0-1 .1-3.2-.9-2.7-1.1-4.4-3.8-4.6-4-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2.1.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.4.5-.3.3c-.1.2-.3.3-.1.6.1.3.7 1.1 1.5 1.8 1 .9 1.8 1.1 2.1 1.3.3.1.5.1.6-.1.2-.2.7-.8.9-1.1.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.5 0 1z"/></svg>
+      Quiero mi plaza
+    </a>
+  </div>
+</section>
+
+<!-- ========== RESEÑAS ========== -->
+<section class="resenas">
+  <div class="wrap">
+    <h2 class="reveal">Lo que dicen<br>las familias.</h2>
+    <p class="stars-top reveal">★★★★★ &nbsp;<b>4,9 / 5</b> · 87 reseñas reales en Google</p>
+    <div class="res-grid">
+      <div class="res reveal">
+        <div class="stars">★★★★★</div>
+        <p>"Llegó a casa y en vez de mirar a Nala, nos miró a nosotros. Tenía razón — el lío era nuestro. En tres semanas el paseo es otra cosa."</p>
+        <div class="who"><div class="av">L</div><div><b>Laura M.</b><small>con Nala · Russafa</small></div></div>
+      </div>
+      <div class="res reveal">
+        <div class="stars">★★★★★</div>
+        <p>"Honesta hasta decir basta. Me dijo que dos sesiones bastaban y así fue. Cero postureo, mucho cariño y un perro feliz."</p>
+        <div class="who"><div class="av">J</div><div><b>Jordi &amp; Bruno</b><small>Benimaclet</small></div></div>
+      </div>
+      <div class="res reveal">
+        <div class="stars">★★★★★</div>
+        <p>"Mi cachorra tenía pánico a la calle. Sin forzarla nunca, ahora sale moviendo el rabo. Marta es magia con paciencia."</p>
+        <div class="who"><div class="av">C</div><div><b>Carmen R.</b><small>con Luna · El Carmen</small></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FAQ ========== -->
+<section class="faq">
+  <div class="wrap">
+    <h2 class="reveal">Dudas rápidas.</h2>
+    <div class="faq-list">
+      <details class="reveal" open>
+        <summary>¿En qué zona trabajas? <span class="pm">+</span></summary>
+        <p>Valencia ciudad y alrededores (hasta ~20 km). Voy yo a tu casa — que es justo donde el cambio tiene que ocurrir. Si estás algo más lejos, escríbeme y lo vemos.</p>
+      </details>
+      <details class="reveal">
+        <summary>¿Usas castigo o collares de pinchos? <span class="pm">+</span></summary>
+        <p>Jamás. Trabajo solo en positivo: premios, gestión del entorno y mucha paciencia. La confianza no se construye con miedo.</p>
+      </details>
+      <details class="reveal">
+        <summary>Mi perro ya es mayor, ¿sirve igual? <span class="pm">+</span></summary>
+        <p>Totalmente. El cuento de "perro viejo no aprende" es eso, un cuento. He trabajado con peludos de 11 años. Tardamos un pelín más, nada más.</p>
+      </details>
+      <details class="reveal">
+        <summary>¿Cuántas sesiones voy a necesitar? <span class="pm">+</span></summary>
+        <p>Depende de qué pase y de cuánto practiquéis en casa. En la primera charla (gratis) te doy una estimación honesta — sin inflar la cuenta.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CONTACTO ========== -->
+<section class="contacto" id="contacto">
+  <div class="wrap cont-grid">
+    <div class="reveal">
+      <h2>Empecemos con <span class="y">buen rollo.</span></h2>
+      <p class="lead">Cuéntame qué te pasa con tu perro por WhatsApp. La primera charla es gratis y sin compromiso — solo nosotros, tú y un café. ☕🐾</p>
+      <a href="https://wa.me/34600000000" class="wa-btn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm5.8 14.1c-.2.6-1.2 1.2-1.7 1.2-.4 0-1 .1-3.2-.9-2.7-1.1-4.4-3.8-4.6-4-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2.1.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.4.5-.3.3c-.1.2-.3.3-.1.6.1.3.7 1.1 1.5 1.8 1 .9 1.8 1.1 2.1 1.3.3.1.5.1.6-.1.2-.2.7-.8.9-1.1.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.5 0 1z"/></svg>
+        Escríbeme ahora
+      </a>
+    </div>
+    <div class="info-card reveal">
+      <div class="info-row">
+        <div class="ir-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#141210" stroke-width="2"><path d="M12 21s-7-5-7-11a7 7 0 0 1 14 0c0 6-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+        <div><b>Dónde</b><small>Valencia ciudad + 20 km a la redonda · a domicilio</small></div>
+      </div>
+      <div class="info-row">
+        <div class="ir-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#141210" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div>
+        <div><b>WhatsApp</b><small>+34 600 000 000 · respondo en el día</small></div>
+      </div>
+      <div class="info-row">
+        <div class="ir-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#141210" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+        <div><b>Horario</b><small>Lun a sáb · 9:00 – 20:00</small></div>
+      </div>
+      <div class="map-ph">
+        <div class="mlines"></div>
+        <small>📍 mapa real aquí</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <a href="#top" class="wordmark">
+        <span class="dot">
+          <svg viewBox="0 0 24 24" fill="none"><circle cx="7" cy="9" r="2" fill="#141210"/><circle cx="12" cy="7" r="2" fill="#141210"/><circle cx="17" cy="9" r="2" fill="#141210"/><path d="M12 11c-3 0-5 2-5 4.5 0 1.8 1.5 2.5 2.6 1.8.8-.5 1.6-.5 2.4 0 1.1.7 2.6 0 2.6-1.8 0-2.5-2-4.5-2.6-4.5z" fill="#141210"/></svg>
+        </span>
+        <span>BUEN ROLLO<small>Canino · Valencia</small></span>
+      </a>
+      <nav class="foot-links">
+        <a href="#top">Inicio</a>
+        <a href="#contacto">Servicios</a>
+        <a href="#contacto">Reseñas</a>
+        <a href="#contacto">Contacto</a>
+        <a href="https://wa.me/34600000000">WhatsApp</a>
+      </nav>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Buen Rollo Canino · Educación canina honesta en Valencia.</span>
+      <span class="hand">Hecho con pelos y cariño 🐾</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ========== STICKY MOBILE WA ========== -->
+<a href="https://wa.me/34600000000" class="sticky-wa">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm5.8 14.1c-.2.6-1.2 1.2-1.7 1.2-.4 0-1 .1-3.2-.9-2.7-1.1-4.4-3.8-4.6-4-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2.1.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.4.5-.3.3c-.1.2-.3.3-.1.6.1.3.7 1.1 1.5 1.8 1 .9 1.8 1.1 2.1 1.3.3.1.5.1.6-.1.2-.2.7-.8.9-1.1.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.5 0 1z"/></svg>
+  Escríbeme — primera charla gratis
+</a>
+
+<script>
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach((e,i)=>{
+      if(e.isIntersecting){
+        setTimeout(()=>e.target.classList.add('in'), (i%4)*70);
+        obs.unobserve(e.target);
+      }
+    });
+  },{threshold:0.12, rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+
+</body>
+</html>

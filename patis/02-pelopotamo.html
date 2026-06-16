@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pelopótamo — Entra peludo. Sale estrella.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --rosa:#FF2E88;
+    --rosa-soft:#FF6BAA;
+    --negro:#16110F;
+    --negro-2:#221A17;
+    --crema:#FBEFE2;
+    --crema-2:#F4E2CC;
+    --oro:#F4B740;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--crema);
+    color:var(--negro);
+    font-family:'Space Grotesk',sans-serif;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--rosa);color:var(--crema)}
+  h1,h2,h3{line-height:.92;letter-spacing:-.02em}
+  .anton{font-family:'Anton',sans-serif;font-weight:400;letter-spacing:0;text-transform:uppercase}
+  .fraunces{font-family:'Fraunces',serif}
+  a{color:inherit;text-decoration:none}
+
+  /* ---------- NAVBAR ---------- */
+  .nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 20px;
+    background:rgba(251,239,226,.82);
+    backdrop-filter:blur(12px);
+    border-bottom:2px solid var(--negro);
+  }
+  .brand{display:flex;align-items:center;gap:8px;font-family:'Anton',sans-serif;font-size:22px;text-transform:uppercase;letter-spacing:.5px}
+  .brand .dot{color:var(--rosa)}
+  .nav-wa{
+    display:inline-flex;align-items:center;gap:7px;
+    background:var(--rosa);color:var(--crema);
+    font-family:'Space Grotesk';font-weight:700;font-size:14px;
+    padding:9px 16px;border-radius:40px;border:2px solid var(--negro);
+    transition:transform .15s ease, background .2s ease;
+  }
+  .nav-wa:hover{transform:translateY(-2px) rotate(-2deg);background:var(--negro)}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;padding:120px 20px 60px;text-align:center;overflow:hidden;
+  }
+  .hero-blob{
+    position:absolute;width:520px;height:520px;border-radius:50%;
+    background:var(--rosa);opacity:.18;filter:blur(10px);
+    top:-160px;right:-200px;z-index:0;
+    animation:floaty 9s ease-in-out infinite;
+  }
+  @keyframes floaty{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(30px) scale(1.06)}}
+  .hero-kicker{
+    position:relative;z-index:2;
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--negro);color:var(--crema);
+    font-weight:500;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;
+    padding:7px 15px;border-radius:30px;margin-bottom:26px;
+  }
+  .hero-kicker .pulse{width:8px;height:8px;border-radius:50%;background:var(--oro);animation:pulse 1.4s infinite}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.5)}}
+  .hero h1{
+    position:relative;z-index:2;
+    font-size:clamp(58px,21vw,150px);
+    text-transform:uppercase;font-family:'Anton',sans-serif;
+  }
+  .hero h1 .l1{display:block;color:var(--negro)}
+  .hero h1 .l2{
+    display:block;color:var(--rosa);
+    position:relative;
+  }
+  .hero h1 .l2::after{
+    content:"";position:absolute;left:50%;bottom:6px;transform:translateX(-50%);
+    width:0;height:10px;background:var(--oro);z-index:-1;opacity:.65;border-radius:6px;
+    animation:underline 1.1s ease-out forwards .8s;
+  }
+  @keyframes underline{to{width:88%}}
+  .hero-sub{
+    position:relative;z-index:2;
+    max-width:440px;margin:24px auto 0;
+    font-size:18px;line-height:1.5;color:var(--negro-2);
+  }
+  .hero-sub em{font-family:'Fraunces';font-style:italic;font-weight:500}
+  .hero-cta{
+    position:relative;z-index:2;
+    display:inline-flex;align-items:center;gap:10px;margin-top:32px;
+    background:var(--rosa);color:var(--crema);
+    font-family:'Anton';font-size:19px;letter-spacing:.5px;text-transform:uppercase;
+    padding:18px 30px;border-radius:50px;border:3px solid var(--negro);
+    box-shadow:6px 6px 0 var(--negro);
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .hero-cta:hover{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--negro)}
+  .hero-note{position:relative;z-index:2;margin-top:14px;font-size:13px;color:var(--negro-2);opacity:.75}
+
+  /* ---------- BEFORE / AFTER STAGE ---------- */
+  .stage{position:relative;z-index:2;margin:46px auto 0;max-width:360px}
+  .ba-card{
+    background:var(--crema-2);border:3px solid var(--negro);border-radius:24px;
+    padding:18px;box-shadow:8px 8px 0 var(--rosa);
+  }
+  .ba-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:center}
+  .ba-pane{text-align:center}
+  .ba-photo{
+    aspect-ratio:1/1;border-radius:16px;border:2px dashed var(--negro);
+    display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;
+  }
+  .ba-before .ba-photo{background:#D9CBB8}
+  .ba-after .ba-photo{background:var(--rosa);color:var(--crema)}
+  .ba-photo .pup{font-size:46px;line-height:1}
+  .ba-tag{
+    position:absolute;bottom:8px;left:50%;transform:translateX(-50%);
+    font-size:10px;background:rgba(22,17,15,.78);color:var(--crema);
+    padding:3px 8px;border-radius:20px;white-space:nowrap;letter-spacing:.04em;
+  }
+  .ba-label{margin-top:9px;font-family:'Anton';font-size:17px;text-transform:uppercase;letter-spacing:.5px}
+  .ba-before .ba-label{color:var(--negro-2)}
+  .ba-after .ba-label{color:var(--rosa)}
+  .ba-arrow{
+    text-align:center;margin-top:14px;font-family:'Fraunces';font-style:italic;
+    font-size:15px;color:var(--negro-2);
+  }
+  .ba-arrow b{color:var(--rosa);font-style:normal;font-weight:600}
+
+  /* ---------- MARQUEE ---------- */
+  .marquee{
+    background:var(--negro);color:var(--crema);overflow:hidden;white-space:nowrap;
+    border-top:3px solid var(--negro);border-bottom:3px solid var(--negro);padding:13px 0;
+  }
+  .marquee-track{display:inline-block;animation:scroll 18s linear infinite;font-family:'Anton';font-size:22px;text-transform:uppercase;letter-spacing:1px}
+  .marquee-track span{margin:0 18px}
+  .marquee-track .star{color:var(--oro)}
+  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* ---------- SECTIONS ---------- */
+  section{position:relative}
+  .wrap{max-width:480px;margin:0 auto;padding:64px 22px}
+  .eyebrow{
+    display:inline-block;font-weight:700;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--rosa);margin-bottom:14px;
+  }
+  .sec-title{font-family:'Anton';font-size:clamp(38px,12vw,62px);text-transform:uppercase;color:var(--negro);margin-bottom:18px}
+  .sec-title .pink{color:var(--rosa)}
+
+  /* reveal on scroll */
+  .reveal{opacity:0;transform:translateY(34px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ---------- QUIEN SOY ---------- */
+  .me{background:var(--crema-2)}
+  .me-card{display:flex;gap:16px;align-items:flex-start;margin-top:8px}
+  .me-photo{
+    flex:0 0 116px;height:140px;border-radius:18px;border:3px solid var(--negro);
+    background:var(--rosa-soft);display:flex;align-items:center;justify-content:center;
+    position:relative;overflow:hidden;box-shadow:5px 5px 0 var(--negro);
+  }
+  .me-photo .pup{font-size:50px}
+  .me-photo .ba-tag{font-size:9px}
+  .me-text p{font-size:17px;line-height:1.55;color:var(--negro-2);margin-bottom:12px}
+  .me-text p strong{color:var(--negro);font-weight:700}
+  .me-sign{font-family:'Fraunces';font-style:italic;font-size:21px;color:var(--rosa);margin-top:4px}
+
+  /* ---------- SERVICIOS ---------- */
+  .svc-list{display:flex;flex-direction:column;gap:14px;margin-top:10px}
+  .svc{
+    background:var(--crema);border:3px solid var(--negro);border-radius:20px;padding:20px;
+    display:flex;gap:15px;align-items:flex-start;
+    transition:transform .18s ease,box-shadow .18s ease;
+  }
+  .svc:hover{transform:translateY(-4px);box-shadow:6px 6px 0 var(--rosa)}
+  .svc-ico{font-size:34px;line-height:1;flex:0 0 auto}
+  .svc-body h3{font-family:'Anton';font-size:23px;text-transform:uppercase;margin-bottom:5px}
+  .svc-body p{font-size:14.5px;line-height:1.5;color:var(--negro-2)}
+  .svc-price{margin-top:9px;display:inline-block;font-family:'Anton';font-size:15px;color:var(--rosa);border:2px solid var(--rosa);border-radius:30px;padding:3px 12px}
+
+  /* ---------- POR QUÉ ---------- */
+  .why{background:var(--negro);color:var(--crema)}
+  .why .sec-title{color:var(--crema)}
+  .why .eyebrow{color:var(--oro)}
+  .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:10px}
+  .why-cell{
+    background:var(--negro-2);border:2px solid rgba(251,239,226,.18);border-radius:18px;padding:18px 16px;
+  }
+  .why-cell .n{font-family:'Anton';font-size:30px;color:var(--rosa)}
+  .why-cell h4{font-family:'Space Grotesk';font-weight:700;font-size:15px;margin:6px 0 5px;letter-spacing:.01em}
+  .why-cell p{font-size:13px;line-height:1.45;color:rgba(251,239,226,.72)}
+
+  /* ---------- GALERÍA ---------- */
+  .gal-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+  .gal-item{
+    aspect-ratio:1/1;border-radius:18px;border:3px solid var(--negro);position:relative;overflow:hidden;
+    display:flex;align-items:center;justify-content:center;
+    transition:transform .2s ease;
+  }
+  .gal-item:hover{transform:scale(1.03) rotate(-1deg)}
+  .gal-item:nth-child(4n+1){background:var(--rosa-soft)}
+  .gal-item:nth-child(4n+2){background:var(--crema-2)}
+  .gal-item:nth-child(4n+3){background:var(--oro)}
+  .gal-item:nth-child(4n){background:#CDB9A2}
+  .gal-item .pup{font-size:48px}
+  .gal-item.tall{grid-row:span 2;aspect-ratio:auto}
+
+  /* ---------- RESEÑAS ---------- */
+  .rev{background:var(--crema-2)}
+  .rev-list{display:flex;flex-direction:column;gap:16px;margin-top:8px}
+  .rev-card{
+    background:var(--crema);border:3px solid var(--negro);border-radius:20px;padding:20px;
+    box-shadow:5px 5px 0 var(--negro);
+  }
+  .rev-stars{color:var(--oro);font-size:17px;letter-spacing:2px;margin-bottom:8px}
+  .rev-card p{font-family:'Fraunces';font-size:18px;line-height:1.45;color:var(--negro);font-style:italic}
+  .rev-who{display:flex;align-items:center;gap:10px;margin-top:14px}
+  .rev-av{width:38px;height:38px;border-radius:50%;background:var(--rosa);color:var(--crema);display:flex;align-items:center;justify-content:center;font-family:'Anton';font-size:15px;border:2px solid var(--negro)}
+  .rev-name{font-weight:700;font-size:14px}
+  .rev-meta{font-size:12px;color:var(--negro-2);opacity:.7}
+
+  /* ---------- GANCHO ESTACIONAL ---------- */
+  .promo{background:var(--rosa);color:var(--crema);text-align:center}
+  .promo .wrap{padding:60px 22px}
+  .promo-badge{display:inline-block;background:var(--negro);color:var(--oro);font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;padding:7px 14px;border-radius:30px;margin-bottom:18px}
+  .promo h2{font-family:'Anton';font-size:clamp(34px,11vw,56px);text-transform:uppercase;line-height:.95;margin-bottom:14px}
+  .promo h2 .b{color:var(--negro)}
+  .promo p{font-size:16px;line-height:1.5;max-width:360px;margin:0 auto 24px;color:#FFE7F1}
+  .promo p em{font-family:'Fraunces';font-style:italic}
+  .promo-cta{display:inline-flex;align-items:center;gap:9px;background:var(--crema);color:var(--negro);font-family:'Anton';font-size:18px;text-transform:uppercase;padding:16px 28px;border-radius:50px;border:3px solid var(--negro);box-shadow:5px 5px 0 var(--negro);transition:transform .15s ease,box-shadow .15s ease}
+  .promo-cta:hover{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--negro)}
+
+  /* ---------- FAQ ---------- */
+  .faq-item{border:3px solid var(--negro);border-radius:16px;margin-bottom:12px;overflow:hidden;background:var(--crema)}
+  .faq-q{width:100%;text-align:left;background:none;border:none;font-family:'Space Grotesk';font-weight:700;font-size:16px;color:var(--negro);padding:17px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;cursor:pointer}
+  .faq-q .plus{font-family:'Anton';color:var(--rosa);font-size:24px;transition:transform .25s ease;flex:0 0 auto}
+  .faq-item.open .faq-q .plus{transform:rotate(45deg)}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}
+  .faq-a p{padding:0 18px 17px;font-size:14.5px;line-height:1.55;color:var(--negro-2)}
+
+  /* ---------- CONTACTO ---------- */
+  .contact{background:var(--negro);color:var(--crema);text-align:center}
+  .contact .sec-title{color:var(--crema)}
+  .contact .eyebrow{color:var(--oro)}
+  .contact p{font-size:16px;line-height:1.55;color:rgba(251,239,226,.8);max-width:360px;margin:0 auto 26px}
+  .contact-cta{display:inline-flex;align-items:center;gap:10px;background:var(--rosa);color:var(--crema);font-family:'Anton';font-size:20px;text-transform:uppercase;padding:18px 32px;border-radius:50px;border:3px solid var(--crema);box-shadow:5px 5px 0 var(--rosa);transition:transform .15s ease}
+  .contact-cta:hover{transform:translateY(-3px)}
+  .contact-info{margin-top:30px;display:flex;flex-direction:column;gap:9px;font-size:14.5px}
+  .contact-info .row{display:inline-flex;align-items:center;justify-content:center;gap:9px;color:rgba(251,239,226,.85)}
+  .contact-info .row b{color:var(--oro);font-weight:700}
+  .map-ph{margin-top:24px;height:140px;border-radius:18px;border:3px dashed rgba(251,239,226,.4);display:flex;align-items:center;justify-content:center;font-size:13px;color:rgba(251,239,226,.6);position:relative;background:repeating-linear-gradient(45deg,var(--negro-2),var(--negro-2) 12px,#2b211d 12px,#2b211d 24px)}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--negro);color:var(--crema);border-top:3px solid var(--rosa);padding:34px 22px 110px;text-align:center}
+  .foot-brand{font-family:'Anton';font-size:30px;text-transform:uppercase;letter-spacing:.5px}
+  .foot-brand .dot{color:var(--rosa)}
+  .foot-tag{font-family:'Fraunces';font-style:italic;font-size:15px;color:var(--oro);margin:8px 0 18px}
+  .foot-links{display:flex;flex-wrap:wrap;justify-content:center;gap:14px 20px;font-size:13px;color:rgba(251,239,226,.7);margin-bottom:18px}
+  .foot-fine{font-size:11.5px;color:rgba(251,239,226,.45);line-height:1.6}
+
+  /* ---------- WA FIXED MOBILE ---------- */
+  .wa-fixed{
+    position:fixed;left:16px;right:16px;bottom:16px;z-index:200;
+    display:flex;align-items:center;justify-content:center;gap:10px;
+    background:#25D366;color:#0a3d1c;
+    font-family:'Anton';font-size:18px;text-transform:uppercase;letter-spacing:.4px;
+    padding:16px;border-radius:50px;border:3px solid var(--negro);
+    box-shadow:0 6px 0 var(--negro);
+    animation:wabob 2.6s ease-in-out infinite;
+  }
+  @keyframes wabob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+  .wa-fixed .wa-ico{width:24px;height:24px;flex:0 0 auto}
+
+  @media(min-width:560px){
+    .wa-fixed{left:auto;right:24px;bottom:24px;padding:16px 24px}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="nav">
+  <div class="brand">Pelopótamo<span class="dot">●</span></div>
+  <a class="nav-wa" href="https://wa.me/34600000000">
+    <svg class="wa-ico" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.7.8-2.8-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.1-.2 0-.4.1-.5l.4-.4.2-.4v-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3.9 2.5 1.1 2.7s1.9 2.9 4.6 4c1.7.7 2.3.7 3.1.6.5-.1 1.4-.6 1.6-1.1s.2-1 .1-1.1z"/></svg>
+    Pedir cita
+  </a>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-blob"></div>
+  <span class="hero-kicker"><span class="pulse"></span>Peluquería &amp; estética canina · Valencia</span>
+  <h1>
+    <span class="l1">Entra</span>
+    <span class="l1">peludo.</span>
+    <span class="l2">Sale</span>
+    <span class="l2">estrella.</span>
+  </h1>
+  <p class="hero-sub">El <em>glow-up</em> de tu perro hecho espectáculo — baño, tijera y mucho mimo. Entra hecho un peluche olvidado. Sale para la alfombra roja. ✨</p>
+  <a class="hero-cta" href="https://wa.me/34600000000">
+    Reservar el glow-up →
+  </a>
+  <p class="hero-note">Respondemos por WhatsApp en menos de 1 hora 🐾</p>
+
+  <!-- BEFORE / AFTER STAGE -->
+  <div class="stage">
+    <div class="ba-card">
+      <div class="ba-row">
+        <div class="ba-pane ba-before">
+          <div class="ba-photo">
+            <span class="pup">🐶</span>
+            <span class="ba-tag">foto real aquí · antes</span>
+          </div>
+          <div class="ba-label">Antes</div>
+        </div>
+        <div class="ba-pane ba-after">
+          <div class="ba-photo">
+            <span class="pup">🌟</span>
+            <span class="ba-tag">foto real aquí · después</span>
+          </div>
+          <div class="ba-label">Después</div>
+        </div>
+      </div>
+      <div class="ba-arrow">de "¿y este quién es?" a <b>"¡menudo pibón!"</b></div>
+    </div>
+  </div>
+</header>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span>Baño<span class="star"> ✦ </span></span><span>Tijera<span class="star"> ✦ </span></span><span>Glow-up<span class="star"> ✦ </span></span><span>Mimos<span class="star"> ✦ </span></span><span>Sin jaulas<span class="star"> ✦ </span></span><span>Estrellas<span class="star"> ✦ </span></span>
+    <span>Baño<span class="star"> ✦ </span></span><span>Tijera<span class="star"> ✦ </span></span><span>Glow-up<span class="star"> ✦ </span></span><span>Mimos<span class="star"> ✦ </span></span><span>Sin jaulas<span class="star"> ✦ </span></span><span>Estrellas<span class="star"> ✦ </span></span>
+  </div>
+</div>
+
+<!-- QUIÉN SOY -->
+<section class="me">
+  <div class="wrap reveal">
+    <span class="eyebrow">Hola, encantada 👋</span>
+    <h2 class="sec-title">Detrás de <span class="pink">cada tijera</span></h2>
+    <div class="me-card">
+      <div class="me-photo">
+        <span class="pup">💇‍♀️</span>
+        <span class="ba-tag">foto real aquí</span>
+      </div>
+      <div class="me-text">
+        <p>Soy <strong>Marta</strong> — peluquera canina desde hace doce años y, sobre todo, fan total de los perros.</p>
+        <p>Aquí tu perro no es un número ni pasa el día en una jaula. Está conmigo, en casa, a su ritmo — sin prisas, sin sustos. Solo agua templada, manos lentas y galletas.</p>
+        <p class="me-sign">— Cada perro sale guapo. Pero, sobre todo, sale tranquilo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section>
+  <div class="wrap reveal">
+    <span class="eyebrow">La carta</span>
+    <h2 class="sec-title">El menú del <span class="pink">glow-up</span></h2>
+    <div class="svc-list">
+      <div class="svc">
+        <div class="svc-ico">🛁</div>
+        <div class="svc-body">
+          <h3>Spa completo</h3>
+          <p>Baño con productos según su pelo, secado, cepillado y un masajito que lo deja en otra dimensión.</p>
+          <span class="svc-price">desde 25€</span>
+        </div>
+      </div>
+      <div class="svc">
+        <div class="svc-ico">✂️</div>
+        <div class="svc-body">
+          <h3>Corte de estrella</h3>
+          <p>Tijera y máquina a medida de su raza — o del look que tú quieras. Tú mandas, yo esculpo.</p>
+          <span class="svc-price">desde 35€</span>
+        </div>
+      </div>
+      <div class="svc">
+        <div class="svc-ico">🦷</div>
+        <div class="svc-body">
+          <h3>Detallitos</h3>
+          <p>Uñas, oídos, almohadillas y limpieza dental. Lo pequeño que marca la diferencia.</p>
+          <span class="svc-price">desde 10€</span>
+        </div>
+      </div>
+      <div class="svc">
+        <div class="svc-ico">👑</div>
+        <div class="svc-body">
+          <h3>Glow-up total</h3>
+          <p>Todo junto, sin prisa — para el perro que merece tratamiento de alfombra roja. La transformación completa.</p>
+          <span class="svc-price">desde 50€</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POR QUÉ NOSOTROS -->
+<section class="why">
+  <div class="wrap reveal">
+    <span class="eyebrow">El por qué</span>
+    <h2 class="sec-title">Aquí se hace<br>distinto</h2>
+    <div class="why-grid">
+      <div class="why-cell">
+        <div class="n">01</div>
+        <h4>Cero jaulas</h4>
+        <p>Tu perro en casa, sueltito y a su aire — no apilado esperando turno.</p>
+      </div>
+      <div class="why-cell">
+        <div class="n">02</div>
+        <h4>Uno a uno</h4>
+        <p>Un perro cada vez. Toda mi atención es para él, sin agobios.</p>
+      </div>
+      <div class="why-cell">
+        <div class="n">03</div>
+        <h4>Sin prisa</h4>
+        <p>El tiempo que necesite. Si hoy tiene miedo, vamos despacito.</p>
+      </div>
+      <div class="why-cell">
+        <div class="n">04</div>
+        <h4>Glow-up real</h4>
+        <p>Te mando el antes/después. Spoiler: te vas a emocionar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERÍA -->
+<section>
+  <div class="wrap reveal">
+    <span class="eyebrow">El muro de la fama 🏆</span>
+    <h2 class="sec-title">Nuestras <span class="pink">estrellas</span></h2>
+    <div class="gal-grid">
+      <div class="gal-item tall"><span class="pup">🐩</span><span class="ba-tag">foto real aquí</span></div>
+      <div class="gal-item"><span class="pup">🐕</span><span class="ba-tag">foto real aquí</span></div>
+      <div class="gal-item"><span class="pup">🦮</span><span class="ba-tag">foto real aquí</span></div>
+      <div class="gal-item"><span class="pup">🐕‍🦺</span><span class="ba-tag">foto real aquí</span></div>
+      <div class="gal-item tall"><span class="pup">🐶</span><span class="ba-tag">foto real aquí</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEÑAS -->
+<section class="rev">
+  <div class="wrap reveal">
+    <span class="eyebrow">Lo que dicen sus humanos</span>
+    <h2 class="sec-title">Reseñas <span class="pink">de 5 ⭐</span></h2>
+    <div class="rev-list">
+      <div class="rev-card">
+        <div class="rev-stars">★★★★★</div>
+        <p>"Llevé a mi Lola hecha un ovillo de nudos y salió como recién comprada. Y lo mejor — venía feliz, no asustada. Marta es magia."</p>
+        <div class="rev-who">
+          <div class="rev-av">CR</div>
+          <div>
+            <div class="rev-name">Carmen R.</div>
+            <div class="rev-meta">Lola · Cocker spaniel</div>
+          </div>
+        </div>
+      </div>
+      <div class="rev-card">
+        <div class="rev-stars">★★★★★</div>
+        <p>"Mi perro le tiene pánico a las peluquerías de toda la vida. Aquí entró tranquilo. Ya no voy a ningún otro sitio — punto."</p>
+        <div class="rev-who">
+          <div class="rev-av">JM</div>
+          <div>
+            <div class="rev-name">Javi M.</div>
+            <div class="rev-meta">Trufo · Schnauzer</div>
+          </div>
+        </div>
+      </div>
+      <div class="rev-card">
+        <div class="rev-stars">★★★★★</div>
+        <p>"El antes/después que me mandó por WhatsApp lo tengo de fondo de pantalla. No exagero. 😍"</p>
+        <div class="rev-who">
+          <div class="rev-av">NS</div>
+          <div>
+            <div class="rev-name">Nuria S.</div>
+            <div class="rev-meta">Kira · Caniche toy</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GANCHO ESTACIONAL -->
+<section class="promo">
+  <div class="wrap">
+    <span class="promo-badge">🌞 Operación verano</span>
+    <h2>Llega el calor.<br><span class="b">Que no pase calor.</span></h2>
+    <p>Junio es el mes del <em>corte fresquito</em> — pelo a su punto justo para el verano. Las agendas vuelan: <strong>quedan pocos huecos</strong> esta semana.</p>
+    <a class="promo-cta" href="https://wa.me/34600000000">Pillar mi hueco →</a>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="wrap reveal">
+    <span class="eyebrow">Dudas rápidas</span>
+    <h2 class="sec-title">Lo que<br><span class="pink">preguntáis</span></h2>
+    <div class="faq-item">
+      <button class="faq-q">¿Cuánto dura una sesión?<span class="plus">+</span></button>
+      <div class="faq-a"><p>Depende del perro y del servicio — entre una y dos horas. Nunca corro: prefiero que salga bien y tranquilo a salir rápido.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">¿Mi perro es muy nervioso, pasa algo?<span class="plus">+</span></button>
+      <div class="faq-a"><p>Para nada. Trabajo uno a uno y a su ritmo. Si hoy toca ir despacito, vamos despacito. Lo importante es que se vaya con buen recuerdo.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">¿Cómo reservo?<span class="plus">+</span></button>
+      <div class="faq-a"><p>Por WhatsApp, así de fácil. Me cuentas qué perro tienes y qué necesita, y buscamos hueco juntos. Respondo rapidito 🐾</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">¿Me mandáis el antes/después?<span class="plus">+</span></button>
+      <div class="faq-a"><p>¡Siempre! Es la mejor parte. Te llega la foto del glow-up por WhatsApp para que presumas de perro.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="contact">
+  <div class="wrap">
+    <span class="eyebrow">¿Hablamos?</span>
+    <h2 class="sec-title">Tu perro<br>te lo pide</h2>
+    <p>Una transformación está a un mensaje de distancia. Escríbeme y le buscamos su momento estrella.</p>
+    <a class="contact-cta" href="https://wa.me/34600000000">
+      <svg class="wa-ico" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.7.8-2.8-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.1-.2 0-.4.1-.5l.4-.4.2-.4v-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3.9 2.5 1.1 2.7s1.9 2.9 4.6 4c1.7.7 2.3.7 3.1.6.5-.1 1.4-.6 1.6-1.1s.2-1 .1-1.1z"/></svg>
+      Escribir por WhatsApp
+    </a>
+    <div class="contact-info">
+      <span class="row"><b>📍</b> Calle del Perro Feliz, 7 · Valencia</span>
+      <span class="row"><b>🕑</b> Mar a Sáb · 10:00 – 19:00</span>
+      <span class="row"><b>📞</b> +34 600 00 00 00</span>
+    </div>
+    <div class="map-ph">📍 mapa real aquí · cómo llegar</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-brand">Pelopótamo<span class="dot">●</span></div>
+  <div class="foot-tag">Entra peludo. Sale estrella.</div>
+  <div class="foot-links">
+    <a href="#">Servicios</a>
+    <a href="#">Galería</a>
+    <a href="#">Reseñas</a>
+    <a href="https://wa.me/34600000000">WhatsApp</a>
+  </div>
+  <p class="foot-fine">Peluquería y estética canina · Valencia 🐾<br>Hecho con cariño y mucho pelo. © 2026 Pelopótamo.</p>
+</footer>
+
+<!-- WHATSAPP FIJO -->
+<a class="wa-fixed" href="https://wa.me/34600000000">
+  <svg class="wa-ico" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.7.8-2.8-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.1-.2 0-.4.1-.5l.4-.4.2-.4v-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3.9 2.5 1.1 2.7s1.9 2.9 4.6 4c1.7.7 2.3.7 3.1.6.5-.1 1.4-.6 1.6-1.1s.2-1 .1-1.1z"/></svg>
+  Reservar glow-up
+</a>
+
+<script>
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.14});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  document.querySelectorAll('.faq-q').forEach(b=>{
+    b.addEventListener('click',()=>{
+      const item=b.parentElement;
+      const ans=item.querySelector('.faq-a');
+      const open=item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i=>{i.classList.remove('open');i.querySelector('.faq-a').style.maxHeight=null});
+      if(!open){item.classList.add('open');ans.style.maxHeight=ans.scrollHeight+'px'}
+    });
+  });
+</script>
+
+</body>
+</html>

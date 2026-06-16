@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Doctora Pata — Cuando es de la familia, no vale cualquiera</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,900&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --azul:#2f5d6e;        /* azul cuidado, profundo */
+    --azul-claro:#dceaef;  /* azul lavado */
+    --azul-medio:#7fa9b8;
+    --crema:#f7f1e6;       /* crema cálido */
+    --crema-osc:#efe5d2;
+    --coral:#f0735a;       /* acento coral */
+    --coral-osc:#d4543c;
+    --tinta:#1f3b46;       /* texto oscuro azulado */
+    --tinta-suave:#4c6770;
+    --blanco:#fffdf9;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Schibsted Grotesk',sans-serif;
+    background:var(--crema);
+    color:var(--tinta);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  .serif{font-family:'Fraunces',serif}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+
+  /* ====== BARRA SUPERIOR ====== */
+  .nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:rgba(247,241,230,.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--crema-osc);
+  }
+  .nav-in{
+    max-width:1080px;margin:0 auto;padding:12px 22px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .wordmark{
+    display:flex;align-items:center;gap:10px;
+    font-family:'Fraunces',serif;font-weight:600;font-size:21px;
+    color:var(--azul);letter-spacing:-.01em;text-decoration:none;
+  }
+  .wordmark .paw{
+    width:34px;height:34px;flex:0 0 34px;
+    background:var(--coral);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .wordmark .paw svg{width:20px;height:20px}
+  .nav-cta{
+    display:inline-flex;align-items:center;gap:8px;
+    background:#25d366;color:#053c1c;
+    font-weight:600;font-size:14px;
+    padding:9px 16px;border-radius:40px;text-decoration:none;
+    transition:transform .18s ease,box-shadow .18s ease;
+  }
+  .nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(37,211,102,.32)}
+  .nav-cta svg{width:17px;height:17px}
+
+  /* ====== HERO ====== */
+  .hero{
+    padding:128px 0 70px;
+    position:relative;overflow:hidden;
+  }
+  .hero-eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--azul-claro);color:var(--azul);
+    font-weight:600;font-size:13px;letter-spacing:.02em;
+    padding:7px 15px;border-radius:40px;margin-bottom:26px;
+    text-transform:uppercase;
+  }
+  .hero-eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--coral);animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
+  .hero h1{
+    font-family:'Fraunces',serif;font-weight:900;
+    font-size:clamp(48px,11vw,118px);
+    line-height:.92;letter-spacing:-.025em;
+    color:var(--tinta);margin-bottom:26px;
+  }
+  .hero h1 .coral{color:var(--coral);font-style:italic}
+  .hero h1 .azul{color:var(--azul)}
+  .hero-sub{
+    font-size:clamp(17px,2.4vw,21px);color:var(--tinta-suave);
+    max-width:540px;margin-bottom:34px;
+  }
+  .hero-sub b{color:var(--tinta);font-weight:600}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+  .btn-wa{
+    display:inline-flex;align-items:center;gap:10px;
+    background:#25d366;color:#053c1c;font-weight:700;font-size:16px;
+    padding:15px 26px;border-radius:48px;text-decoration:none;
+    box-shadow:0 10px 26px rgba(37,211,102,.3);
+    transition:transform .18s ease,box-shadow .18s ease;
+  }
+  .btn-wa:hover{transform:translateY(-3px);box-shadow:0 16px 34px rgba(37,211,102,.42)}
+  .btn-wa svg{width:21px;height:21px}
+  .btn-ghost{
+    display:inline-flex;align-items:center;gap:8px;
+    color:var(--azul);font-weight:600;font-size:15px;
+    text-decoration:none;padding:14px 8px;
+    border-bottom:2px solid transparent;transition:border-color .2s;
+  }
+  .btn-ghost:hover{border-color:var(--coral)}
+  .hero-trust{
+    margin-top:38px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+    color:var(--tinta-suave);font-size:14px;
+  }
+  .stars{color:var(--coral);letter-spacing:2px;font-size:16px}
+  .hero-faces{display:flex}
+  .hero-faces span{
+    width:36px;height:36px;border-radius:50%;
+    border:2.5px solid var(--crema);margin-left:-10px;
+    display:flex;align-items:center;justify-content:center;font-size:17px;
+  }
+  .hero-faces span:first-child{margin-left:0}
+  .f1{background:var(--azul-claro)}.f2{background:var(--crema-osc)}
+  .f3{background:#ffe2da}.f4{background:#dff0e6}
+
+  /* blob ilustracion hero */
+  .hero-art{
+    position:absolute;right:-60px;top:90px;
+    width:min(46vw,520px);opacity:.96;
+    pointer-events:none;
+    animation:floaty 7s ease-in-out infinite;
+  }
+  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+
+  /* ====== reveal anim ====== */
+  .reveal{opacity:0;transform:translateY(34px);transition:opacity .8s ease,transform .8s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ====== SECCIONES generales ====== */
+  section{position:relative}
+  .sec{padding:78px 0}
+  .kicker{
+    display:inline-block;font-weight:700;font-size:13px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--coral);margin-bottom:16px;
+  }
+  .h2{
+    font-family:'Fraunces',serif;font-weight:900;
+    font-size:clamp(34px,6vw,62px);line-height:1;letter-spacing:-.02em;
+    color:var(--tinta);margin-bottom:20px;
+  }
+  .lead{font-size:18px;color:var(--tinta-suave);max-width:620px}
+
+  /* ====== QUIEN SOY ====== */
+  .soy{background:var(--azul);color:var(--crema)}
+  .soy .h2{color:var(--blanco)}
+  .soy .kicker{color:#ffc7ba}
+  .soy-grid{display:grid;grid-template-columns:1fr;gap:42px;align-items:center}
+  .soy-photo{
+    background:var(--azul-medio);border-radius:24px;
+    aspect-ratio:4/5;position:relative;overflow:hidden;
+    border:1px solid rgba(255,255,255,.18);
+    display:flex;align-items:flex-end;justify-content:center;
+  }
+  .soy-photo .ph-tag{
+    position:absolute;top:16px;left:16px;
+    background:rgba(31,59,70,.78);color:var(--crema);
+    font-size:12px;font-weight:600;padding:6px 12px;border-radius:30px;
+    display:flex;align-items:center;gap:7px;
+  }
+  .soy-photo .ph-tag::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--coral)}
+  .soy-photo .vet{font-size:130px;line-height:1;margin-bottom:6px;filter:saturate(1.1)}
+  .soy-text p{color:#d8e6eb;font-size:17px;margin-bottom:18px}
+  .soy-text p b{color:var(--blanco)}
+  .firma{
+    font-family:'Fraunces',serif;font-style:italic;font-weight:600;
+    font-size:30px;color:#ffc7ba;margin-top:6px;
+  }
+  .firma small{display:block;font-family:'Schibsted Grotesk';font-style:normal;font-size:14px;color:#a9c4cd;font-weight:500;margin-top:4px}
+
+  /* ====== SERVICIOS ====== */
+  .serv-grid{display:grid;grid-template-columns:1fr;gap:18px;margin-top:44px}
+  .card{
+    background:var(--blanco);border:1px solid var(--crema-osc);
+    border-radius:22px;padding:30px 28px;
+    transition:transform .25s ease,box-shadow .25s ease,border-color .25s;
+  }
+  .card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(47,93,110,.12);border-color:var(--azul-medio)}
+  .card .ic{
+    width:58px;height:58px;border-radius:18px;
+    background:var(--azul-claro);
+    display:flex;align-items:center;justify-content:center;margin-bottom:20px;
+  }
+  .card:nth-child(2) .ic{background:#ffe2da}
+  .card:nth-child(3) .ic{background:#dff0e6}
+  .card:nth-child(4) .ic{background:var(--crema-osc)}
+  .card .ic svg{width:30px;height:30px}
+  .card h3{font-family:'Fraunces',serif;font-weight:600;font-size:24px;color:var(--tinta);margin-bottom:9px}
+  .card p{color:var(--tinta-suave);font-size:15.5px}
+  .card .price{display:inline-block;margin-top:16px;font-weight:600;font-size:14px;color:var(--coral)}
+
+  /* ====== POR QUE NOSOTROS ====== */
+  .why{background:var(--crema-osc)}
+  .why-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:42px}
+  .bene{
+    display:flex;gap:18px;align-items:flex-start;
+    background:var(--blanco);border-radius:18px;padding:24px 22px;
+    border:1px solid #e6d9c2;
+  }
+  .bene .chk{
+    flex:0 0 42px;width:42px;height:42px;border-radius:50%;
+    background:var(--coral);color:#fff;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .bene .chk svg{width:22px;height:22px}
+  .bene h4{font-family:'Fraunces',serif;font-weight:600;font-size:20px;margin-bottom:4px;color:var(--tinta)}
+  .bene p{color:var(--tinta-suave);font-size:15px}
+
+  /* ====== GALERIA ====== */
+  .gal-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:40px}
+  .gal-grid .ph{
+    border-radius:18px;aspect-ratio:1/1;position:relative;overflow:hidden;
+    display:flex;align-items:center;justify-content:center;
+    border:1px solid var(--crema-osc);transition:transform .3s ease;
+  }
+  .gal-grid .ph:hover{transform:scale(.97)}
+  .gal-grid .ph:nth-child(1){background:var(--azul-claro)}
+  .gal-grid .ph:nth-child(2){background:#ffe2da}
+  .gal-grid .ph:nth-child(3){background:#dff0e6;grid-column:span 2;aspect-ratio:2/1}
+  .gal-grid .ph:nth-child(4){background:var(--crema-osc)}
+  .gal-grid .ph:nth-child(5){background:var(--azul-medio)}
+  .gal-grid .ph .emo{font-size:clamp(46px,9vw,78px)}
+  .gal-grid .ph .ph-tag{
+    position:absolute;bottom:12px;left:12px;
+    background:rgba(31,59,70,.72);color:var(--crema);
+    font-size:11px;font-weight:600;padding:5px 11px;border-radius:30px;
+    display:flex;align-items:center;gap:6px;
+  }
+  .gal-grid .ph .ph-tag::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--coral)}
+
+  /* ====== RESEÑAS ====== */
+  .res{background:var(--azul)}
+  .res .kicker{color:#ffc7ba}
+  .res .h2{color:var(--blanco)}
+  .res-grid{display:grid;grid-template-columns:1fr;gap:18px;margin-top:42px}
+  .quote{
+    background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);
+    border-radius:22px;padding:30px 28px;
+  }
+  .quote .stars{font-size:18px;margin-bottom:14px;display:block}
+  .quote p{font-family:'Fraunces',serif;font-size:21px;line-height:1.4;color:var(--blanco);margin-bottom:20px}
+  .quote .who{display:flex;align-items:center;gap:12px}
+  .quote .av{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px}
+  .av1{background:#ffe2da}.av2{background:var(--azul-claro)}.av3{background:#dff0e6}
+  .quote .who b{display:block;color:var(--blanco);font-family:'Schibsted Grotesk';font-size:15px}
+  .quote .who small{color:#a9c4cd;font-size:13px}
+
+  /* ====== GANCHO ESTACIONAL ====== */
+  .gancho{padding:0}
+  .gancho-in{
+    background:var(--coral);color:#fff;border-radius:28px;
+    padding:54px 40px;text-align:center;position:relative;overflow:hidden;
+    margin:60px 0;
+  }
+  .gancho-in::before{
+    content:"☀️";position:absolute;font-size:200px;opacity:.12;
+    top:-40px;right:-20px;
+  }
+  .gancho .tag{
+    display:inline-block;background:rgba(255,255,255,.22);
+    font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;
+    padding:7px 16px;border-radius:30px;margin-bottom:20px;
+  }
+  .gancho h3{
+    font-family:'Fraunces',serif;font-weight:900;
+    font-size:clamp(28px,5.4vw,50px);line-height:1.02;margin-bottom:16px;
+    letter-spacing:-.02em;position:relative;
+  }
+  .gancho p{font-size:17px;max-width:520px;margin:0 auto 28px;opacity:.94;position:relative}
+  .gancho .btn-wa{background:#fff;color:var(--coral-osc);box-shadow:0 10px 26px rgba(0,0,0,.18);position:relative}
+  .gancho .btn-wa:hover{box-shadow:0 16px 34px rgba(0,0,0,.26)}
+
+  /* ====== FAQ ====== */
+  .faq-list{margin-top:38px;display:grid;gap:12px}
+  details{
+    background:var(--blanco);border:1px solid var(--crema-osc);
+    border-radius:16px;padding:4px 22px;transition:border-color .2s;
+  }
+  details[open]{border-color:var(--azul-medio)}
+  summary{
+    cursor:pointer;list-style:none;padding:18px 0;
+    font-family:'Fraunces',serif;font-weight:600;font-size:19px;color:var(--tinta);
+    display:flex;justify-content:space-between;align-items:center;gap:16px;
+  }
+  summary::-webkit-details-marker{display:none}
+  summary .pm{
+    flex:0 0 26px;width:26px;height:26px;border-radius:50%;
+    background:var(--azul-claro);color:var(--azul);
+    display:flex;align-items:center;justify-content:center;font-size:20px;
+    transition:transform .25s,background .25s;
+  }
+  details[open] summary .pm{transform:rotate(45deg);background:var(--coral);color:#fff}
+  details p{padding:0 0 20px;color:var(--tinta-suave);font-size:15.5px}
+
+  /* ====== CONTACTO ====== */
+  .cont{background:var(--azul);color:var(--crema)}
+  .cont .h2{color:var(--blanco)}
+  .cont .kicker{color:#ffc7ba}
+  .cont-grid{display:grid;grid-template-columns:1fr;gap:36px;margin-top:36px}
+  .cont-info p{color:#d8e6eb;font-size:17px;margin-bottom:24px;max-width:440px}
+  .cont-row{display:flex;align-items:center;gap:14px;margin-bottom:18px;color:#e7f0f3;font-size:16px}
+  .cont-row .ci{
+    flex:0 0 44px;width:44px;height:44px;border-radius:13px;
+    background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;
+  }
+  .cont-row .ci svg{width:22px;height:22px}
+  .cont-row b{display:block;color:#fff}
+  .cont-row small{color:#a9c4cd}
+  .map{
+    background:var(--azul-medio);border-radius:22px;min-height:240px;
+    border:1px solid rgba(255,255,255,.18);position:relative;overflow:hidden;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .map .ph-tag{
+    position:absolute;top:16px;left:16px;
+    background:rgba(31,59,70,.78);color:var(--crema);
+    font-size:12px;font-weight:600;padding:6px 12px;border-radius:30px;
+    display:flex;align-items:center;gap:7px;
+  }
+  .map .ph-tag::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--coral)}
+  .map .pin{font-size:64px}
+  .cont .btn-wa{margin-top:6px}
+
+  /* ====== FOOTER ====== */
+  footer{background:var(--tinta);color:#9fb6bd;padding:50px 0 110px}
+  .foot-in{display:flex;flex-direction:column;gap:24px}
+  .foot-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;align-items:center}
+  .foot-mark{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-weight:600;font-size:20px;color:var(--crema)}
+  .foot-mark .paw{width:32px;height:32px;background:var(--coral);border-radius:50%;display:flex;align-items:center;justify-content:center}
+  .foot-mark .paw svg{width:18px;height:18px}
+  .foot-links{display:flex;gap:22px;flex-wrap:wrap}
+  .foot-links a{color:#9fb6bd;text-decoration:none;font-size:14px;transition:color .2s}
+  .foot-links a:hover{color:var(--coral)}
+  .foot-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:20px;font-size:13px;color:#73909a}
+
+  /* ====== WHATSAPP FIJO MOVIL ====== */
+  .wa-fixed{
+    position:fixed;left:18px;right:18px;bottom:18px;z-index:120;
+    background:#25d366;color:#053c1c;font-weight:700;font-size:16px;
+    padding:16px;border-radius:46px;text-decoration:none;
+    display:flex;align-items:center;justify-content:center;gap:10px;
+    box-shadow:0 12px 30px rgba(37,211,102,.4);
+    animation:bob 2.6s ease-in-out infinite;
+  }
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+  .wa-fixed svg{width:22px;height:22px}
+
+  /* ====== RESPONSIVE ====== */
+  @media(min-width:760px){
+    .soy-grid{grid-template-columns:.9fr 1.1fr;gap:54px}
+    .serv-grid{grid-template-columns:repeat(2,1fr)}
+    .why-grid{grid-template-columns:repeat(2,1fr)}
+    .res-grid{grid-template-columns:repeat(3,1fr)}
+    .cont-grid{grid-template-columns:1.1fr 1fr}
+    .wa-fixed{display:none}
+    .gal-grid{grid-template-columns:repeat(3,1fr)}
+    .gal-grid .ph:nth-child(3){grid-column:span 2}
+  }
+  @media(max-width:759px){
+    .hero-art{display:none}
+    .nav-cta span{display:none}
+    .nav-cta{padding:9px;border-radius:50%}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== BARRA SUPERIOR ===== -->
+<nav class="nav">
+  <div class="nav-in">
+    <a href="#" class="wordmark">
+      <span class="paw"><svg viewBox="0 0 24 24" fill="#fff"><circle cx="7" cy="8" r="2.1"/><circle cx="12" cy="6" r="2.1"/><circle cx="17" cy="8" r="2.1"/><circle cx="19.5" cy="13" r="1.8"/><path d="M12 11c-3 0-5 2.4-5 4.6 0 1.7 1.4 2.4 2.6 2.4 1 0 1.6-.4 2.4-.4s1.4.4 2.4.4c1.2 0 2.6-.7 2.6-2.4C17 13.4 15 11 12 11z"/></svg></span>
+      Doctora&nbsp;Pata
+    </a>
+    <a href="https://wa.me/34600000000" class="nav-cta">
+      <svg viewBox="0 0 24 24" fill="#053c1c"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2zm0 2a8 8 0 1 1-4.1 14.9l-.4-.2-2.9.8.8-2.8-.2-.4A8 8 0 0 1 12 4zm-3 3.6c-.2 0-.5.1-.7.4-.3.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.8 2.9 4.5 3.9 2.2.9 2.7.7 3.2.7s1.5-.6 1.7-1.2c.2-.6.2-1.1.1-1.2-.1-.1-.3-.2-.6-.3l-1.5-.7c-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.3.1-.4l.4-.5c.1-.2.1-.3.2-.5 0-.1 0-.3-.1-.4l-.7-1.7c-.2-.4-.3-.4-.5-.4z"/></svg>
+      <span>Escríbeme</span>
+    </a>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<header class="hero">
+  <!-- ilustracion blob azul + coral -->
+  <svg class="hero-art" viewBox="0 0 420 420" xmlns="http://www.w3.org/2000/svg">
+    <path fill="#dceaef" d="M330 110c40 50 50 120 10 170s-130 70-200 50-120-90-100-160 110-110 180-100 70 -10 110 40z" transform="translate(-10 0)"/>
+    <circle cx="210" cy="190" r="92" fill="#7fa9b8"/>
+    <ellipse cx="178" cy="160" rx="13" ry="17" fill="#1f3b46"/>
+    <ellipse cx="244" cy="160" rx="13" ry="17" fill="#1f3b46"/>
+    <circle cx="182" cy="155" r="4" fill="#fff"/>
+    <circle cx="248" cy="155" r="4" fill="#fff"/>
+    <path d="M192 215q18 20 38 0" stroke="#1f3b46" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <ellipse cx="211" cy="200" rx="14" ry="10" fill="#f0735a"/>
+    <path d="M130 130q-22-34 4-50 24 12 16 48z" fill="#2f5d6e"/>
+    <path d="M290 130q22-34-4-50-24 12-16 48z" fill="#2f5d6e"/>
+    <circle cx="120" cy="250" r="22" fill="#f0735a"/>
+    <path d="M112 250l5 6 12-13" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+
+  <div class="wrap">
+    <div class="hero-eyebrow"><span class="dot"></span> Clínica veterinaria de barrio · Valencia</div>
+    <h1 class="serif">Cuando es de la <span class="coral">familia</span>,<br>no vale <span class="azul">cualquiera.</span></h1>
+    <p class="hero-sub">Tu mejor amigo no es un número de ficha. Es ciencia de verdad —de la buena— pero contada despacio, sin batas que asustan ni prisas. <b>El médico de confianza de toda la familia. También de la peluda.</b></p>
+    <div class="hero-actions">
+      <a href="https://wa.me/34600000000" class="btn-wa">
+        <svg viewBox="0 0 24 24" fill="#053c1c"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2zm0 2a8 8 0 1 1-4.1 14.9l-.4-.2-2.9.8.8-2.8-.2-.4A8 8 0 0 1 12 4zm-3 3.6c-.2 0-.5.1-.7.4-.3.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.8 2.9 4.5 3.9 2.2.9 2.7.7 3.2.7s1.5-.6 1.7-1.2c.2-.6.2-1.1.1-1.2-.1-.1-.3-.2-.6-.3l-1.5-.7c-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.3.1-.4l.4-.5c.1-.2.1-.3.2-.5 0-.1 0-.3-.1-.4l-.7-1.7c-.2-.4-.3-.4-.5-.4z"/></svg>
+        Pide cita por WhatsApp
+      </a>
+      <a href="#servicios" class="btn-ghost">Ver qué hacemos →</a>
+    </div>
+    <div class="hero-trust">
+      <div class="hero-faces"><span class="f1">🐕</span><span class="f2">🐈</span><span class="f3">🐰</span><span class="f4">🦜</span></div>
+      <div><span class="stars">★★★★★</span><br><span>+1.200 familias de barrio confían en mí</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== QUIEN SOY ===== -->
+<section class="sec soy">
+  <div class="wrap">
+    <div class="soy-grid">
+      <div class="soy-photo reveal">
+        <span class="ph-tag">foto real aquí</span>
+        <span class="vet">👩‍⚕️</span>
+      </div>
+      <div class="soy-text reveal">
+        <span class="kicker">Hola, soy yo</span>
+        <h2 class="h2">No tengo<br>una clínica.<br>Tengo una<br>consulta.</h2>
+        <p>Me llamo <b>Marta</b> y abrí Doctora Pata porque estaba cansada de los sitios donde tu perro es "el de las 18:30". Aquí no hay número de turno —hay nombre, historia y un té para ti mientras esperas.</p>
+        <p>Quince años de medicina interna y cirugía, sí. Pero también <b>diez minutos de más</b> para explicarte qué le pasa a Lola sin que parezca chino. La ciencia bien hecha también se cuenta despacio.</p>
+        <div class="firma serif">— Marta &amp; Doctora Pata
+          <small>Veterinaria colegiada · CV-04827</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICIOS ===== -->
+<section class="sec" id="servicios">
+  <div class="wrap">
+    <span class="kicker reveal">Lo que hacemos juntos</span>
+    <h2 class="h2 reveal">Cuidado de los pies<br>a la cola.</h2>
+    <p class="lead reveal">Todo bajo un mismo techo —y bajo la misma persona que ya os conoce. Sin derivaciones eternas ni caras nuevas cada vez.</p>
+    <div class="serv-grid">
+      <div class="card reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#2f5d6e" stroke-width="2" stroke-linecap="round"><path d="M3 12h3l2-6 4 12 2-6h7"/></svg></div>
+        <h3 class="serif">Revisión &amp; chequeo</h3>
+        <p>La cita anual que evita los sustos. Te lo cuento todo, con calma y con el peludo encima de la mesa robándome la atención.</p>
+        <span class="price">Desde 28 €</span>
+      </div>
+      <div class="card reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#d4543c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-9-9a4.5 4.5 0 0 1 9-2 4.5 4.5 0 0 1 9 2c-2 4.5-9 9-9 9z"/></svg></div>
+        <h3 class="serif">Vacunas &amp; prevención</h3>
+        <p>Calendario al día, recordatorios por WhatsApp y cero pinchazos traumáticos —tenemos premios y mucha mano izquierda.</p>
+        <span class="price">Desde 22 €</span>
+      </div>
+      <div class="card reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#3b6d11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5 11 19l8.5-11"/><path d="M12 3v6"/></svg></div>
+        <h3 class="serif">Cirugía &amp; quirófano</h3>
+        <p>Desde una esterilización hasta lo complicado, con monitorización de verdad. Te aviso al despertar —siempre.</p>
+        <span class="price">Presupuesto a medida</span>
+      </div>
+      <div class="card reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#7a5a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+        <h3 class="serif">Urgencias del barrio</h3>
+        <p>Si algo no pinta bien, escríbeme. Hueco para urgencias el mismo día —porque el miedo no espera a mañana.</p>
+        <span class="price">Mismo día</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== POR QUE NOSOTROS ===== -->
+<section class="sec why">
+  <div class="wrap">
+    <span class="kicker reveal">Por qué Doctora Pata</span>
+    <h2 class="h2 reveal">Aquí tu perro<br>tiene nombre.</h2>
+    <div class="why-grid">
+      <div class="bene reveal">
+        <span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4 10-11"/></svg></span>
+        <div><h4 class="serif">Siempre la misma cara</h4><p>Te atiendo yo. La que firma la receta es la que conoce a tu peludo desde cachorro.</p></div>
+      </div>
+      <div class="bene reveal">
+        <span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4 10-11"/></svg></span>
+        <div><h4 class="serif">Sin letra pequeña</h4><p>Presupuesto claro antes de empezar. Cero sorpresas en la factura —odio esa parte tanto como tú.</p></div>
+      </div>
+      <div class="bene reveal">
+        <span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4 10-11"/></svg></span>
+        <div><h4 class="serif">Calma, no jaulas</h4><p>Salas pensadas para que no tiemblen. Olor a casa, no a hospital. Eso ya cura la mitad.</p></div>
+      </div>
+      <div class="bene reveal">
+        <span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4 10-11"/></svg></span>
+        <div><h4 class="serif">WhatsApp directo</h4><p>¿Duda tonta a las 22h? Escríbeme. Para eso estoy —antes de que se haga bola.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GALERIA ===== -->
+<section class="sec">
+  <div class="wrap">
+    <span class="kicker reveal">El día a día</span>
+    <h2 class="h2 reveal">Caras felices,<br>sin filtros.</h2>
+    <p class="lead reveal">Los pacientes que pasan por aquí —y se van moviendo el rabo. (Aquí irán fotos reales del barrio.)</p>
+    <div class="gal-grid reveal">
+      <div class="ph"><span class="emo">🐶</span><span class="ph-tag">foto real aquí</span></div>
+      <div class="ph"><span class="emo">😺</span><span class="ph-tag">foto real aquí</span></div>
+      <div class="ph"><span class="emo">🦮</span><span class="ph-tag">consulta · foto real aquí</span></div>
+      <div class="ph"><span class="emo">🐰</span><span class="ph-tag">foto real aquí</span></div>
+      <div class="ph"><span class="emo">🐕‍🦺</span><span class="ph-tag">foto real aquí</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== RESEÑAS ===== -->
+<section class="sec res">
+  <div class="wrap">
+    <span class="kicker reveal">Lo dicen ellos</span>
+    <h2 class="h2 reveal">Palabra de<br>vecino.</h2>
+    <div class="res-grid">
+      <div class="quote reveal">
+        <span class="stars">★★★★★</span>
+        <p class="serif">"Marta nos salvó la Nochebuena. Mi gato se puso fatal y respondió al WhatsApp en cinco minutos. Eso no tiene precio."</p>
+        <div class="who"><span class="av av1">🧔</span><div><b>Javier R.</b><small>papá de Pulga 🐈</small></div></div>
+      </div>
+      <div class="quote reveal">
+        <span class="stars">★★★★★</span>
+        <p class="serif">"Te explica las cosas como si fueras tú quien tiene que operar. Salí entendiéndolo todo. Por fin una vete que no tiene prisa."</p>
+        <div class="who"><span class="av av2">👩</span><div><b>Carmen L.</b><small>mamá de Toby 🐕</small></div></div>
+      </div>
+      <div class="quote reveal">
+        <span class="stars">★★★★★</span>
+        <p class="serif">"Mi perro entraba temblando a cualquier veterinario. Aquí mueve el rabo. No sé qué hace Marta, pero funciona."</p>
+        <div class="who"><span class="av av3">🧑</span><div><b>Nadia S.</b><small>mamá de Curro 🦮</small></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GANCHO ESTACIONAL ===== -->
+<section class="sec gancho">
+  <div class="wrap">
+    <div class="gancho-in reveal">
+      <span class="tag">☀️ Campaña de verano</span>
+      <h3 class="serif">El calor aprieta.<br>Tu peludo, también.</h3>
+      <p>Golpes de calor, garrapatas y pavimento ardiendo. Junio es el mes de la revisión pre-verano —chequeo + antiparasitario, con regalo para el peludo. Plazas limitadas del barrio.</p>
+      <a href="https://wa.me/34600000000" class="btn-wa">
+        <svg viewBox="0 0 24 24" fill="#d4543c"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2zm0 2a8 8 0 1 1-4.1 14.9l-.4-.2-2.9.8.8-2.8-.2-.4A8 8 0 0 1 12 4zm-3 3.6c-.2 0-.5.1-.7.4-.3.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.8 2.9 4.5 3.9 2.2.9 2.7.7 3.2.7s1.5-.6 1.7-1.2c.2-.6.2-1.1.1-1.2-.1-.1-.3-.2-.6-.3l-1.5-.7c-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.3.1-.4l.4-.5c.1-.2.1-.3.2-.5 0-.1 0-.3-.1-.4l-.7-1.7c-.2-.4-.3-.4-.5-.4z"/></svg>
+        Reservar mi plaza de verano
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="sec">
+  <div class="wrap">
+    <span class="kicker reveal">Antes de venir</span>
+    <h2 class="h2 reveal">Lo que sueles<br>preguntarme.</h2>
+    <div class="faq-list reveal">
+      <details open>
+        <summary>¿Cómo pido cita? <span class="pm">+</span></summary>
+        <p>Por WhatsApp, sin esperas ni centralitas. Me escribes, me cuentas qué pasa y buscamos hueco juntos. Si es urgente, dilo y te cuelo el mismo día.</p>
+      </details>
+      <details>
+        <summary>¿Atendéis urgencias? <span class="pm">+</span></summary>
+        <p>Sí. Guardo huecos cada día para imprevistos. Escríbeme con lo que pasa y una foto si puedes —así llego con el caso medio resuelto en la cabeza.</p>
+      </details>
+      <details>
+        <summary>¿Solo perros y gatos? <span class="pm">+</span></summary>
+        <p>Perros, gatos y también peludos pequeños —conejos, hurones, cobayas. Si tienes dudas con tu especie, pregúntame antes y te oriento.</p>
+      </details>
+      <details>
+        <summary>¿Cuánto cuesta una consulta? <span class="pm">+</span></summary>
+        <p>La revisión arranca en 28 €. Para lo demás, siempre presupuesto cerrado antes de tocar nada. Cero sorpresas: eso va por escrito.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACTO ===== -->
+<section class="sec cont" id="contacto">
+  <div class="wrap">
+    <span class="kicker reveal">Pásate cuando quieras</span>
+    <h2 class="h2 reveal">Estamos a la<br>vuelta de tu esquina.</h2>
+    <div class="cont-grid">
+      <div class="cont-info reveal">
+        <p>La consulta está en el barrio de toda la vida. Ven con tu peludo —o ven primero tú a conocernos, que invito al café.</p>
+        <div class="cont-row"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span><div><b>C/ del Buen Vecino, 14</b><small>Russafa, Valencia</small></div></div>
+        <div class="cont-row"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><b>L–V 9:30–20:00 · S 10:00–14:00</b><small>Urgencias: escríbeme siempre</small></div></div>
+        <div class="cont-row"><span class="ci"><svg viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2zm0 2a8 8 0 1 1-4.1 14.9l-.4-.2-2.9.8.8-2.8-.2-.4A8 8 0 0 1 12 4z"/></svg></span><div><b>+34 600 000 000</b><small>WhatsApp · respondo yo misma</small></div></div>
+        <a href="https://wa.me/34600000000" class="btn-wa">
+          <svg viewBox="0 0 24 24" fill="#053c1c"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2zm0 2a8 8 0 1 1-4.1 14.9l-.4-.2-2.9.8.8-2.8-.2-.4A8 8 0 0 1 12 4zm-3 3.6c-.2 0-.5.1-.7.4-.3.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.8 2.9 4.5 3.9 2.2.9 2.7.7 3.2.7s1.5-.6 1.7-1.2c.2-.6.2-1.1.1-1.2-.1-.1-.3-.2-.6-.3l-1.5-.7c-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.3.1-.4l.4-.5c.1-.2.1-.3.2-.5 0-.1 0-.3-.1-.4l-.7-1.7c-.2-.4-.3-.4-.5-.4z"/></svg>
+          Escríbeme ahora
+        </a>
+      </div>
+      <div class="map reveal">
+        <span class="ph-tag">mapa real aquí</span>
+        <span class="pin">📍</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="wrap foot-in">
+    <div class="foot-top">
+      <div class="foot-mark">
+        <span class="paw"><svg viewBox="0 0 24 24" fill="#fff"><circle cx="7" cy="8" r="2.1"/><circle cx="12" cy="6" r="2.1"/><circle cx="17" cy="8" r="2.1"/><circle cx="19.5" cy="13" r="1.8"/><path d="M12 11c-3 0-5 2.4-5 4.6 0 1.7 1.4 2.4 2.6 2.4 1 0 1.6-.4 2.4-.4s1.4.4 2.4.4c1.2 0 2.6-.7 2.6-2.4C17 13.4 15 11 12 11z"/></svg></span>
+        Doctora Pata
+      </div>
+      <div class="foot-links">
+        <a href="#servicios">Servicios</a>
+        <a href="#contacto">Contacto</a>
+        <a href="https://wa.me/34600000000">WhatsApp</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      © 2026 Doctora Pata · Clínica veterinaria de barrio en Russafa, Valencia · Vet. colegiada CV-04827 — Hecho con cariño para los que son de la familia. 🐾
+    </div>
+  </div>
+</footer>
+
+<!-- ===== WHATSAPP FIJO MOVIL ===== -->
+<a href="https://wa.me/34600000000" class="wa-fixed">
+  <svg viewBox="0 0 24 24" fill="#053c1c"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2zm0 2a8 8 0 1 1-4.1 14.9l-.4-.2-2.9.8.8-2.8-.2-.4A8 8 0 0 1 12 4zm-3 3.6c-.2 0-.5.1-.7.4-.3.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.8 2.9 4.5 3.9 2.2.9 2.7.7 3.2.7s1.5-.6 1.7-1.2c.2-.6.2-1.1.1-1.2-.1-.1-.3-.2-.6-.3l-1.5-.7c-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.3.1-.4l.4-.5c.1-.2.1-.3.2-.5 0-.1 0-.3-.1-.4l-.7-1.7c-.2-.4-.3-.4-.5-.4z"/></svg>
+  Pide cita por WhatsApp
+</a>
+
+<script>
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach((e,i)=>{
+      if(e.isIntersecting){
+        setTimeout(()=>e.target.classList.add('in'), (i%4)*90);
+        io.unobserve(e.target);
+      }
+    });
+  },{threshold:.14, rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

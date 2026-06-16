@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Casa Galga — Hotel y guardería canina con alma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,500&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --arena:#f3 e9da;
+    --arena:#f4ecdd;
+    --crema:#fbf6ec;
+    --terracota:#c25a3a;
+    --terracota-osc:#9c3f25;
+    --oliva:#6b7244;
+    --oliva-osc:#4d5330;
+    --tinta:#2e2519;
+    --tinta-suave:#5b4f3e;
+    --hueso:#fffdf8;
+    --wa:#25a35a;
+    --wa-osc:#1c7d45;
+    --sombra:rgba(46,37,25,.10);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Bricolage Grotesque',system-ui,sans-serif;
+    background:var(--crema);
+    color:var(--tinta);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.serif{font-family:'Fraunces',Georgia,serif}
+  a{color:inherit;text-decoration:none}
+  .wrap{width:100%;max-width:1120px;margin:0 auto;padding:0 22px}
+  section{position:relative}
+
+  /* ---------- NAV ---------- */
+  .nav{
+    position:fixed;top:0;left:0;right:0;z-index:90;
+    background:rgba(251,246,236,.82);
+    backdrop-filter:saturate(140%) blur(10px);
+    border-bottom:1px solid rgba(46,37,25,.08);
+  }
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .wordmark{display:flex;align-items:center;gap:10px;font-family:'Fraunces';font-weight:900;font-size:21px;letter-spacing:-.02em}
+  .wordmark .paw{width:30px;height:30px;flex:none}
+  .nav-links{display:none;gap:30px;font-size:15px;font-weight:500;color:var(--tinta-suave)}
+  .nav-links a{transition:color .2s}
+  .nav-links a:hover{color:var(--terracota)}
+  .btn-wa{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--wa);color:#fff;font-weight:700;font-size:14.5px;
+    padding:10px 18px;border-radius:40px;
+    box-shadow:0 4px 14px rgba(37,163,90,.28);
+    transition:transform .2s, box-shadow .2s, background .2s;
+  }
+  .btn-wa:hover{transform:translateY(-2px);background:var(--wa-osc);box-shadow:0 8px 22px rgba(37,163,90,.36)}
+  .btn-wa svg{width:18px;height:18px;flex:none}
+
+  /* ---------- HERO ---------- */
+  .hero{padding:118px 0 60px;position:relative;overflow:hidden}
+  .hero::before{
+    content:"";position:absolute;inset:0;z-index:0;
+    background:
+      radial-gradient(circle at 82% 18%, rgba(194,90,58,.10), transparent 42%),
+      radial-gradient(circle at 12% 88%, rgba(107,114,68,.12), transparent 46%);
+  }
+  .hero .wrap{position:relative;z-index:2}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:9px;
+    background:var(--hueso);border:1px solid rgba(46,37,25,.12);
+    color:var(--tinta-suave);font-weight:600;font-size:13px;letter-spacing:.01em;
+    padding:7px 15px;border-radius:40px;margin-bottom:26px;
+  }
+  .eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--oliva);box-shadow:0 0 0 4px rgba(107,114,68,.18)}
+  .hero h1{
+    font-weight:900;
+    font-size:clamp(54px,15.5vw,128px);
+    line-height:.93;
+    letter-spacing:-.035em;
+    color:var(--tinta);
+    margin-bottom:8px;
+  }
+  .hero h1 .ln2{color:var(--terracota);display:block}
+  .hero h1 em{font-style:italic;font-weight:500;color:var(--oliva-osc)}
+  .hero-sub{
+    font-size:clamp(18px,2.4vw,22px);
+    color:var(--tinta-suave);max-width:540px;margin:26px 0 34px;
+    line-height:1.5;
+  }
+  .hero-sub b{color:var(--tinta);font-weight:700}
+  .hero-cta{display:flex;flex-wrap:wrap;align-items:center;gap:16px}
+  .btn-wa.lg{font-size:17px;padding:16px 28px}
+  .hero-cta .micro{font-size:13.5px;color:var(--tinta-suave);display:flex;align-items:center;gap:7px}
+  .hero-cta .micro b{color:var(--oliva-osc)}
+
+  .hero-art{margin-top:54px;position:relative}
+  .sofa-scene{width:100%;max-width:660px;display:block;filter:drop-shadow(0 24px 40px rgba(46,37,25,.12))}
+  .floater{position:absolute;font-size:13px;font-weight:600;background:var(--hueso);
+    border:1px solid rgba(46,37,25,.1);padding:8px 14px;border-radius:40px;
+    box-shadow:0 8px 22px var(--sombra);display:flex;align-items:center;gap:8px;color:var(--tinta-suave)}
+  .floater.a{top:8%;right:2%;animation:bob 4.5s ease-in-out infinite}
+  .floater.b{bottom:14%;left:0;animation:bob 5.5s ease-in-out infinite .6s}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+
+  .zzz{font-family:'Fraunces';font-weight:900;color:var(--oliva);opacity:.5}
+
+  /* ---------- divider strip ---------- */
+  .strip{background:var(--terracota);color:var(--crema);padding:16px 0;overflow:hidden;border-top:3px solid var(--terracota-osc);border-bottom:3px solid var(--terracota-osc)}
+  .ticker{display:flex;gap:0;white-space:nowrap;animation:scroll 26s linear infinite;width:max-content}
+  .ticker span{font-family:'Fraunces';font-weight:900;font-size:22px;letter-spacing:-.01em;padding:0 26px;display:inline-flex;align-items:center;gap:26px}
+  .ticker span::after{content:"·";opacity:.55}
+  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* ---------- reveal ---------- */
+  .reveal{opacity:0;transform:translateY(34px);transition:opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ---------- generic section ---------- */
+  .sec{padding:78px 0}
+  .kicker{font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--terracota);margin-bottom:14px}
+  .sec h2{font-weight:900;font-size:clamp(36px,7vw,62px);line-height:.98;letter-spacing:-.03em;margin-bottom:20px}
+  .sec h2 em{font-style:italic;color:var(--oliva-osc);font-weight:500}
+  .lead{font-size:18.5px;color:var(--tinta-suave);max-width:560px;line-height:1.6}
+
+  /* ---------- quién soy ---------- */
+  .yo{display:grid;gap:38px;align-items:center}
+  .yo-photo{position:relative}
+  .ph{
+    background:repeating-linear-gradient(135deg,#efe4d1,#efe4d1 13px,#eaddc6 13px,#eaddc6 26px);
+    border-radius:22px;border:1px solid rgba(46,37,25,.1);
+    display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;
+    color:var(--tinta-suave);position:relative;overflow:hidden;
+  }
+  .ph .tag{position:absolute;bottom:12px;left:12px;background:var(--hueso);border:1px solid rgba(46,37,25,.12);font-size:11.5px;font-weight:700;padding:5px 11px;border-radius:30px;letter-spacing:.02em;color:var(--terracota-osc)}
+  .ph .frame-ico{width:46px;height:46px;opacity:.45}
+  .yo-photo .ph{aspect-ratio:4/5}
+  .yo-text p{font-size:17.5px;color:var(--tinta-suave);margin-bottom:18px;line-height:1.62}
+  .yo-text p b{color:var(--tinta)}
+  .sign{font-family:'Fraunces';font-style:italic;font-weight:500;font-size:26px;color:var(--terracota);margin-top:8px}
+  .yo-stats{display:flex;gap:26px;margin-top:30px;flex-wrap:wrap}
+  .yo-stats .st b{font-family:'Fraunces';font-weight:900;font-size:38px;display:block;line-height:1;color:var(--oliva-osc)}
+  .yo-stats .st span{font-size:13.5px;color:var(--tinta-suave);font-weight:500}
+
+  /* ---------- servicios ---------- */
+  .svc-grid{display:grid;gap:20px;margin-top:42px}
+  .card{
+    background:var(--hueso);border:1px solid rgba(46,37,25,.1);border-radius:24px;
+    padding:30px 28px;transition:transform .3s, box-shadow .3s, border-color .3s;position:relative;overflow:hidden;
+  }
+  .card:hover{transform:translateY(-6px);box-shadow:0 18px 40px var(--sombra);border-color:rgba(194,90,58,.4)}
+  .card .ico-w{width:58px;height:58px;border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:20px}
+  .card .ico-w svg{width:32px;height:32px}
+  .card.t1 .ico-w{background:rgba(194,90,58,.13)}
+  .card.t2 .ico-w{background:rgba(107,114,68,.16)}
+  .card.t3 .ico-w{background:rgba(194,90,58,.13)}
+  .card h3{font-weight:900;font-size:26px;letter-spacing:-.02em;margin-bottom:10px}
+  .card p{font-size:15.5px;color:var(--tinta-suave);line-height:1.55;margin-bottom:18px}
+  .card .price{font-family:'Fraunces';font-weight:600;font-size:15px;color:var(--terracota)}
+  .card .price b{font-weight:900;font-size:24px}
+  .card .corner{position:absolute;top:-18px;right:-18px;font-size:90px;opacity:.06;font-family:'Fraunces';font-weight:900}
+
+  /* ---------- por qué ---------- */
+  .porque{background:var(--oliva-osc);color:var(--crema);border-radius:0}
+  .porque .kicker{color:#c9d29a}
+  .porque h2{color:var(--hueso)}
+  .porque h2 em{color:#c9d29a}
+  .porque .lead{color:rgba(255,253,248,.78)}
+  .ben-grid{display:grid;gap:22px;margin-top:44px}
+  .ben{display:flex;gap:16px;align-items:flex-start;padding:4px 0}
+  .ben .b-ico{width:46px;height:46px;flex:none;border-radius:13px;background:rgba(255,253,248,.1);display:flex;align-items:center;justify-content:center}
+  .ben .b-ico svg{width:25px;height:25px}
+  .ben h4{font-family:'Fraunces';font-weight:600;font-size:21px;margin-bottom:5px;color:var(--hueso)}
+  .ben p{font-size:15px;color:rgba(255,253,248,.74);line-height:1.5}
+
+  /* ---------- galería ---------- */
+  .gal-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:40px}
+  .gal-grid .ph{font-size:13px}
+  .gal-grid .g1{aspect-ratio:1/1}
+  .gal-grid .g2{aspect-ratio:1/1}
+  .gal-grid .g3{grid-column:1/3;aspect-ratio:16/8}
+  .gal-grid .ph .lbl{font-size:13px;font-weight:600;color:var(--tinta-suave);display:flex;flex-direction:column;align-items:center;gap:8px}
+  .gal-cap{text-align:center;margin-top:22px;font-size:14.5px;color:var(--tinta-suave)}
+
+  /* ---------- reseñas ---------- */
+  .rev{background:var(--arena)}
+  .rev-grid{display:grid;gap:20px;margin-top:42px}
+  .qcard{background:var(--hueso);border:1px solid rgba(46,37,25,.1);border-radius:22px;padding:28px 26px;position:relative}
+  .qcard .stars{color:var(--terracota);font-size:16px;letter-spacing:3px;margin-bottom:14px}
+  .qcard blockquote{font-family:'Fraunces';font-weight:500;font-size:20px;line-height:1.4;color:var(--tinta);margin-bottom:20px;font-style:italic}
+  .qcard .who{display:flex;align-items:center;gap:12px}
+  .qcard .av{width:44px;height:44px;border-radius:50%;background:var(--oliva);color:var(--crema);display:flex;align-items:center;justify-content:center;font-family:'Fraunces';font-weight:900;font-size:17px;flex:none}
+  .qcard.t .av{background:var(--terracota)}
+  .qcard .who b{display:block;font-size:15px;font-weight:700}
+  .qcard .who span{font-size:13px;color:var(--tinta-suave)}
+
+  /* ---------- gancho estacional ---------- */
+  .gancho{position:relative;overflow:hidden;background:var(--terracota);color:var(--crema);border-radius:30px;padding:54px 32px;text-align:center;margin:0 auto}
+  .gancho::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 90% 10%,rgba(255,255,255,.13),transparent 40%)}
+  .gancho .in{position:relative;z-index:2}
+  .gancho .pill{display:inline-flex;align-items:center;gap:8px;background:rgba(255,253,248,.18);border:1px solid rgba(255,253,248,.3);font-weight:700;font-size:13px;letter-spacing:.05em;padding:8px 16px;border-radius:40px;margin-bottom:20px}
+  .gancho h2{font-family:'Fraunces';font-weight:900;font-size:clamp(32px,7vw,56px);line-height:1;letter-spacing:-.03em;color:var(--hueso);margin-bottom:16px}
+  .gancho p{font-size:17.5px;color:rgba(255,253,248,.9);max-width:480px;margin:0 auto 28px;line-height:1.5}
+  .gancho .btn-wa{background:var(--hueso);color:var(--terracota-osc);box-shadow:0 8px 24px rgba(0,0,0,.18)}
+  .gancho .btn-wa:hover{background:#fff;color:var(--terracota-osc)}
+  .gancho .left{font-size:13.5px;margin-top:16px;color:rgba(255,253,248,.85);font-weight:600}
+
+  /* ---------- FAQ ---------- */
+  .faq{max-width:720px;margin:0 auto}
+  .faq-item{border-bottom:1px solid rgba(46,37,25,.13)}
+  .faq-item summary{list-style:none;cursor:pointer;padding:22px 4px;display:flex;justify-content:space-between;align-items:center;gap:16px;font-family:'Fraunces';font-weight:600;font-size:21px;color:var(--tinta)}
+  .faq-item summary::-webkit-details-marker{display:none}
+  .faq-item .plus{width:30px;height:30px;flex:none;border-radius:50%;background:rgba(194,90,58,.13);display:flex;align-items:center;justify-content:center;color:var(--terracota);font-size:20px;transition:transform .3s;font-family:'Bricolage Grotesque'}
+  .faq-item[open] .plus{transform:rotate(45deg)}
+  .faq-item p{padding:0 4px 24px;font-size:16px;color:var(--tinta-suave);line-height:1.6;max-width:600px}
+
+  /* ---------- contacto ---------- */
+  .contacto{background:var(--oliva-osc);color:var(--crema);border-radius:30px;padding:50px 32px;display:grid;gap:36px}
+  .contacto .kicker{color:#c9d29a}
+  .contacto h2{color:var(--hueso);font-weight:900;font-size:clamp(34px,7vw,54px);line-height:.98;letter-spacing:-.03em;margin-bottom:16px}
+  .contacto p{color:rgba(255,253,248,.82);font-size:17px;margin-bottom:26px;line-height:1.55}
+  .contacto .info{display:flex;flex-direction:column;gap:14px;margin-bottom:28px}
+  .contacto .info .row{display:flex;align-items:center;gap:13px;font-size:15.5px;color:rgba(255,253,248,.9)}
+  .contacto .info .row svg{width:20px;height:20px;flex:none;color:#c9d29a}
+  .map-ph{background:repeating-linear-gradient(45deg,rgba(255,253,248,.06),rgba(255,253,248,.06) 12px,rgba(255,253,248,.02) 12px,rgba(255,253,248,.02) 24px);border:1px solid rgba(255,253,248,.18);border-radius:18px;aspect-ratio:5/4;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;color:rgba(255,253,248,.6);font-size:13.5px;position:relative}
+  .map-ph svg{width:36px;height:36px;opacity:.6}
+  .map-ph .tag{position:absolute;bottom:12px;left:12px;background:rgba(255,253,248,.14);font-size:11.5px;font-weight:700;padding:5px 11px;border-radius:30px}
+
+  /* ---------- footer ---------- */
+  footer{background:var(--tinta);color:rgba(251,246,236,.7);padding:50px 0 110px;text-align:center}
+  footer .wordmark{justify-content:center;color:var(--crema);margin-bottom:18px}
+  footer .links{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;font-size:14px;margin-bottom:22px}
+  footer .links a:hover{color:var(--crema)}
+  footer .fine{font-size:12.5px;color:rgba(251,246,236,.45);line-height:1.6}
+  footer .heart{color:var(--terracota)}
+
+  /* ---------- WhatsApp fijo móvil ---------- */
+  .wa-fab{
+    position:fixed;left:16px;right:16px;bottom:16px;z-index:80;
+    background:var(--wa);color:#fff;font-weight:700;font-size:16px;
+    display:flex;align-items:center;justify-content:center;gap:10px;
+    padding:16px;border-radius:18px;box-shadow:0 10px 30px rgba(37,163,90,.4);
+    animation:fabpop .5s ease both;
+  }
+  .wa-fab svg{width:22px;height:22px}
+  @keyframes fabpop{from{transform:translateY(80px);opacity:0}to{transform:none;opacity:1}}
+
+  /* ---------- responsive ---------- */
+  @media(min-width:760px){
+    .nav-links{display:flex}
+    .yo{grid-template-columns:.85fr 1.15fr;gap:54px}
+    .svc-grid{grid-template-columns:repeat(3,1fr)}
+    .ben-grid{grid-template-columns:1fr 1fr;gap:30px 40px}
+    .rev-grid{grid-template-columns:repeat(3,1fr)}
+    .contacto{grid-template-columns:1.1fr .9fr;align-items:center}
+    .wa-fab{display:none}
+    .gal-grid{grid-template-columns:repeat(4,1fr)}
+    .gal-grid .g3{grid-column:1/3;aspect-ratio:auto}
+    .gal-grid .g1,.gal-grid .g2{aspect-ratio:1/1}
+    .hero{padding:150px 0 70px}
+    footer{padding:60px 0 60px}
+  }
+  @media(min-width:760px){
+    .gal-wide{grid-column:span 2}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a href="#top" class="wordmark">
+      <svg class="paw" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <ellipse cx="11" cy="14" rx="4.4" ry="5.6" fill="#c25a3a"/>
+        <ellipse cx="29" cy="14" rx="4.4" ry="5.6" fill="#c25a3a"/>
+        <ellipse cx="5.5" cy="23" rx="3.7" ry="4.8" fill="#6b7244"/>
+        <ellipse cx="34.5" cy="23" rx="3.7" ry="4.8" fill="#6b7244"/>
+        <path d="M20 20c5.5 0 10 4 10 8.6 0 4-3.4 5.4-6.4 5.4-1.6 0-2.5-.7-3.6-.7s-2 .7-3.6.7c-3 0-6.4-1.4-6.4-5.4C10 24 14.5 20 20 20z" fill="#c25a3a"/>
+      </svg>
+      Casa&nbsp;Galga
+    </a>
+    <div class="nav-links">
+      <a href="#yo">Quién soy</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#porque">Por qué</a>
+      <a href="#resenas">Reseñas</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <a href="https://wa.me/34600000000" class="btn-wa">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.01c-.25.69-1.46 1.32-2 1.4-.51.08-1.16.11-1.87-.12-.43-.14-.99-.32-1.7-.63-2.99-1.29-4.94-4.3-5.09-4.5-.15-.2-1.22-1.62-1.22-3.09 0-1.47.77-2.19 1.04-2.49.27-.3.59-.37.79-.37.2 0 .39 0 .57.01.18.01.43-.07.67.51.25.6.84 2.07.91 2.22.07.15.12.33.02.53-.1.2-.15.32-.3.5-.15.18-.31.39-.45.53-.15.15-.3.31-.13.6.17.3.77 1.27 1.66 2.06 1.14 1.02 2.1 1.33 2.4 1.48.3.15.47.12.65-.07.18-.2.74-.86.94-1.16.2-.3.4-.25.67-.15.27.1 1.72.81 2.01.96.3.15.5.22.57.35.07.12.07.72-.18 1.41z"/></svg>
+      Reservar
+    </a>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header id="top" class="hero">
+  <div class="wrap">
+    <span class="eyebrow"><span class="dot"></span>Hotel &amp; guardería canina · Valencia</span>
+    <h1>
+      Tú en la playa.<br>
+      <span class="ln2">Él, <em>en el sofá.</em></span>
+    </h1>
+    <p class="hero-sub">
+      Mientras tú estás de vacaciones — tu perro también. 🐾<br>
+      Nada de jaulas. Nada de naves frías. <b>Un hogar de verdad</b>, con su manta, su rutina y alguien que lo achucha cada noche.
+    </p>
+    <div class="hero-cta">
+      <a href="https://wa.me/34600000000" class="btn-wa lg">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.01c-.25.69-1.46 1.32-2 1.4-.51.08-1.16.11-1.87-.12-.43-.14-.99-.32-1.7-.63-2.99-1.29-4.94-4.3-5.09-4.5-.15-.2-1.22-1.62-1.22-3.09 0-1.47.77-2.19 1.04-2.49.27-.3.59-.37.79-.37.2 0 .39 0 .57.01.18.01.43-.07.67.51.25.6.84 2.07.91 2.22.07.15.12.33.02.53-.1.2-.15.32-.3.5-.15.18-.31.39-.45.53-.15.15-.3.31-.13.6.17.3.77 1.27 1.66 2.06 1.14 1.02 2.1 1.33 2.4 1.48.3.15.47.12.65-.07.18-.2.74-.86.94-1.16.2-.3.4-.25.67-.15.27.1 1.72.81 2.01.96.3.15.5.22.57.35.07.12.07.72-.18 1.41z"/></svg>
+        Consultar disponibilidad
+      </a>
+      <span class="micro">📍 <b>Te respondo yo</b>, en persona — hoy mismo</span>
+    </div>
+
+    <!-- ESCENA SVG: perro acurrucado en el sofá -->
+    <div class="hero-art reveal">
+      <span class="floater a">🦴 sin jaulas, palabra</span>
+      <span class="floater b">🛋️ cama propia, no perrera</span>
+      <svg class="sofa-scene" viewBox="0 0 660 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Un galgo durmiendo acurrucado sobre un sofá en casa">
+        <!-- pared y suelo -->
+        <rect x="0" y="0" width="660" height="270" fill="#f4ecdd"/>
+        <rect x="0" y="270" width="660" height="90" fill="#eadfc8"/>
+        <!-- ventana con cortina cálida -->
+        <rect x="56" y="40" width="150" height="120" rx="8" fill="#fbf6ec" stroke="#d8c9ad" stroke-width="3"/>
+        <line x1="131" y1="44" x2="131" y2="156" stroke="#d8c9ad" stroke-width="3"/>
+        <line x1="60" y1="100" x2="202" y2="100" stroke="#d8c9ad" stroke-width="3"/>
+        <circle cx="170" cy="74" r="14" fill="#f2cf8f"/>
+        <!-- cuadro -->
+        <rect x="470" y="52" width="92" height="74" rx="6" fill="#fbf6ec" stroke="#c25a3a" stroke-width="4"/>
+        <path d="M484 110 l16-26 12 16 10-12 14 22z" fill="#6b7244"/>
+        <circle cx="496" cy="74" r="7" fill="#c25a3a"/>
+        <!-- planta -->
+        <rect x="588" y="186" width="34" height="46" rx="5" fill="#c25a3a"/>
+        <path d="M605 186c-8-26 2-44 2-44s4 20 12 30M605 186c8-22-4-40-4-40M605 186c12-20 26-26 26-26s-4 22-16 32" fill="#6b7244"/>
+        <!-- SOFÁ -->
+        <rect x="90" y="200" width="480" height="120" rx="34" fill="#c25a3a"/>
+        <rect x="100" y="170" width="60" height="120" rx="26" fill="#a94a2e"/>
+        <rect x="500" y="170" width="60" height="120" rx="26" fill="#a94a2e"/>
+        <rect x="120" y="186" width="420" height="60" rx="24" fill="#cf6948"/>
+        <!-- cojín -->
+        <rect x="430" y="196" width="84" height="74" rx="16" fill="#6b7244" transform="rotate(8 472 233)"/>
+        <!-- manta -->
+        <path d="M150 250 q120 -22 250 6 q30 8 30 40 l-300 0 z" fill="#eadfc8" opacity=".9"/>
+        <path d="M165 262 l250 6M160 276 l260 4" stroke="#d8c9ad" stroke-width="2" fill="none"/>
+        <!-- GALGO ACURRUCADO -->
+        <g>
+          <!-- cuerpo enroscado -->
+          <path d="M210 268 q-8 -54 56 -64 q70 -10 96 18 q26 26 4 52 q-14 16 -42 18 l-86 0 q-22 -2 -28 -24z" fill="#d8b78c"/>
+          <!-- lomo sombra -->
+          <path d="M266 206 q60 -8 90 18 q20 22 4 44 q-30 -42 -94 -40z" fill="#c9a679"/>
+          <!-- patas recogidas -->
+          <ellipse cx="250" cy="292" rx="34" ry="13" fill="#c9a679"/>
+          <ellipse cx="318" cy="294" rx="30" ry="12" fill="#d8b78c"/>
+          <!-- cabeza apoyada -->
+          <path d="M196 282 q-26 -6 -22 -30 q4 -22 30 -22 q22 0 28 16 q6 18 -10 30 q-12 8 -26 6z" fill="#d8b78c"/>
+          <!-- hocico largo de galgo -->
+          <path d="M178 270 q-30 0 -36 10 q-4 8 8 10 q16 2 30 -8z" fill="#c9a679"/>
+          <ellipse cx="146" cy="282" rx="6" ry="4.5" fill="#3a2c1d"/>
+          <!-- oreja -->
+          <path d="M210 234 q14 -16 26 -8 q6 8 -4 20 q-12 8 -22 -12z" fill="#c9a679"/>
+          <!-- ojo cerrado, durmiendo -->
+          <path d="M188 256 q9 5 18 0" stroke="#3a2c1d" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+          <!-- cola enroscada -->
+          <path d="M348 268 q34 6 30 -20 q-3 -16 -18 -14" stroke="#c9a679" stroke-width="11" fill="none" stroke-linecap="round"/>
+          <!-- collar -->
+          <path d="M214 268 q20 12 40 6" stroke="#6b7244" stroke-width="7" fill="none" stroke-linecap="round"/>
+          <circle cx="234" cy="276" r="4.5" fill="#f2cf8f"/>
+        </g>
+        <!-- zzz -->
+        <text x="150" y="200" class="zzz" font-family="Fraunces, serif" font-weight="900" font-size="22" fill="#6b7244" opacity=".55">z</text>
+        <text x="166" y="184" font-family="Fraunces, serif" font-weight="900" font-size="28" fill="#6b7244" opacity=".5">z</text>
+        <text x="188" y="166" font-family="Fraunces, serif" font-weight="900" font-size="36" fill="#6b7244" opacity=".4">z</text>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<!-- ============ TICKER ============ -->
+<div class="strip" aria-hidden="true">
+  <div class="ticker">
+    <span>Sin jaulas</span><span>Camas de verdad</span><span>Fotos cada día</span><span>Paseos largos</span><span>Mimos ilimitados</span><span>Sin jaulas</span><span>Camas de verdad</span><span>Fotos cada día</span><span>Paseos largos</span><span>Mimos ilimitados</span>
+  </div>
+</div>
+
+<!-- ============ QUIÉN SOY ============ -->
+<section id="yo" class="sec">
+  <div class="wrap">
+    <div class="yo reveal">
+      <div class="yo-photo">
+        <div class="ph">
+          <svg class="frame-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="m3 17 5-4 4 3 3-2 6 4"/></svg>
+          <span style="font-size:13px;font-weight:600">Marta + sus huéspedes</span>
+          <span class="tag">📸 foto real aquí</span>
+        </div>
+      </div>
+      <div class="yo-text">
+        <div class="kicker">Quién te abre la puerta</div>
+        <h2>Soy Marta — <em>y esta es mi casa.</em></h2>
+        <p>No tengo una nave con jaulas. Tengo <b>un piso con sofá, jardín y demasiadas mantas</b>. Y desde hace siete años lo comparto con perros que se quedan unos días mientras sus familias no están.</p>
+        <p>Aquí no hay turnos ni horarios de oficina. Hay paseos al amparo de la tarde, siestas compartidas y un cuenco con su nombre. <b>Cuido a cada perro como cuidaría al mío</b> — porque, mientras estás fuera, un poco lo es.</p>
+        <p class="sign">— Marta, Casa Galga</p>
+        <div class="yo-stats">
+          <div class="st"><b>7</b><span>años cuidando</span></div>
+          <div class="st"><b>+300</b><span>familias confían</span></div>
+          <div class="st"><b>0</b><span>jaulas, nunca</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICIOS ============ -->
+<section id="servicios" class="sec" style="padding-top:30px">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="kicker">Lo que ofrezco</div>
+      <h2>Tres formas de <em>quedarse en casa.</em></h2>
+      <p class="lead">Sin packs raros ni letra pequeña. Elige el plan, escríbeme y lo cuadramos al gusto de tu perro.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="card t1 reveal">
+        <span class="corner">01</span>
+        <div class="ico-w">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#c25a3a" stroke-width="1.6" aria-hidden="true"><path d="M3 11 12 4l9 7"/><path d="M5 10v9h14v-9"/><path d="M9 19v-5h6v5"/></svg>
+        </div>
+        <h3>Hotel de noche</h3>
+        <p>Se queda a dormir contigo lejos. Cena, paseo nocturno, su manta y a roncar. Te mando la foto de las buenas noches.</p>
+        <div class="price">desde <b>22€</b> / noche</div>
+      </div>
+      <div class="card t2 reveal">
+        <span class="corner">02</span>
+        <div class="ico-w">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#6b7244" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        </div>
+        <h3>Guardería de día</h3>
+        <p>Trabajas, tiene cita o simplemente se aburre solo. Lo dejas por la mañana y lo recoges hecho un trapo feliz.</p>
+        <div class="price">desde <b>14€</b> / día</div>
+      </div>
+      <div class="card t3 reveal">
+        <span class="corner">03</span>
+        <div class="ico-w">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#c25a3a" stroke-width="1.6" aria-hidden="true"><path d="M3 13s4-7 9-7 9 7 9 7-4 7-9 7-9-7-9-7z"/><circle cx="12" cy="13" r="2.4"/></svg>
+        </div>
+        <h3>Estancia larga</h3>
+        <p>¿Un viaje de los buenos? Semanas tranquilas con rutina, fotos diarias y una tarifa que baja cuanto más se queda.</p>
+        <div class="price">desde <b>18€</b> / noche</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ POR QUÉ ============ -->
+<section id="porque" class="porque sec">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="kicker">Por qué Casa Galga</div>
+      <h2>Lo que tu perro <em>no te va a contar.</em></h2>
+      <p class="lead">Pero que tú notarás el día que vuelvas y no quiera irse.</p>
+    </div>
+    <div class="ben-grid">
+      <div class="ben reveal">
+        <div class="b-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#c9d29a" stroke-width="1.6" aria-hidden="true"><path d="M12 21s-7-4.5-9.5-9C1 9 2.5 5 6 5c2 0 3 1.2 6 4 3-2.8 4-4 6-4 3.5 0 5 4 3.5 7-2.5 4.5-9.5 9-9.5 9z"/></svg></div>
+        <div><h4>Cero jaulas. En serio.</h4><p>Duerme en cama, no en un box. Tiene sofá, sol y compañía las 24 horas — como en casa.</p></div>
+      </div>
+      <div class="ben reveal">
+        <div class="b-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#c9d29a" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="m3 17 5-4 4 3 3-2 6 4"/></svg></div>
+        <div><h4>Fotos cada día</h4><p>Recibes una foto o vídeo diario por WhatsApp. Para que respires tranquilo aunque estés a 2.000 km.</p></div>
+      </div>
+      <div class="ben reveal">
+        <div class="b-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#c9d29a" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></div>
+        <div><h4>Pocos huéspedes</h4><p>No es un almacén de perros. Acepto un grupo pequeño para que cada uno tenga su rato y su mimo.</p></div>
+      </div>
+      <div class="ben reveal">
+        <div class="b-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#c9d29a" stroke-width="1.6" aria-hidden="true"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6z"/><path d="m9 12 2 2 4-4"/></svg></div>
+        <div><h4>Respeto su rutina</h4><p>Su comida, sus horarios, sus manías. No le cambio la vida — solo le cambio de salón unos días.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALERÍA ============ -->
+<section id="galeria" class="sec">
+  <div class="wrap">
+    <div class="reveal" style="text-align:center;max-width:560px;margin:0 auto">
+      <div class="kicker" style="text-align:center">Un domingo cualquiera</div>
+      <h2>Así se vive <em>aquí dentro.</em></h2>
+    </div>
+    <div class="gal-grid reveal">
+      <div class="ph g1"><span class="lbl"><span style="font-size:30px">🛋️</span>siesta de tarde</span><span class="tag">📸 foto real aquí</span></div>
+      <div class="ph g2"><span class="lbl"><span style="font-size:30px">🌿</span>jardín al sol</span><span class="tag">📸 foto real aquí</span></div>
+      <div class="ph g3 gal-wide"><span class="lbl"><span style="font-size:30px">🐾</span>la pandilla del finde</span><span class="tag">📸 foto real aquí</span></div>
+      <div class="ph g1"><span class="lbl"><span style="font-size:30px">🦴</span>la hora de cenar</span><span class="tag">📸 foto real aquí</span></div>
+      <div class="ph g2"><span class="lbl"><span style="font-size:30px">😴</span>buenas noches</span><span class="tag">📸 foto real aquí</span></div>
+    </div>
+    <p class="gal-cap">Fotos reales de huéspedes reales — sí, todos durmiendo en sitios donde no deberían. 🐶</p>
+  </div>
+</section>
+
+<!-- ============ RESEÑAS ============ -->
+<section id="resenas" class="rev sec">
+  <div class="wrap">
+    <div class="reveal" style="text-align:center;max-width:560px;margin:0 auto">
+      <div class="kicker" style="text-align:center">Lo dicen ellos</div>
+      <h2>Familias que ya <em>respiran tranquilas.</em></h2>
+    </div>
+    <div class="rev-grid">
+      <div class="qcard reveal">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Volvimos de Tailandia y Nala no quería montarse al coche. Eso lo dice todo."</blockquote>
+        <div class="who"><div class="av">L</div><div><b>Laura &amp; Nala</b><span>galga, 4 años</span></div></div>
+      </div>
+      <div class="qcard t reveal">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Una foto cada día. Mi madre la enseñaba en el bingo. Marta es de otra pasta."</blockquote>
+        <div class="who"><div class="av">J</div><div><b>Jorge &amp; Tomás</b><span>podenco, 7 años</span></div></div>
+      </div>
+      <div class="qcard reveal">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Mi perro es miedoso y aquí va feliz. No hay jaulas, hay sofá. Se nota la diferencia."</blockquote>
+        <div class="who"><div class="av">C</div><div><b>Carmen &amp; Bruno</b><span>mestizo, 2 años</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GANCHO ESTACIONAL ============ -->
+<section class="sec" style="padding-top:20px">
+  <div class="wrap">
+    <div class="gancho reveal">
+      <div class="in">
+        <span class="pill">☀️ Verano 2026 · plazas casi llenas</span>
+        <h2>Julio y agosto vuelan.</h2>
+        <p>Cada verano me quedo sin sitio antes de que la gente lo piense. Si ya sabes que te vas — aparta su plaza hoy y olvídate.</p>
+        <a href="https://wa.me/34600000000" class="btn-wa lg">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.01c-.25.69-1.46 1.32-2 1.4-.51.08-1.16.11-1.87-.12-.43-.14-.99-.32-1.7-.63-2.99-1.29-4.94-4.3-5.09-4.5-.15-.2-1.22-1.62-1.22-3.09 0-1.47.77-2.19 1.04-2.49.27-.3.59-.37.79-.37.2 0 .39 0 .57.01.18.01.43-.07.67.51.25.6.84 2.07.91 2.22.07.15.12.33.02.53-.1.2-.15.32-.3.5-.15.18-.31.39-.45.53-.15.15-.3.31-.13.6.17.3.77 1.27 1.66 2.06 1.14 1.02 2.1 1.33 2.4 1.48.3.15.47.12.65-.07.18-.2.74-.86.94-1.16.2-.3.4-.25.67-.15.27.1 1.72.81 2.01.96.3.15.5.22.57.35.07.12.07.72-.18 1.41z"/></svg>
+          Apartar su plaza de verano
+        </a>
+        <p class="left">🔥 Solo me quedan <b>4 plazas</b> para agosto</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq" class="sec">
+  <div class="wrap">
+    <div class="reveal" style="text-align:center;max-width:560px;margin:0 auto 40px">
+      <div class="kicker" style="text-align:center">Lo que sueles preguntarme</div>
+      <h2>Dudas <em>rápidas.</em></h2>
+    </div>
+    <div class="faq reveal">
+      <details class="faq-item" open>
+        <summary>¿De verdad no hay jaulas? <span class="plus">+</span></summary>
+        <p>De verdad. Tu perro se mueve libre por casa y jardín, duerme en cama y convive con un grupo pequeño. La única "puerta cerrada" es la de la calle. 🚪</p>
+      </details>
+      <details class="faq-item">
+        <summary>¿Y si mi perro no se lleva bien con otros? <span class="plus">+</span></summary>
+        <p>Sin problema. Antes de la primera estancia hacemos un día de prueba para ver cómo se siente. Si necesita su espacio, se lo doy.</p>
+      </details>
+      <details class="faq-item">
+        <summary>¿Me mandas fotos mientras estoy fuera? <span class="plus">+</span></summary>
+        <p>Cada día, por WhatsApp. Foto o vídeo, sin que lo pidas. Es la parte que más me gusta — y a ti te deja dormir tranquilo.</p>
+      </details>
+      <details class="faq-item">
+        <summary>¿Qué pasa si necesita medicación o tiene una edad? <span class="plus">+</span></summary>
+        <p>Cuento. Doy medicación, respeto dietas y tengo mano con los perros mayores. Cuéntamelo todo por WhatsApp y lo organizamos.</p>
+      </details>
+      <details class="faq-item">
+        <summary>¿Cómo reservo? <span class="plus">+</span></summary>
+        <p>Un mensaje de WhatsApp y listo. Me cuentas fechas y cómo es tu perro, te confirmo plaza y precio en el día. Nada de formularios eternos.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACTO ============ -->
+<section id="contacto" class="sec" style="padding-top:10px">
+  <div class="wrap">
+    <div class="contacto reveal">
+      <div>
+        <div class="kicker">Hablemos</div>
+        <h2>Su plaza te está esperando.</h2>
+        <p>Escríbeme por WhatsApp y cuéntame de tu perro. Te respondo yo — Marta — normalmente en minutos. ☕</p>
+        <div class="info">
+          <div class="row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M21 16.5v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 1 3.7 2 2 0 0 1 3 1.5h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L7 9.1a16 16 0 0 0 6 6l1.1-1.1a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2z"/></svg>+34 600 000 000</div>
+          <div class="row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Barrio de Ruzafa, Valencia</div>
+          <div class="row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Te respondo de 8:00 a 22:00</div>
+        </div>
+        <a href="https://wa.me/34600000000" class="btn-wa lg">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.01c-.25.69-1.46 1.32-2 1.4-.51.08-1.16.11-1.87-.12-.43-.14-.99-.32-1.7-.63-2.99-1.29-4.94-4.3-5.09-4.5-.15-.2-1.22-1.62-1.22-3.09 0-1.47.77-2.19 1.04-2.49.27-.3.59-.37.79-.37.2 0 .39 0 .57.01.18.01.43-.07.67.51.25.6.84 2.07.91 2.22.07.15.12.33.02.53-.1.2-.15.32-.3.5-.15.18-.31.39-.45.53-.15.15-.3.31-.13.6.17.3.77 1.27 1.66 2.06 1.14 1.02 2.1 1.33 2.4 1.48.3.15.47.12.65-.07.18-.2.74-.86.94-1.16.2-.3.4-.25.67-.15.27.1 1.72.81 2.01.96.3.15.5.22.57.35.07.12.07.72-.18 1.41z"/></svg>
+          Escribir a Marta ahora
+        </a>
+      </div>
+      <div class="map-ph">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Ruzafa, Valencia
+        <span class="tag">🗺️ mapa real aquí</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="wordmark">
+      <svg class="paw" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <ellipse cx="11" cy="14" rx="4.4" ry="5.6" fill="#c25a3a"/>
+        <ellipse cx="29" cy="14" rx="4.4" ry="5.6" fill="#c25a3a"/>
+        <ellipse cx="5.5" cy="23" rx="3.7" ry="4.8" fill="#6b7244"/>
+        <ellipse cx="34.5" cy="23" rx="3.7" ry="4.8" fill="#6b7244"/>
+        <path d="M20 20c5.5 0 10 4 10 8.6 0 4-3.4 5.4-6.4 5.4-1.6 0-2.5-.7-3.6-.7s-2 .7-3.6.7c-3 0-6.4-1.4-6.4-5.4C10 24 14.5 20 20 20z" fill="#c25a3a"/>
+      </svg>
+      Casa&nbsp;Galga
+    </div>
+    <div class="links">
+      <a href="#yo">Quién soy</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#resenas">Reseñas</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://wa.me/34600000000">WhatsApp</a>
+    </div>
+    <p class="fine">
+      Casa Galga · Hotel y guardería canina · Ruzafa, Valencia<br>
+      Tu perro, de vacaciones — mientras tú estás de vacaciones. Hecho con <span class="heart">♥</span> y muchas mantas.
+    </p>
+  </div>
+</footer>
+
+<!-- ============ WHATSAPP FIJO MÓVIL ============ -->
+<a href="https://wa.me/34600000000" class="wa-fab">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.01c-.25.69-1.46 1.32-2 1.4-.51.08-1.16.11-1.87-.12-.43-.14-.99-.32-1.7-.63-2.99-1.29-4.94-4.3-5.09-4.5-.15-.2-1.22-1.62-1.22-3.09 0-1.47.77-2.19 1.04-2.49.27-.3.59-.37.79-.37.2 0 .39 0 .57.01.18.01.43-.07.67.51.25.6.84 2.07.91 2.22.07.15.12.33.02.53-.1.2-.15.32-.3.5-.15.18-.31.39-.45.53-.15.15-.3.31-.13.6.17.3.77 1.27 1.66 2.06 1.14 1.02 2.1 1.33 2.4 1.48.3.15.47.12.65-.07.18-.2.74-.86.94-1.16.2-.3.4-.25.67-.15.27.1 1.72.81 2.01.96.3.15.5.22.57.35.07.12.07.72-.18 1.41z"/></svg>
+  Reservar por WhatsApp
+</a>
+
+<script>
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  },{threshold:0.12, rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

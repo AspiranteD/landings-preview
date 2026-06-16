@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ñam Salvaje — Comida de verdad para perros de verdad</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,600&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bosque:#1f3d2b;
+    --bosque-dark:#142a1d;
+    --naranja:#f06a25;
+    --naranja-soft:#f78c4f;
+    --crema:#f7f0e1;
+    --crema-dark:#ede3cd;
+    --hueso:#fffaf0;
+    --tinta:#22241c;
+    --verde-vivo:#5aa13a;
+    --shadow:0 18px 40px -22px rgba(20,42,29,.55);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Space Grotesk',system-ui,sans-serif;
+    background:var(--crema);
+    color:var(--tinta);
+    line-height:1.55;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{font-family:'Fraunces',Georgia,serif;line-height:.92;letter-spacing:-.01em}
+  .display{font-family:'Bricolage Grotesque',sans-serif}
+  a{color:inherit;text-decoration:none}
+  .wrap{width:100%;max-width:760px;margin:0 auto;padding:0 22px}
+  section{position:relative}
+
+  /* ---------- TOP BAR ---------- */
+  .topbar{
+    position:fixed;top:0;left:0;right:0;z-index:90;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:12px 18px;
+    background:rgba(247,240,225,.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1.5px solid rgba(31,61,43,.12);
+  }
+  .brand{display:flex;align-items:center;gap:9px;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.12rem;color:var(--bosque);letter-spacing:-.02em}
+  .brand .paw{display:inline-flex}
+  .wa-btn{
+    display:inline-flex;align-items:center;gap:7px;
+    background:#25D366;color:#08321c;
+    font-family:'Space Grotesk';font-weight:700;font-size:.82rem;
+    padding:9px 14px;border-radius:40px;
+    box-shadow:0 6px 16px -6px rgba(37,211,102,.7);
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .wa-btn:hover{transform:translateY(-2px);box-shadow:0 10px 22px -6px rgba(37,211,102,.8)}
+  .wa-btn svg{width:16px;height:16px}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:var(--bosque);
+    color:var(--crema);
+    padding:108px 0 70px;
+    overflow:hidden;
+  }
+  .hero .wrap{position:relative;z-index:2}
+  .kicker{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:'Space Grotesk';font-weight:500;
+    text-transform:uppercase;letter-spacing:.22em;font-size:.66rem;
+    color:var(--naranja-soft);
+    border:1.5px solid rgba(247,140,79,.4);
+    padding:7px 13px;border-radius:40px;
+    margin-bottom:26px;
+    animation:rise .8s .05s both;
+  }
+  .hero h1{
+    font-size:clamp(3.3rem,17vw,6.6rem);
+    font-weight:900;
+    color:var(--crema);
+    margin-bottom:4px;
+  }
+  .hero h1 .pop{color:var(--naranja);font-style:italic}
+  .hero h1 span{display:block}
+  .hero h1 .l1{animation:rise .8s .12s both}
+  .hero h1 .l2{animation:rise .8s .24s both}
+  .hero h1 .l3{animation:rise .8s .36s both}
+  .hero .sub{
+    font-size:1.06rem;color:rgba(247,240,225,.82);
+    max-width:30ch;margin:24px 0 32px;line-height:1.5;
+    animation:rise .8s .48s both;
+  }
+  .hero .sub b{color:var(--crema);font-weight:700}
+  .cta-row{display:flex;flex-wrap:wrap;gap:13px;align-items:center;animation:rise .8s .6s both}
+  .btn-big{
+    display:inline-flex;align-items:center;gap:10px;
+    background:var(--naranja);color:#2a0f02;
+    font-family:'Bricolage Grotesque';font-weight:800;font-size:1.02rem;
+    padding:16px 24px;border-radius:50px;
+    box-shadow:0 14px 30px -12px rgba(240,106,37,.75);
+    transition:transform .2s ease;
+  }
+  .btn-big:hover{transform:translate(0,-3px) scale(1.02);transform:translateY(-3px) scale(1.02)}
+  .btn-big svg{width:19px;height:19px}
+  .hero-note{font-size:.8rem;color:rgba(247,240,225,.6);display:flex;align-items:center;gap:7px}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--verde-vivo);box-shadow:0 0 0 0 rgba(90,161,58,.6);animation:pulse 2s infinite}
+
+  /* floating ingredients in hero */
+  .floaty{position:absolute;z-index:1;opacity:.92}
+  .f1{top:8%;right:-12px;width:120px;animation:float1 7s ease-in-out infinite}
+  .f2{bottom:6%;right:14%;width:74px;animation:float2 6s ease-in-out infinite}
+  .f3{top:34%;right:34%;width:46px;animation:float1 5.5s ease-in-out infinite;opacity:.5}
+
+  .bowl-wrap{position:relative;margin-top:46px;display:flex;justify-content:center;animation:rise .9s .7s both}
+
+  /* ---------- MARQUEE ---------- */
+  .marquee{background:var(--naranja);color:#2a0f02;padding:13px 0;overflow:hidden;border-top:3px solid var(--bosque);border-bottom:3px solid var(--bosque)}
+  .marquee-track{display:flex;white-space:nowrap;animation:scroll 22s linear infinite;font-family:'Bricolage Grotesque';font-weight:800;font-size:1.05rem;text-transform:uppercase;letter-spacing:.02em}
+  .marquee-track span{padding:0 22px;display:inline-flex;align-items:center;gap:22px}
+  .marquee-track .star{color:var(--bosque)}
+
+  /* ---------- GENERIC SECTION ---------- */
+  .pad{padding:62px 0}
+  .eyebrow{
+    font-family:'Space Grotesk';font-weight:700;text-transform:uppercase;
+    letter-spacing:.2em;font-size:.7rem;color:var(--naranja);
+    display:flex;align-items:center;gap:10px;margin-bottom:16px;
+  }
+  .eyebrow::before{content:"";width:26px;height:2.5px;background:var(--naranja);border-radius:2px}
+  h2.big{font-size:clamp(2.3rem,9vw,3.6rem);font-weight:900;color:var(--bosque);margin-bottom:18px}
+  .lead{font-size:1.05rem;color:rgba(34,36,28,.78);max-width:40ch}
+
+  /* reveal on scroll */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ---------- QUIEN SOY ---------- */
+  .quien{background:var(--crema-dark)}
+  .quien-grid{display:flex;flex-direction:column;gap:28px}
+  .photo-ph{
+    position:relative;border-radius:22px;overflow:hidden;
+    background:
+      repeating-linear-gradient(45deg,rgba(31,61,43,.05) 0 14px,rgba(31,61,43,.09) 14px 28px),
+      var(--bosque);
+    min-height:280px;
+    display:flex;align-items:flex-end;justify-content:center;
+    border:2.5px solid var(--bosque);
+    box-shadow:var(--shadow);
+  }
+  .photo-ph .ph-tag{
+    position:absolute;top:12px;left:12px;
+    background:var(--naranja);color:#2a0f02;font-family:'Space Grotesk';font-weight:700;
+    font-size:.66rem;text-transform:uppercase;letter-spacing:.12em;
+    padding:5px 11px;border-radius:30px;
+  }
+  .photo-ph .ph-caption{
+    width:100%;text-align:center;padding:16px;
+    color:var(--crema);font-family:'Fraunces';font-style:italic;font-size:1rem;
+    background:linear-gradient(transparent,rgba(20,42,29,.85));
+  }
+  .quien p{font-size:1.05rem;color:rgba(34,36,28,.84);margin-bottom:16px}
+  .quien p:first-of-type{font-family:'Fraunces';font-size:1.5rem;line-height:1.25;color:var(--bosque);font-weight:600}
+  .quien .sign{font-family:'Fraunces';font-style:italic;font-size:1.25rem;color:var(--naranja);margin-top:6px}
+  .quien .sign small{display:block;font-family:'Space Grotesk';font-style:normal;font-size:.78rem;color:rgba(34,36,28,.55);letter-spacing:.04em;margin-top:2px}
+
+  /* ---------- PRODUCTO ---------- */
+  .producto{background:var(--bosque);color:var(--crema)}
+  .producto h2.big{color:var(--crema)}
+  .producto .eyebrow{color:var(--naranja-soft)}
+  .producto .eyebrow::before{background:var(--naranja-soft)}
+  .producto .lead{color:rgba(247,240,225,.78)}
+  .recetas{display:flex;flex-direction:column;gap:16px;margin-top:34px}
+  .receta{
+    background:rgba(247,240,225,.05);
+    border:1.5px solid rgba(247,240,225,.16);
+    border-radius:20px;padding:22px;
+    display:flex;gap:18px;align-items:center;
+    transition:transform .25s ease,border-color .25s ease,background .25s ease;
+  }
+  .receta:hover{transform:translateY(-4px);border-color:var(--naranja);background:rgba(240,106,37,.08)}
+  .receta .icon{flex:0 0 64px;width:64px;height:64px}
+  .receta h3{font-size:1.45rem;font-weight:900;color:var(--crema);margin-bottom:5px}
+  .receta p{font-size:.9rem;color:rgba(247,240,225,.72);line-height:1.45}
+  .receta .tag{display:inline-block;margin-top:9px;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--naranja-soft);border:1px solid rgba(247,140,79,.4);padding:3px 9px;border-radius:20px}
+
+  /* ---------- POR QUE ---------- */
+  .porque{background:var(--crema)}
+  .benefits{display:grid;grid-template-columns:1fr;gap:14px;margin-top:34px}
+  .benefit{
+    background:var(--hueso);border:2px solid var(--bosque);
+    border-radius:18px;padding:22px;
+    box-shadow:5px 5px 0 var(--bosque);
+    transition:transform .2s ease,box-shadow .2s ease;
+  }
+  .benefit:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--naranja)}
+  .benefit .b-ico{width:42px;height:42px;margin-bottom:12px}
+  .benefit h3{font-family:'Bricolage Grotesque';font-size:1.18rem;font-weight:800;color:var(--bosque);margin-bottom:7px}
+  .benefit p{font-size:.92rem;color:rgba(34,36,28,.76);line-height:1.5}
+
+  /* ---------- PLATO COMPARADO ---------- */
+  .compare{background:var(--crema-dark)}
+  .compare-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:30px}
+  .plate{
+    border-radius:20px;padding:22px 18px;text-align:center;
+    border:2.5px solid var(--bosque);
+  }
+  .plate.tuyo{background:var(--hueso)}
+  .plate.suyo{background:var(--bosque);color:var(--crema)}
+  .plate .plate-svg{width:96px;height:96px;margin:0 auto 12px}
+  .plate h4{font-family:'Bricolage Grotesque';font-weight:800;font-size:1.05rem;margin-bottom:4px}
+  .plate.tuyo h4{color:var(--bosque)}
+  .plate.suyo h4{color:var(--naranja-soft)}
+  .plate p{font-size:.82rem;line-height:1.4}
+  .plate.tuyo p{color:rgba(34,36,28,.7)}
+  .plate.suyo p{color:rgba(247,240,225,.78)}
+  .compare-line{text-align:center;margin-top:24px;font-family:'Fraunces';font-style:italic;font-size:1.35rem;color:var(--bosque);line-height:1.3}
+  .compare-line b{color:var(--naranja);font-style:normal}
+
+  /* ---------- GALERIA ---------- */
+  .galeria{background:var(--bosque)}
+  .galeria h2.big{color:var(--crema)}
+  .galeria .eyebrow{color:var(--naranja-soft)}
+  .galeria .eyebrow::before{background:var(--naranja-soft)}
+  .gal-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:30px}
+  .gal{
+    position:relative;border-radius:16px;overflow:hidden;aspect-ratio:1/1;
+    border:2px solid rgba(247,240,225,.2);
+    display:flex;align-items:flex-end;
+    transition:transform .25s ease;
+  }
+  .gal:hover{transform:scale(1.03);border-color:var(--naranja)}
+  .gal.tall{aspect-ratio:auto;grid-row:span 2}
+  .gal .g-tag{
+    position:relative;z-index:2;width:100%;padding:11px 12px;
+    font-family:'Space Grotesk';font-weight:600;font-size:.74rem;color:var(--crema);
+    background:linear-gradient(transparent,rgba(20,42,29,.9));
+  }
+  .gal .g-mini{position:absolute;top:9px;left:9px;z-index:2;background:rgba(247,240,225,.92);color:var(--bosque);font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:3px 8px;border-radius:20px}
+
+  /* ---------- RESEÑAS ---------- */
+  .resenas{background:var(--crema)}
+  .res-grid{display:flex;flex-direction:column;gap:16px;margin-top:32px}
+  .res{
+    background:var(--hueso);border:2px solid var(--bosque);border-radius:20px;padding:24px;
+    position:relative;box-shadow:var(--shadow);
+  }
+  .res .stars{color:var(--naranja);font-size:1rem;letter-spacing:3px;margin-bottom:12px}
+  .res blockquote{font-family:'Fraunces';font-size:1.18rem;line-height:1.4;color:var(--bosque);font-weight:600}
+  .res blockquote .hl{background:rgba(240,106,37,.22);padding:0 3px;border-radius:3px}
+  .res .who{display:flex;align-items:center;gap:11px;margin-top:18px}
+  .res .av{width:42px;height:42px;border-radius:50%;background:var(--bosque);color:var(--crema);display:flex;align-items:center;justify-content:center;font-family:'Bricolage Grotesque';font-weight:800;font-size:1rem}
+  .res .who b{display:block;font-family:'Space Grotesk';font-weight:700;font-size:.92rem;color:var(--tinta)}
+  .res .who small{color:rgba(34,36,28,.55);font-size:.78rem}
+
+  /* ---------- URGENCIA ---------- */
+  .urgencia{background:var(--naranja);color:#2a0f02}
+  .urg-card{text-align:center;padding:8px 0}
+  .urg-badge{display:inline-block;background:var(--bosque);color:var(--naranja-soft);font-family:'Space Grotesk';font-weight:700;text-transform:uppercase;letter-spacing:.14em;font-size:.68rem;padding:7px 15px;border-radius:30px;margin-bottom:22px}
+  .urgencia h2{font-size:clamp(2.1rem,8vw,3.2rem);font-weight:900;color:#2a0f02;margin-bottom:14px;line-height:.96}
+  .urgencia h2 em{font-style:italic;color:var(--bosque)}
+  .urgencia p{font-size:1.02rem;color:rgba(42,15,2,.82);max-width:34ch;margin:0 auto 26px}
+  .urg-card .btn-big{background:var(--bosque);color:var(--crema)}
+  .countdot{display:inline-flex;gap:6px;margin-top:20px;font-family:'Bricolage Grotesque';font-weight:800;font-size:.8rem;align-items:center;justify-content:center;color:#2a0f02}
+
+  /* ---------- FAQ ---------- */
+  .faq{background:var(--crema-dark)}
+  .faq-list{margin-top:30px;display:flex;flex-direction:column;gap:12px}
+  details{
+    background:var(--hueso);border:2px solid var(--bosque);border-radius:16px;
+    padding:0 20px;overflow:hidden;transition:background .2s ease;
+  }
+  details[open]{background:#fff}
+  summary{
+    list-style:none;cursor:pointer;padding:19px 0;
+    font-family:'Bricolage Grotesque';font-weight:800;font-size:1.04rem;color:var(--bosque);
+    display:flex;justify-content:space-between;align-items:center;gap:14px;
+  }
+  summary::-webkit-details-marker{display:none}
+  summary .pm{flex:0 0 auto;width:26px;height:26px;border-radius:50%;background:var(--bosque);color:var(--crema);display:flex;align-items:center;justify-content:center;font-size:1.1rem;transition:transform .25s ease}
+  details[open] summary .pm{transform:rotate(45deg);background:var(--naranja)}
+  details p{padding:0 0 20px;font-size:.95rem;color:rgba(34,36,28,.8);line-height:1.55}
+
+  /* ---------- CONTACTO ---------- */
+  .contacto{background:var(--bosque);color:var(--crema)}
+  .contacto h2.big{color:var(--crema)}
+  .contacto .eyebrow{color:var(--naranja-soft)}
+  .contacto .eyebrow::before{background:var(--naranja-soft)}
+  .cont-card{
+    background:rgba(247,240,225,.05);border:1.5px solid rgba(247,240,225,.18);
+    border-radius:22px;padding:30px 24px;margin-top:30px;
+  }
+  .cont-card .lead{color:rgba(247,240,225,.82);margin-bottom:24px}
+  .cont-info{display:flex;flex-direction:column;gap:16px;margin-top:24px}
+  .cinfo{display:flex;gap:13px;align-items:flex-start}
+  .cinfo .ci-ico{flex:0 0 38px;width:38px;height:38px;border-radius:11px;background:rgba(240,106,37,.16);display:flex;align-items:center;justify-content:center;color:var(--naranja-soft)}
+  .cinfo .ci-ico svg{width:19px;height:19px}
+  .cinfo b{font-family:'Space Grotesk';font-weight:700;font-size:.95rem;display:block}
+  .cinfo span{font-size:.86rem;color:rgba(247,240,225,.7)}
+  .map-ph{
+    margin-top:24px;border-radius:16px;overflow:hidden;min-height:140px;
+    border:1.5px solid rgba(247,240,225,.2);position:relative;
+    background:
+      linear-gradient(rgba(247,240,225,.06) 1.5px,transparent 1.5px) 0 0/100% 26px,
+      linear-gradient(90deg,rgba(247,240,225,.06) 1.5px,transparent 1.5px) 0 0/26px 100%,
+      var(--bosque-dark);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .map-ph .pin{display:flex;flex-direction:column;align-items:center;gap:7px;color:var(--naranja-soft)}
+  .map-ph .pin span{font-size:.74rem;color:rgba(247,240,225,.65);background:rgba(20,42,29,.7);padding:4px 10px;border-radius:20px;font-family:'Space Grotesk'}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--bosque-dark);color:rgba(247,240,225,.7);padding:46px 0 110px;text-align:center}
+  footer .brand{justify-content:center;color:var(--crema);font-size:1.4rem;margin-bottom:14px}
+  footer .tag{font-family:'Fraunces';font-style:italic;font-size:1.1rem;color:var(--naranja-soft);margin-bottom:24px}
+  footer .flinks{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:center;font-size:.85rem;margin-bottom:24px}
+  footer .flinks a{color:rgba(247,240,225,.75);transition:color .2s}
+  footer .flinks a:hover{color:var(--naranja-soft)}
+  footer .legal{font-size:.72rem;color:rgba(247,240,225,.4);line-height:1.7}
+
+  /* ---------- STICKY MOBILE WA ---------- */
+  .wa-fixed{
+    position:fixed;left:14px;right:14px;bottom:14px;z-index:95;
+    display:flex;align-items:center;justify-content:center;gap:10px;
+    background:#25D366;color:#08321c;
+    font-family:'Bricolage Grotesque';font-weight:800;font-size:1.02rem;
+    padding:16px;border-radius:50px;
+    box-shadow:0 16px 34px -10px rgba(8,50,28,.6);
+    transition:transform .2s ease;
+  }
+  .wa-fixed:hover{transform:translateY(-2px)}
+  .wa-fixed svg{width:21px;height:21px}
+  @media(min-width:720px){
+    .wa-fixed{left:auto;right:24px;width:auto;padding:16px 26px}
+    .benefits{grid-template-columns:1fr 1fr}
+    .quien-grid{flex-direction:row;align-items:center}
+    .quien-grid .photo-ph{flex:0 0 44%}
+    footer{padding-bottom:46px}
+  }
+
+  /* ---------- KEYFRAMES ---------- */
+  @keyframes rise{from{opacity:0;transform:translateY(34px)}to{opacity:1;transform:none}}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(90,161,58,.6)}70%{box-shadow:0 0 0 9px rgba(90,161,58,0)}100%{box-shadow:0 0 0 0 rgba(90,161,58,0)}}
+  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @keyframes float1{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-16px) rotate(4deg)}}
+  @keyframes float2{0%,100%{transform:translateY(0) rotate(6deg)}50%{transform:translateY(-13px) rotate(-5deg)}}
+  @keyframes wag{0%,100%{transform:rotate(-7deg)}50%{transform:rotate(7deg)}}
+  @keyframes steam{0%{opacity:0;transform:translateY(0) scaleX(1)}40%{opacity:.7}100%{opacity:0;transform:translateY(-22px) scaleX(1.4)}}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <a href="#top" class="brand">
+    <span class="paw">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><ellipse cx="6.5" cy="9" rx="2.1" ry="2.7" fill="#f06a25"/><ellipse cx="12" cy="6.6" rx="2.2" ry="2.9" fill="#f06a25"/><ellipse cx="17.5" cy="9" rx="2.1" ry="2.7" fill="#f06a25"/><path d="M12 11c-3 0-5.4 2.1-5.4 4.6 0 2 1.7 3 3.4 2.4 1.3-.5 2.7-.5 4 0 1.7.6 3.4-.4 3.4-2.4C17.4 13.1 15 11 12 11Z" fill="#1f3d2b"/></svg>
+    </span>
+    Ñam Salvaje
+  </a>
+  <a href="https://wa.me/34600000000" class="wa-btn">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2Zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.6-.6-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8 0-1.3.7-2 .9-2.2.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.3 0 .5l-.4.5c-.2.2-.3.3-.1.6.1.3.7 1.1 1.5 1.7 1 .9 1.8 1.1 2 1.2.3.1.4.1.6-.1l.7-.8c.2-.3.4-.2.6-.1l1.8.9c.3.1.4.2.5.3.1.2.1.9-.2 1.5Z"/></svg>
+    Pedir ya
+  </a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <!-- floating ingredients -->
+  <svg class="floaty f1" viewBox="0 0 100 100" fill="none">
+    <ellipse cx="50" cy="55" rx="34" ry="28" fill="#f06a25"/>
+    <ellipse cx="50" cy="48" rx="34" ry="22" fill="#f78c4f"/>
+    <path d="M30 44c8-7 32-7 40 0" stroke="#c84e15" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <circle cx="40" cy="40" r="3" fill="#fffaf0"/><circle cx="55" cy="38" r="2.4" fill="#fffaf0"/><circle cx="62" cy="46" r="2.8" fill="#fffaf0"/>
+  </svg>
+  <svg class="floaty f2" viewBox="0 0 100 100" fill="none">
+    <path d="M50 14c14 0 26 10 26 28 0 22-18 42-26 42S24 64 24 42c0-18 12-28 26-28Z" fill="#5aa13a"/>
+    <path d="M50 14c14 0 26 10 26 28 0 22-18 42-26 42V14Z" fill="#4a8a2e"/>
+    <path d="M50 8c2 4 8 6 8 6s-6 3-8 7c-2-4-8-7-8-7s6-2 8-6Z" fill="#3b6d11"/>
+  </svg>
+  <svg class="floaty f3" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="40" fill="#f7f0e1"/><circle cx="50" cy="50" r="40" fill="none" stroke="#e0d4b8" stroke-width="3"/><circle cx="50" cy="50" r="11" fill="#1f3d2b"/></svg>
+
+  <div class="wrap">
+    <span class="kicker">🥩 Comida natural para perros</span>
+    <h1 class="display">
+      <span class="l1">Si tú no</span>
+      <span class="l2">lo comerías,</span>
+      <span class="l3"><span class="pop">él tampoco.</span></span>
+    </h1>
+    <p class="sub">Cocinamos para tu perro como cocinaríamos para ti — <b>ingredientes que reconoces</b>, nada de piensos misteriosos con nombres impronunciables.</p>
+    <div class="cta-row">
+      <a href="https://wa.me/34600000000" class="btn-big">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2Zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.6-.6-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8 0-1.3.7-2 .9-2.2.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.3 0 .5l-.4.5c-.2.2-.3.3-.1.6.1.3.7 1.1 1.5 1.7 1 .9 1.8 1.1 2 1.2.3.1.4.1.6-.1l.7-.8c.2-.3.4-.2.6-.1l1.8.9c.3.1.4.2.5.3.1.2.1.9-.2 1.5Z"/></svg>
+        Pídelo por WhatsApp
+      </a>
+      <span class="hero-note"><span class="dot"></span> Entregamos esta semana</span>
+    </div>
+
+    <!-- BOWL ILLUSTRATION -->
+    <div class="bowl-wrap">
+      <svg width="280" height="200" viewBox="0 0 280 200" fill="none" aria-label="Cuenco de comida natural para perro">
+        <!-- steam -->
+        <g stroke="#f7f0e1" stroke-width="3" stroke-linecap="round" opacity=".5">
+          <path d="M110 38c-6-7 6-13 0-22" style="animation:steam 3s ease-out infinite"/>
+          <path d="M140 32c-6-7 6-13 0-22" style="animation:steam 3s .8s ease-out infinite"/>
+          <path d="M170 38c-6-7 6-13 0-22" style="animation:steam 3s 1.5s ease-out infinite"/>
+        </g>
+        <!-- food mound -->
+        <ellipse cx="140" cy="118" rx="98" ry="44" fill="#142a1d"/>
+        <path d="M48 116c0-30 41-44 92-44s92 14 92 44Z" fill="#993c1d"/>
+        <path d="M58 110c0-24 36-36 82-36s82 12 82 36Z" fill="#d85a30"/>
+        <!-- veggie bits -->
+        <circle cx="100" cy="92" r="9" fill="#5aa13a"/><circle cx="100" cy="92" r="9" fill="none" stroke="#3b6d11" stroke-width="2"/>
+        <circle cx="178" cy="96" r="8" fill="#f06a25"/>
+        <ellipse cx="140" cy="84" rx="11" ry="7" fill="#f78c4f"/>
+        <circle cx="124" cy="100" r="5" fill="#3b6d11"/>
+        <circle cx="158" cy="88" r="6" fill="#639922"/>
+        <rect x="148" y="98" width="16" height="7" rx="3" fill="#f7f0e1"/>
+        <!-- bowl -->
+        <path d="M40 116h200c0 34-45 58-100 58S40 150 40 116Z" fill="#1f3d2b"/>
+        <path d="M40 116h200c0 9-4 17-11 24H51c-7-7-11-15-11-24Z" fill="#142a1d"/>
+        <ellipse cx="140" cy="116" rx="100" ry="14" fill="#1f3d2b"/>
+        <ellipse cx="140" cy="114" rx="100" ry="12" fill="none" stroke="#f06a25" stroke-width="3"/>
+        <!-- little bone tag -->
+        <g transform="rotate(-12 210 150)">
+          <rect x="186" y="142" width="48" height="20" rx="10" fill="#f7f0e1"/>
+          <circle cx="190" cy="146" r="5" fill="#f7f0e1"/><circle cx="190" cy="158" r="5" fill="#f7f0e1"/>
+          <circle cx="230" cy="146" r="5" fill="#f7f0e1"/><circle cx="230" cy="158" r="5" fill="#f7f0e1"/>
+          <text x="210" y="156" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-weight="800" font-size="9" fill="#1f3d2b">¡ÑAM!</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Pollo de verdad <em class="star">★</em> Sin cereales raros <em class="star">★</em> Sin conservantes <em class="star">★</em> Verdura fresca <em class="star">★</em> Cocinado a fuego lento <em class="star">★</em></span>
+    <span>Pollo de verdad <em class="star">★</em> Sin cereales raros <em class="star">★</em> Sin conservantes <em class="star">★</em> Verdura fresca <em class="star">★</em> Cocinado a fuego lento <em class="star">★</em></span>
+  </div>
+</div>
+
+<!-- QUIEN SOY -->
+<section class="pad quien">
+  <div class="wrap quien-grid reveal">
+    <div class="photo-ph">
+      <span class="ph-tag">📷 foto real aquí</span>
+      <div class="ph-caption">Marta y Trufa, en la cocina de siempre</div>
+    </div>
+    <div>
+      <div class="eyebrow">Quién hay detrás</div>
+      <p>Soy Marta. Y todo esto empezó por Trufa.</p>
+      <p>Mi perra dejó de comer pienso de un día para otro — y la entendí. Yo tampoco comería esas bolitas iguales durante doce años. Así que me metí en la cocina y empecé a hacerle la comida a mano: pollo, calabaza, un poco de arroz. Le cambió la cara. Y el pelo. Y la energía.</p>
+      <p>Lo que era para mi perra ahora es para el tuyo. Cocino tandas pequeñas, con ingredientes que compro yo misma — los mismos que pondría en mi plato.</p>
+      <p class="sign">— Marta 🐾<small>Fundadora · cocinera · esclava de Trufa</small></p>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTO / RECETAS -->
+<section class="pad producto">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow">Lo que cocinamos</div>
+      <h2 class="big">Tres recetas.<br>Cero misterios.</h2>
+      <p class="lead">Raciones cocinadas y listas para servir. Las congelas, las descongelas, y a comer. Así de fácil.</p>
+    </div>
+    <div class="recetas">
+      <div class="receta reveal">
+        <svg class="icon" viewBox="0 0 64 64" fill="none">
+          <path d="M32 8c10 0 17 7 17 16 0 6-3 10-7 13l2 16c0 3-3 4-6 4h-12c-3 0-6-1-6-4l2-16c-4-3-7-7-7-13 0-9 7-16 17-16Z" fill="#f78c4f"/>
+          <path d="M32 8c10 0 17 7 17 16 0 6-3 10-7 13l1 8H21l1-8c-4-3-7-7-7-13 0-9 7-16 17-16Z" fill="#f06a25"/>
+          <circle cx="25" cy="24" r="3" fill="#fffaf0"/><circle cx="38" cy="22" r="2.5" fill="#fffaf0"/><circle cx="33" cy="30" r="2.5" fill="#5aa13a"/>
+        </svg>
+        <div>
+          <h3>Pollo del corral</h3>
+          <p>Pechuga de pollo, calabaza asada y arroz integral. La receta con la que empezó todo — suave y digestiva.</p>
+          <span class="tag">La favorita 🏆</span>
+        </div>
+      </div>
+      <div class="receta reveal">
+        <svg class="icon" viewBox="0 0 64 64" fill="none">
+          <path d="M14 30c0-9 8-14 18-14s18 5 18 14c0 4-2 8-5 11H19c-3-3-5-7-5-11Z" fill="#993c1d"/>
+          <path d="M14 30c0-9 8-14 18-14s18 5 18 14H14Z" fill="#d85a30"/>
+          <ellipse cx="32" cy="44" rx="20" ry="6" fill="#1f3d2b" opacity=".25"/>
+          <circle cx="24" cy="26" r="3" fill="#5aa13a"/><circle cx="40" cy="24" r="3" fill="#639922"/><circle cx="32" cy="30" r="2.5" fill="#f7f0e1"/>
+        </svg>
+        <div>
+          <h3>Ternera de monte</h3>
+          <p>Ternera, boniato y guisantes. Proteína seria para perros activos que queman como motores.</p>
+          <span class="tag">Para los que no paran 💪</span>
+        </div>
+      </div>
+      <div class="receta reveal">
+        <svg class="icon" viewBox="0 0 64 64" fill="none">
+          <path d="M20 22c0-6 5-10 12-10s12 4 12 10c0 8-6 14-6 22 0 4-2 6-6 6s-6-2-6-6c0-8-6-14-6-22Z" fill="#5aa13a"/>
+          <path d="M20 22c0-6 5-10 12-10v40c-4 0-6-2-6-6 0-8-6-14-6-22Z" fill="#4a8a2e"/>
+          <path d="M32 6c2 4 7 5 7 5s-5 3-7 7c-2-4-7-7-7-7s5-1 7-5Z" fill="#3b6d11"/>
+        </svg>
+        <div>
+          <h3>Pescado del día</h3>
+          <p>Salmón, patata y espinaca. Omega para la piel y el pelo — la receta que más brilla, literalmente.</p>
+          <span class="tag">Pelazo garantizado ✨</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POR QUE -->
+<section class="pad porque">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow">Por qué Ñam Salvaje</div>
+      <h2 class="big">Sin letra<br>pequeña.</h2>
+      <p class="lead">Si tienes que buscar en Google qué significa un ingrediente, no entra en el cuenco. Punto.</p>
+    </div>
+    <div class="benefits">
+      <div class="benefit reveal">
+        <svg class="b-ico" viewBox="0 0 42 42" fill="none"><rect x="6" y="6" width="30" height="30" rx="8" fill="#f06a25"/><path d="M14 21l5 5 9-11" stroke="#fffaf0" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h3>Ingredientes que lees</h3>
+        <p>Pollo, calabaza, arroz. Cinco palabras, no veinte. Sin harinas raras ni "subproductos animales".</p>
+      </div>
+      <div class="benefit reveal">
+        <svg class="b-ico" viewBox="0 0 42 42" fill="none"><circle cx="21" cy="21" r="15" fill="#5aa13a"/><path d="M21 12v9l6 4" stroke="#fffaf0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h3>Cocinado, no procesado</h3>
+        <p>A fuego lento, en tandas pequeñas, como en casa. Nada de extruir bolitas a 200 grados.</p>
+      </div>
+      <div class="benefit reveal">
+        <svg class="b-ico" viewBox="0 0 42 42" fill="none"><path d="M21 7l4 8 9 1-6.5 6 1.5 9-8-4-8 4 1.5-9L8 16l9-1 4-8Z" fill="#f06a25"/></svg>
+        <h3>Se nota en él</h3>
+        <p>Más energía, menos picores, pelo brillante y caca decente (sí, lo decimos). Lo ves en dos semanas.</p>
+      </div>
+      <div class="benefit reveal">
+        <svg class="b-ico" viewBox="0 0 42 42" fill="none"><rect x="7" y="14" width="28" height="20" rx="5" fill="#1f3d2b"/><path d="M13 14c0-4 4-7 8-7s8 3 8 7" stroke="#f06a25" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="21" cy="24" r="3.5" fill="#f78c4f"/></svg>
+        <h3>De aquí, cercano</h3>
+        <p>Te lo lleva alguien con nombre, no una furgoneta anónima. Cocina pequeña, trato de persona.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLATO COMPARADO -->
+<section class="pad compare">
+  <div class="wrap">
+    <div class="reveal" style="text-align:center">
+      <div class="eyebrow" style="justify-content:center">El test del plato</div>
+      <h2 class="big">¿Tú comerías esto?</h2>
+    </div>
+    <div class="compare-row reveal">
+      <div class="plate tuyo">
+        <svg class="plate-svg" viewBox="0 0 96 96" fill="none">
+          <circle cx="48" cy="48" r="42" fill="#f7f0e1" stroke="#1f3d2b" stroke-width="3"/>
+          <circle cx="48" cy="48" r="30" fill="none" stroke="#e0d4b8" stroke-width="2"/>
+          <path d="M30 40c8-6 28-6 36 0" stroke="#d85a30" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <circle cx="38" cy="54" r="6" fill="#5aa13a"/><circle cx="56" cy="56" r="6" fill="#f06a25"/><circle cx="48" cy="46" r="5" fill="#639922"/>
+        </svg>
+        <h4>Tu plato</h4>
+        <p>Comida de verdad. Reconoces cada cosa que hay en él.</p>
+      </div>
+      <div class="plate suyo">
+        <svg class="plate-svg" viewBox="0 0 96 96" fill="none">
+          <circle cx="48" cy="48" r="42" fill="#142a1d" stroke="#f78c4f" stroke-width="3"/>
+          <circle cx="48" cy="48" r="30" fill="none" stroke="#2c5238" stroke-width="2"/>
+          <path d="M30 40c8-6 28-6 36 0" stroke="#d85a30" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <circle cx="38" cy="54" r="6" fill="#5aa13a"/><circle cx="56" cy="56" r="6" fill="#f06a25"/><circle cx="48" cy="46" r="5" fill="#639922"/>
+        </svg>
+        <h4>Su cuenco</h4>
+        <p>Lo mismo. La misma comida. Esa es toda la idea.</p>
+      </div>
+    </div>
+    <p class="compare-line reveal">Si la respuesta es <b>sí</b> en los dos lados,<br>vamos por buen camino.</p>
+  </div>
+</section>
+
+<!-- GALERIA -->
+<section class="pad galeria">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow">El club del ñam</div>
+      <h2 class="big">Caras de<br>felicidad.</h2>
+      <p class="lead">Perros reales, cuencos vacíos, rabos en movimiento. Aquí irían las fotos de verdad.</p>
+    </div>
+    <div class="gal-grid reveal">
+      <div class="gal tall" style="background:repeating-linear-gradient(135deg,#2c5238 0 18px,#244730 18px 36px)">
+        <span class="g-mini">📷 foto real</span>
+        <span class="g-tag">Trufa esperando la cena (otra vez)</span>
+      </div>
+      <div class="gal" style="background:repeating-linear-gradient(45deg,#993c1d 0 16px,#7a2f15 16px 32px)">
+        <span class="g-mini">📷 foto real</span>
+        <span class="g-tag">Cuenco vacío en 30 seg</span>
+      </div>
+      <div class="gal" style="background:repeating-linear-gradient(45deg,#3b6d11 0 16px,#2f560d 16px 32px)">
+        <span class="g-mini">📷 foto real</span>
+        <span class="g-tag">Verdura fresca, recién cortada</span>
+      </div>
+      <div class="gal" style="background:repeating-linear-gradient(135deg,#c84e15 0 16px,#a83f10 16px 32px)">
+        <span class="g-mini">📷 foto real</span>
+        <span class="g-tag">Tandas saliendo del fuego</span>
+      </div>
+      <div class="gal" style="background:repeating-linear-gradient(45deg,#2c5238 0 16px,#244730 16px 32px)">
+        <span class="g-mini">📷 foto real</span>
+        <span class="g-tag">Reparto del barrio</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEÑAS -->
+<section class="pad resenas">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow">Lo que dicen sus humanos</div>
+      <h2 class="big">Ellos no<br>hablan.<br>Sus dueños sí.</h2>
+    </div>
+    <div class="res-grid">
+      <div class="res reveal">
+        <div class="stars">★★★★★</div>
+        <blockquote>Mi galgo era el rey de los <span class="hl">"hoy no me apetece"</span>. Ahora oye el cuenco y aparece desde la otra punta de la casa. No sabía que podía correr tan rápido.</blockquote>
+        <div class="who"><div class="av">L</div><div><b>Lucía R.</b><small>humana de Bruno, el galgo</small></div></div>
+      </div>
+      <div class="res reveal">
+        <div class="stars">★★★★★</div>
+        <blockquote>Llevábamos meses con picores y veterinarios. <span class="hl">Dos semanas</span> con Ñam Salvaje y el pelo le brilla como nunca. Ojalá lo hubiera encontrado antes.</blockquote>
+        <div class="who"><div class="av">J</div><div><b>Javi M.</b><small>humano de Nala, la border collie</small></div></div>
+      </div>
+      <div class="res reveal">
+        <div class="stars">★★★★★</div>
+        <blockquote>Lo que más me gusta es <span class="hl">que sé quién cocina</span>. Hablo con Marta por WhatsApp como con una amiga. Eso no te lo da un saco del súper.</blockquote>
+        <div class="who"><div class="av">C</div><div><b>Carmen P.</b><small>humana de Lola y Coco</small></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- URGENCIA -->
+<section class="pad urgencia">
+  <div class="wrap urg-card reveal">
+    <span class="urg-badge">⏳ Tandas limitadas esta semana</span>
+    <h2>Cocino poco<br>y <em>a mano.</em></h2>
+    <p>Cada semana preparo un número limitado de raciones para que todo llegue fresco. Cuando se acaban, se acaban — reserva la tanda de tu perro antes del domingo.</p>
+    <a href="https://wa.me/34600000000" class="btn-big">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2Zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.6-.6-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8 0-1.3.7-2 .9-2.2.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.3 0 .5l-.4.5c-.2.2-.3.3-.1.6.1.3.7 1.1 1.5 1.7 1 .9 1.8 1.1 2 1.2.3.1.4.1.6-.1l.7-.8c.2-.3.4-.2.6-.1l1.8.9c.3.1.4.2.5.3.1.2.1.9-.2 1.5Z"/></svg>
+      Reservar mi tanda
+    </a>
+    <div class="countdot">🔥 Quedan pocas raciones de Pollo del corral</div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="pad faq">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow">Antes de que preguntes</div>
+      <h2 class="big">Dudas<br>razonables.</h2>
+    </div>
+    <div class="faq-list reveal">
+      <details open>
+        <summary>¿Cómo le cambio el pienso por esto? <span class="pm">+</span></summary>
+        <p>Poco a poco. La primera semana mezclamos un poco de Ñam con su comida de siempre y vamos subiendo. Te lo explico paso a paso por WhatsApp — sin agobios y sin sustos de tripa.</p>
+      </details>
+      <details>
+        <summary>¿Cuánto cuesta al día? <span class="pm">+</span></summary>
+        <p>Depende del tamaño de tu perro, pero suele rondar lo que te gastarías en un café. Te calculo la ración exacta según su peso y te paso precio cerrado, sin sorpresas.</p>
+      </details>
+      <details>
+        <summary>¿Tengo que cocinar yo algo? <span class="pm">+</span></summary>
+        <p>Nada. Llega cocinado y porcionado. Lo guardas en el congelador, sacas la ración del día la noche antes, y a servir. Tú solo pones el cuenco.</p>
+      </details>
+      <details>
+        <summary>¿Hacéis reparto a domicilio? <span class="pm">+</span></summary>
+        <p>Sí, repartimos en Valencia y alrededores. Te lo llevo yo o alguien del equipo — con cara, nombre y un par de mimos para tu perro de regalo.</p>
+      </details>
+      <details>
+        <summary>¿Y si a mi perro no le gusta? <span class="pm">+</span></summary>
+        <p>Raro, pero pasa. Si tu perro le hace ascos a la primera tanda, lo hablamos y buscamos otra receta o te devuelvo lo que quede. Sin dramas.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="pad contacto" id="contacto">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow">Hablemos</div>
+      <h2 class="big">El cuenco de<br>tu perro<br>te espera.</h2>
+    </div>
+    <div class="cont-card reveal">
+      <p class="lead">Cuéntame de tu perro — raza, edad, manías — y te preparo una recomendación a medida. Respondo yo, en persona, normalmente el mismo día. 🐕</p>
+      <a href="https://wa.me/34600000000" class="btn-big" style="background:#25D366;color:#08321c">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2Zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.6-.6-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8 0-1.3.7-2 .9-2.2.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.3 0 .5l-.4.5c-.2.2-.3.3-.1.6.1.3.7 1.1 1.5 1.7 1 .9 1.8 1.1 2 1.2.3.1.4.1.6-.1l.7-.8c.2-.3.4-.2.6-.1l1.8.9c.3.1.4.2.5.3.1.2.1.9-.2 1.5Z"/></svg>
+        Escríbeme por WhatsApp
+      </a>
+      <div class="cont-info">
+        <div class="cinfo">
+          <div class="ci-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+          <div><b>Dónde estamos</b><span>Valencia y alrededores · reparto a domicilio</span></div>
+        </div>
+        <div class="cinfo">
+          <div class="ci-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+          <div><b>Cuándo cocino</b><span>Tandas frescas cada semana · reservas hasta el domingo</span></div>
+        </div>
+        <div class="cinfo">
+          <div class="ci-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z" opacity="0"/><path d="M22 6 12 13 2 6"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg></div>
+          <div><b>Escríbeme</b><span>hola@ñamsalvaje.es · @ñamsalvaje en redes</span></div>
+        </div>
+      </div>
+      <div class="map-ph">
+        <div class="pin">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="currentColor"><path d="M12 22s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11Z"/><circle cx="12" cy="11" r="2.5" fill="#142a1d"/></svg>
+          <span>Mapa de la zona de reparto</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="brand" style="display:inline-flex">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><ellipse cx="6.5" cy="9" rx="2.1" ry="2.7" fill="#f78c4f"/><ellipse cx="12" cy="6.6" rx="2.2" ry="2.9" fill="#f78c4f"/><ellipse cx="17.5" cy="9" rx="2.1" ry="2.7" fill="#f78c4f"/><path d="M12 11c-3 0-5.4 2.1-5.4 4.6 0 2 1.7 3 3.4 2.4 1.3-.5 2.7-.5 4 0 1.7.6 3.4-.4 3.4-2.4C17.4 13.1 15 11 12 11Z" fill="#f7f0e1"/></svg>
+      Ñam Salvaje
+    </div>
+    <div class="tag">Si tú no lo comerías, él tampoco debería.</div>
+    <div class="flinks">
+      <a href="#top">Inicio</a>
+      <a href="#contacto">Recetas</a>
+      <a href="#contacto">Quién soy</a>
+      <a href="#contacto">Contacto</a>
+      <a href="https://wa.me/34600000000">WhatsApp</a>
+    </div>
+    <p class="legal">Ñam Salvaje · Comida natural para perros · Valencia<br>Hecho con hambre y cariño 🐾 Esto es una landing de muestra.</p>
+  </div>
+</footer>
+
+<!-- STICKY MOBILE WA -->
+<a href="https://wa.me/34600000000" class="wa-fixed">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2Zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.6-.6-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8 0-1.3.7-2 .9-2.2.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.3 0 .5l-.4.5c-.2.2-.3.3-.1.6.1.3.7 1.1 1.5 1.7 1 .9 1.8 1.1 2 1.2.3.1.4.1.6-.1l.7-.8c.2-.3.4-.2.6-.1l1.8.9c.3.1.4.2.5.3.1.2.1.9-.2 1.5Z"/></svg>
+  Pídelo por WhatsApp
+</a>
+
+<script>
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target);} });
+  },{threshold:0.12});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
