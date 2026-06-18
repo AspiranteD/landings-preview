@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buena Mano · Webs y visibilidad para peluquerías caninas</title>
+<meta name="description" content="Tú a lo tuyo con los perros. De que te encuentren en Google y Maps nos encargamos nosotros. Webs desde 99 € para peluquerías caninas en Valencia.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --naranja:#D85A30;
+    --coral:#F0997B;
+    --crema:#FAECE7;
+    --marron:#3C2A20;
+    --amarillo:#E8B04B;
+    --sans:'Bricolage Grotesque','Segoe UI',system-ui,-apple-system,sans-serif;
+    --serif:'Fraunces',Georgia,'Times New Roman',serif;
+    --blanco:#FFFCFA;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--sans);
+    color:var(--marron);
+    background:var(--blanco);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.08;letter-spacing:-.01em}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%}
+  .wrap{width:100%;max-width:1120px;margin:0 auto;padding:0 22px}
+  .btn-wa{
+    display:inline-flex;align-items:center;gap:9px;
+    background:var(--naranja);color:#fff;
+    font-family:var(--sans);font-weight:600;font-size:16px;
+    padding:14px 22px;border-radius:999px;
+    border:none;cursor:pointer;
+    transition:transform .15s ease, background .15s ease, box-shadow .15s ease;
+    box-shadow:0 6px 18px rgba(216,90,48,.28);
+  }
+  .btn-wa:hover{background:#c24c25;transform:translateY(-2px);box-shadow:0 10px 26px rgba(216,90,48,.34)}
+  .btn-wa svg{width:20px;height:20px;flex:none}
+  .btn-ghost{
+    display:inline-flex;align-items:center;gap:8px;
+    font-weight:600;font-size:15px;color:var(--marron);
+    padding:13px 20px;border-radius:999px;
+    border:2px solid rgba(60,42,32,.18);background:transparent;
+    transition:border-color .15s ease, background .15s ease;
+  }
+  .btn-ghost:hover{border-color:var(--naranja);background:var(--crema)}
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:rgba(255,252,250,.86);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(60,42,32,.08);
+  }
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .brand{display:flex;align-items:center;gap:11px;cursor:pointer}
+  .brand .paw{
+    width:38px;height:38px;border-radius:50%;
+    background:var(--naranja);
+    display:flex;align-items:center;justify-content:center;flex:none;
+  }
+  .brand .paw svg{width:21px;height:21px}
+  .brand .word{font-family:var(--serif);font-weight:700;font-size:23px;letter-spacing:-.02em;color:var(--marron);line-height:1}
+  .brand .word b{color:var(--naranja);font-weight:700}
+  .brand .tag{display:block;font-family:var(--sans);font-size:10.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--coral);margin-top:2px}
+  .nav-cta{display:flex;align-items:center;gap:14px}
+  .nav-links{display:flex;gap:26px;align-items:center}
+  .nav-links a{font-size:15px;font-weight:500;color:var(--marron);opacity:.78;transition:opacity .15s}
+  .nav-links a:hover{opacity:1;color:var(--naranja)}
+  .nav .btn-wa{padding:10px 18px;font-size:15px;box-shadow:none}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;padding:128px 0 70px;overflow:hidden}
+  .hero::before{
+    content:"";position:absolute;inset:0;z-index:0;
+    background:
+      radial-gradient(ellipse 60% 70% at 88% 12%, rgba(232,176,75,.22), transparent 60%),
+      radial-gradient(ellipse 70% 80% at 6% 95%, rgba(240,153,123,.30), transparent 62%),
+      var(--crema);
+  }
+  .hero-in{position:relative;z-index:1;display:grid;grid-template-columns:1.08fr .92fr;gap:48px;align-items:center}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    background:#fff;border:1px solid rgba(216,90,48,.22);
+    color:var(--naranja);font-weight:600;font-size:13.5px;
+    padding:7px 15px;border-radius:999px;margin-bottom:24px;
+  }
+  .eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--amarillo);flex:none}
+  .hero h1{font-size:clamp(36px,5.2vw,60px);margin-bottom:22px}
+  .hero h1 .hl{color:var(--naranja);position:relative;white-space:nowrap}
+  .hero h1 .br{color:var(--marron)}
+  .hero .sub{font-size:19px;max-width:520px;color:rgba(60,42,32,.82);margin-bottom:32px;line-height:1.55}
+  .hero .sub b{font-weight:600;color:var(--marron)}
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .hero-trust{display:flex;align-items:center;gap:14px;margin-top:30px;flex-wrap:wrap}
+  .hero-trust .stars{color:var(--amarillo);font-size:18px;letter-spacing:2px}
+  .hero-trust .txt{font-size:14.5px;color:rgba(60,42,32,.7)}
+  .hero-trust .txt b{color:var(--marron);font-weight:600}
+
+  /* hero visual: fake phone with maps card */
+  .hero-art{position:relative;display:flex;justify-content:center}
+  .phone{
+    width:300px;background:#fff;border-radius:34px;
+    border:9px solid var(--marron);
+    box-shadow:0 30px 60px rgba(60,42,32,.22);
+    padding:16px 15px 20px;position:relative;
+  }
+  .phone .notch{position:absolute;top:10px;left:50%;transform:translateX(-50%);width:90px;height:7px;border-radius:99px;background:rgba(60,42,32,.25)}
+  .phone .map{
+    height:128px;border-radius:16px;margin-top:14px;position:relative;overflow:hidden;
+    background:
+      linear-gradient(115deg, rgba(232,176,75,.18), rgba(240,153,123,.16)),
+      repeating-linear-gradient(48deg, rgba(60,42,32,.05) 0 1px, transparent 1px 26px),
+      repeating-linear-gradient(-42deg, rgba(60,42,32,.05) 0 1px, transparent 1px 26px),
+      #f3ece2;
+  }
+  .phone .pin{position:absolute;top:46px;left:50%;transform:translateX(-50%);width:34px;height:34px;border-radius:50% 50% 50% 0;background:var(--naranja);transform-origin:bottom;rotate:-45deg;box-shadow:0 6px 14px rgba(216,90,48,.4);display:flex;align-items:center;justify-content:center}
+  .phone .pin::after{content:"";width:13px;height:13px;border-radius:50%;background:#fff;rotate:45deg}
+  .phone .card2{margin-top:14px}
+  .phone .biz{font-family:var(--serif);font-weight:600;font-size:16.5px;color:var(--marron);line-height:1.15}
+  .phone .rowst{display:flex;align-items:center;gap:6px;margin:6px 0 2px}
+  .phone .rowst .s{color:var(--amarillo);font-size:14px;letter-spacing:1px}
+  .phone .rowst .n{font-size:12.5px;color:rgba(60,42,32,.6);font-weight:500}
+  .phone .meta{font-size:12.5px;color:rgba(60,42,32,.6);display:flex;align-items:center;gap:6px;margin-top:3px}
+  .phone .open{color:#1f8a4c;font-weight:600}
+  .phone .acts{display:flex;gap:8px;margin-top:13px}
+  .phone .acts .a{flex:1;text-align:center;font-size:12px;font-weight:600;padding:9px 0;border-radius:11px;background:var(--crema);color:var(--naranja);border:1px solid rgba(216,90,48,.16)}
+  .phone .acts .a.fill{background:var(--naranja);color:#fff;border-color:var(--naranja)}
+  .float-badge{
+    position:absolute;background:#fff;border-radius:14px;padding:11px 14px;
+    box-shadow:0 14px 30px rgba(60,42,32,.16);display:flex;align-items:center;gap:10px;
+    border:1px solid rgba(60,42,32,.06);
+  }
+  .float-badge .ic{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex:none}
+  .float-badge .l1{font-size:11px;color:rgba(60,42,32,.55);font-weight:500;line-height:1}
+  .float-badge .l2{font-family:var(--serif);font-weight:700;font-size:17px;color:var(--marron);line-height:1.1;margin-top:3px}
+  .fb-top{top:24px;right:-14px}
+  .fb-bot{bottom:30px;left:-26px}
+
+  /* ---------- generic section ---------- */
+  section{padding:78px 0}
+  .sec-head{text-align:center;max-width:640px;margin:0 auto 50px}
+  .sec-kicker{font-weight:700;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--naranja);margin-bottom:14px}
+  .sec-head h2{font-size:clamp(28px,3.6vw,42px);margin-bottom:16px}
+  .sec-head p{font-size:18px;color:rgba(60,42,32,.74)}
+
+  /* ---------- PASOS ---------- */
+  .pasos{background:var(--blanco)}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .step{background:#fff;border:1px solid rgba(60,42,32,.09);border-radius:22px;padding:30px 26px;position:relative;transition:transform .18s ease, box-shadow .18s ease}
+  .step:hover{transform:translateY(-5px);box-shadow:0 18px 36px rgba(60,42,32,.10)}
+  .step .num{font-family:var(--serif);font-weight:700;font-size:15px;width:42px;height:42px;border-radius:13px;background:var(--crema);color:var(--naranja);display:flex;align-items:center;justify-content:center;margin-bottom:20px;border:1px solid rgba(216,90,48,.16)}
+  .step .ic{width:30px;height:30px;color:var(--naranja);margin-bottom:14px}
+  .step h3{font-size:21px;margin-bottom:10px}
+  .step p{font-size:15.5px;color:rgba(60,42,32,.74)}
+  .step .line{position:absolute;top:52px;right:-22px;width:22px;height:2px;background:repeating-linear-gradient(90deg,var(--coral) 0 6px,transparent 6px 11px)}
+  .step:last-child .line{display:none}
+
+  /* ---------- INCLUYE ---------- */
+  .incluye{background:var(--crema)}
+  .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .feat{background:#fff;border-radius:18px;padding:24px 22px;display:flex;gap:15px;align-items:flex-start;border:1px solid rgba(60,42,32,.06)}
+  .feat .fic{width:46px;height:46px;border-radius:13px;flex:none;display:flex;align-items:center;justify-content:center;background:var(--crema)}
+  .feat .fic svg{width:23px;height:23px;color:var(--naranja)}
+  .feat h3{font-family:var(--sans);font-weight:700;font-size:17px;letter-spacing:0;margin-bottom:5px;line-height:1.2}
+  .feat p{font-size:14.5px;color:rgba(60,42,32,.72);line-height:1.5}
+
+  /* ---------- RESEÑAS ---------- */
+  .resenas{background:var(--marron);color:var(--crema)}
+  .resenas .sec-kicker{color:var(--amarillo)}
+  .resenas .sec-head h2{color:#fff}
+  .resenas .sec-head p{color:rgba(250,236,231,.72)}
+  .rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .rev{background:rgba(255,255,255,.05);border:1px solid rgba(250,236,231,.12);border-radius:22px;padding:28px 26px;display:flex;flex-direction:column}
+  .rev .stars{color:var(--amarillo);font-size:17px;letter-spacing:2px;margin-bottom:16px}
+  .rev p{font-family:var(--serif);font-style:italic;font-size:18px;line-height:1.45;color:#fff;margin-bottom:22px;flex:1}
+  .rev .who{display:flex;align-items:center;gap:13px}
+  .rev .av{width:46px;height:46px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-weight:700;font-size:18px;color:var(--marron)}
+  .rev .who .nm{font-weight:600;font-size:15.5px;color:#fff;font-family:var(--sans)}
+  .rev .who .pl{font-size:13px;color:rgba(250,236,231,.6)}
+
+  /* ---------- PRECIOS ---------- */
+  .precios{background:var(--blanco)}
+  .price-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;max-width:840px;margin:0 auto}
+  .plan{background:#fff;border:1px solid rgba(60,42,32,.12);border-radius:26px;padding:36px 32px;position:relative;display:flex;flex-direction:column}
+  .plan.pop{border:2px solid var(--naranja);box-shadow:0 24px 50px rgba(216,90,48,.16)}
+  .plan .badge{position:absolute;top:-14px;left:32px;background:var(--amarillo);color:var(--marron);font-weight:700;font-size:12.5px;letter-spacing:.04em;padding:6px 15px;border-radius:999px;text-transform:uppercase}
+  .plan .pname{font-family:var(--serif);font-weight:600;font-size:24px;margin-bottom:6px}
+  .plan .pdesc{font-size:15px;color:rgba(60,42,32,.7);margin-bottom:22px;min-height:44px}
+  .plan .price{display:flex;align-items:baseline;gap:5px;margin-bottom:6px}
+  .plan .price .amt{font-family:var(--serif);font-weight:700;font-size:54px;color:var(--marron);line-height:1}
+  .plan .price .cur{font-family:var(--serif);font-weight:700;font-size:28px;color:var(--marron)}
+  .plan .pnote{font-size:13.5px;color:rgba(60,42,32,.55);margin-bottom:26px}
+  .plan ul{list-style:none;margin-bottom:30px;flex:1}
+  .plan ul li{display:flex;gap:11px;align-items:flex-start;font-size:15px;padding:9px 0;border-bottom:1px solid rgba(60,42,32,.06);color:rgba(60,42,32,.85)}
+  .plan ul li:last-child{border-bottom:none}
+  .plan ul li svg{width:19px;height:19px;color:var(--naranja);flex:none;margin-top:2px}
+  .plan .btn-wa{width:100%;justify-content:center;box-shadow:none}
+  .plan.basic .btn-wa{background:#fff;color:var(--naranja);border:2px solid var(--naranja)}
+  .plan.basic .btn-wa:hover{background:var(--crema);transform:translateY(-2px)}
+
+  /* ---------- QUIENES SOMOS ---------- */
+  .somos{background:var(--crema)}
+  .somos-in{display:grid;grid-template-columns:.9fr 1.1fr;gap:50px;align-items:center}
+  .somos-art{position:relative;background:#fff;border-radius:26px;padding:34px;border:1px solid rgba(60,42,32,.08);box-shadow:0 18px 40px rgba(60,42,32,.08)}
+  .somos-art .map2{height:230px;border-radius:18px;position:relative;overflow:hidden;background:
+      linear-gradient(135deg, rgba(240,153,123,.18), rgba(232,176,75,.14)),
+      repeating-linear-gradient(50deg, rgba(60,42,32,.05) 0 1px, transparent 1px 30px),
+      repeating-linear-gradient(-40deg, rgba(60,42,32,.05) 0 1px, transparent 1px 30px),
+      #f3ece2;}
+  .somos-art .pin2{position:absolute;width:30px;height:30px;border-radius:50% 50% 50% 0;background:var(--naranja);rotate:-45deg;box-shadow:0 6px 14px rgba(216,90,48,.4)}
+  .somos-art .pin2::after{content:"";position:absolute;top:8px;left:8px;width:14px;height:14px;border-radius:50%;background:#fff}
+  .somos-art .pin2.b{background:var(--amarillo);width:22px;height:22px}
+  .somos-art .pin2.b::after{top:6px;left:6px;width:10px;height:10px}
+  .somos-art .lbl{position:absolute;bottom:16px;left:16px;background:#fff;border-radius:12px;padding:9px 14px;font-weight:600;font-size:14px;box-shadow:0 8px 20px rgba(60,42,32,.14);display:flex;align-items:center;gap:8px}
+  .somos-art .lbl svg{width:18px;height:18px;color:var(--naranja)}
+  .somos-text h2{font-size:clamp(28px,3.6vw,40px);margin-bottom:20px}
+  .somos-text .sec-kicker{text-align:left}
+  .somos-text p{font-size:17px;color:rgba(60,42,32,.8);margin-bottom:16px;line-height:1.65}
+  .somos-text p b{font-weight:600;color:var(--marron)}
+  .somos-stats{display:flex;gap:28px;margin-top:26px}
+  .somos-stats .st .v{font-family:var(--serif);font-weight:700;font-size:30px;color:var(--naranja);line-height:1}
+  .somos-stats .st .k{font-size:13.5px;color:rgba(60,42,32,.66);margin-top:4px}
+
+  /* ---------- FAQ ---------- */
+  .faq{background:var(--blanco)}
+  .faq-list{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+  .faq-list details{background:#fff;border:1px solid rgba(60,42,32,.1);border-radius:16px;padding:4px 22px;transition:border-color .15s}
+  .faq-list details[open]{border-color:var(--coral)}
+  .faq-list summary{list-style:none;cursor:pointer;font-family:var(--serif);font-weight:600;font-size:18.5px;padding:18px 0;display:flex;justify-content:space-between;align-items:center;gap:16px;color:var(--marron)}
+  .faq-list summary::-webkit-details-marker{display:none}
+  .faq-list summary .pm{width:26px;height:26px;flex:none;border-radius:8px;background:var(--crema);color:var(--naranja);display:flex;align-items:center;justify-content:center;font-size:20px;transition:transform .2s;font-family:var(--sans)}
+  .faq-list details[open] summary .pm{transform:rotate(45deg)}
+  .faq-list details p{font-size:15.5px;color:rgba(60,42,32,.76);padding:0 0 20px;line-height:1.6}
+
+  /* ---------- CTA BAND ---------- */
+  .cta-band{background:var(--naranja);color:#fff;text-align:center;padding:72px 0}
+  .cta-band h2{color:#fff;font-size:clamp(28px,3.8vw,42px);margin-bottom:16px}
+  .cta-band p{font-size:18.5px;color:rgba(255,255,255,.9);max-width:520px;margin:0 auto 30px}
+  .cta-band .btn-wa{background:#fff;color:var(--naranja);font-size:18px;padding:17px 30px;box-shadow:0 12px 30px rgba(60,42,32,.22)}
+  .cta-band .btn-wa:hover{background:var(--crema)}
+  .cta-band .small{margin-top:18px;font-size:14.5px;color:rgba(255,255,255,.82)}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--marron);color:rgba(250,236,231,.72);padding:52px 0 30px}
+  .foot-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:30px;padding-bottom:34px;border-bottom:1px solid rgba(250,236,231,.13)}
+  footer .brand .word{color:#fff}
+  footer .brand .word b{color:var(--coral)}
+  footer .fdesc{max-width:300px;font-size:14.5px;margin-top:14px;line-height:1.6}
+  .foot-cols{display:flex;gap:60px;flex-wrap:wrap}
+  .foot-col h4{font-family:var(--sans);font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--amarillo);margin-bottom:14px}
+  .foot-col a,.foot-col p{display:block;font-size:14.5px;color:rgba(250,236,231,.72);margin-bottom:9px;transition:color .15s}
+  .foot-col a:hover{color:#fff}
+  .foot-bot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;padding-top:24px;font-size:13.5px;color:rgba(250,236,231,.55)}
+
+  /* ---------- STICKY MOBILE WA ---------- */
+  .wa-fixed{display:none}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media(max-width:880px){
+    .hero-in,.somos-in{grid-template-columns:1fr;gap:40px}
+    .hero-art{order:-1}
+    .steps,.feat-grid,.rev-grid{grid-template-columns:1fr}
+    .price-grid{grid-template-columns:1fr;max-width:440px}
+    .nav-links{display:none}
+    .somos-text .sec-kicker,.somos-text h2{text-align:left}
+    .step .line{display:none}
+  }
+  @media(max-width:600px){
+    section{padding:58px 0}
+    .hero{padding:108px 0 56px}
+    .nav .btn-wa span{display:none}
+    .nav .btn-wa{padding:11px}
+    .feat-grid{grid-template-columns:1fr}
+    .float-badge{transform:scale(.9)}
+    .fb-bot{left:-8px}
+    .fb-top{right:-4px}
+    body{padding-bottom:74px}
+    .wa-fixed{
+      display:flex;position:fixed;bottom:0;left:0;right:0;z-index:120;
+      padding:11px 16px calc(11px + env(safe-area-inset-bottom));
+      background:rgba(255,252,250,.95);backdrop-filter:blur(10px);
+      border-top:1px solid rgba(60,42,32,.1);
+    }
+    .wa-fixed .btn-wa{flex:1;justify-content:center;font-size:16.5px}
+    .cta-band .btn-wa{width:100%;justify-content:center}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top" aria-label="Buena Mano inicio">
+      <span class="paw" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="#fff"><circle cx="6.2" cy="9" r="2"/><circle cx="11" cy="6.4" r="2.1"/><circle cx="16.2" cy="7.6" r="2"/><circle cx="18.6" cy="12.4" r="1.7"/><path d="M12 11.5c2.6 0 5 1.9 5 4.3 0 1.9-1.7 2.9-3.4 2.4-1-.3-2.2-.3-3.2 0-1.7.5-3.4-.5-3.4-2.4 0-2.4 2.4-4.3 5-4.3z"/></svg>
+      </span>
+      <span>
+        <span class="word">Buena<b> Mano</b></span>
+        <span class="tag">Tú a lo tuyo</span>
+      </span>
+    </a>
+    <div class="nav-cta">
+      <nav class="nav-links">
+        <a href="#como">Cómo funciona</a>
+        <a href="#incluye">Qué incluye</a>
+        <a href="#precios">Precios</a>
+        <a href="#somos">Quiénes somos</a>
+      </nav>
+      <a class="btn-wa" href="https://wa.me/34600000000">
+        <svg viewBox="0 0 24 24" fill="#fff"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.04c-.24.68-1.42 1.31-1.95 1.35-.5.05-.96.24-3.24-.68-2.74-1.08-4.49-3.86-4.62-4.04-.13-.18-1.11-1.48-1.11-2.82s.71-2 .96-2.27c.24-.27.53-.34.71-.34l.5.01c.16 0 .38-.06.59.45.24.58.81 2 .88 2.14.07.14.12.31.02.49-.09.18-.14.29-.27.45-.13.16-.28.36-.4.48-.13.13-.27.28-.12.54.16.27.71 1.17 1.53 1.9 1.05.93 1.94 1.22 2.21 1.36.27.14.43.12.59-.07.16-.18.68-.79.86-1.07.18-.27.36-.22.59-.13.24.09 1.51.71 1.77.85.27.13.45.2.51.31.06.11.06.65-.18 1.32z"/></svg>
+        <span>WhatsApp</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero" id="inicio">
+    <div class="wrap hero-in">
+      <div class="hero-copy">
+        <span class="eyebrow"><span class="dot"></span> Webs y visibilidad para peluquerías caninas</span>
+        <h1><span class="hl">Tú a lo tuyo con los perros.</span> <span class="br">De que te encuentren, nos encargamos nosotros.</span></h1>
+        <p class="sub">Tú haces magia con tijeras y secador. Nosotros te montamos la web y te ponemos <b>arriba en Google y en Maps</b>, para que entren más clientes por la puerta. Sin líos, sin tecnicismos, sin que pierdas ni un minuto.</p>
+        <div class="hero-actions">
+          <a class="btn-wa" href="https://wa.me/34600000000">
+            <svg viewBox="0 0 24 24" fill="#fff"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.04c-.24.68-1.42 1.31-1.95 1.35-.5.05-.96.24-3.24-.68-2.74-1.08-4.49-3.86-4.62-4.04-.13-.18-1.11-1.48-1.11-2.82s.71-2 .96-2.27c.24-.27.53-.34.71-.34l.5.01c.16 0 .38-.06.59.45.24.58.81 2 .88 2.14.07.14.12.31.02.49-.09.18-.14.29-.27.45-.13.16-.28.36-.4.48-.13.13-.27.28-.12.54.16.27.71 1.17 1.53 1.9 1.05.93 1.94 1.22 2.21 1.36.27.14.43.12.59-.07.16-.18.68-.79.86-1.07.18-.27.36-.22.59-.13.24.09 1.51.71 1.77.85.27.13.45.2.51.31.06.11.06.65-.18 1.32z"/></svg>
+            Escríbenos por WhatsApp y te lo montamos
+          </a>
+          <a class="btn-ghost" href="#precios">Ver precios</a>
+        </div>
+        <div class="hero-trust">
+          <span class="stars">★★★★★</span>
+          <span class="txt"><b>Peluquerías caninas de Valencia</b> ya nos confían su presencia online</span>
+        </div>
+      </div>
+
+      <div class="hero-art">
+        <div class="phone" role="img" aria-label="Ficha de una peluquería canina destacada en Google Maps">
+          <span class="notch"></span>
+          <div class="map"><span class="pin" aria-hidden="true"></span></div>
+          <div class="card2">
+            <div class="biz">Peluquería Canina Patitas Felices</div>
+            <div class="rowst"><span class="s">★★★★★</span><span class="n">4,9 · 128 reseñas</span></div>
+            <div class="meta">Peluquería canina · Valencia</div>
+            <div class="meta"><span class="open">Abierto ahora</span> · cierra a las 19:30</div>
+            <div class="acts">
+              <span class="a fill">Cómo llegar</span>
+              <span class="a">Llamar</span>
+              <span class="a">Web</span>
+            </div>
+          </div>
+        </div>
+        <div class="float-badge fb-top">
+          <span class="ic" style="background:var(--crema)" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#D85A30" stroke-width="2.2" stroke-linecap="round"><path d="M3 17l5-5 4 4 8-9"/><path d="M16 7h4v4"/></svg>
+          </span>
+          <span><span class="l1">Llamadas este mes</span><span class="l2">+38 %</span></span>
+        </div>
+        <div class="float-badge fb-bot">
+          <span class="ic" style="background:#FBF1DF" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="#E8B04B"><path d="M12 2l2.9 6.3 6.8.6-5.1 4.5 1.5 6.7L12 17.3 5.9 20.6l1.5-6.7L2.3 8.9l6.8-.6z"/></svg>
+          </span>
+          <span><span class="l1">Posición en Google</span><span class="l2">Top 3</span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pasos" id="como">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-kicker">Cómo funciona</div>
+        <h2>En 3 pasos y sin complicarte</h2>
+        <p>Tú nos cuentas cómo es tu peluquería. Del resto nos ocupamos nosotros.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <span class="line" aria-hidden="true"></span>
+          <div class="num">01</div>
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          <h3>Nos escribes</h3>
+          <p>Un mensaje de WhatsApp y nos cuentas lo justo: tu peluquería, tus servicios y tu zona. Te respondemos como personas, no con un robot.</p>
+        </div>
+        <div class="step">
+          <span class="line" aria-hidden="true"></span>
+          <div class="num">02</div>
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>
+          <h3>Lo montamos todo</h3>
+          <p>Escribimos los textos, elegimos las fotos y dejamos tu web lista. Damos de alta y optimizamos tu ficha de Google Maps por ti.</p>
+        </div>
+        <div class="step">
+          <div class="num">03</div>
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+          <h3>Empiezas a aparecer</h3>
+          <p>Tu negocio sale cuando alguien busca "peluquería canina" cerca. Más visitas, más llamadas y más perros en tu mesa de trabajo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="incluye" id="incluye">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-kicker">Qué incluye tu web</div>
+        <h2>Todo lo que necesitas para que te encuentren</h2>
+        <p>Una web cuidada, rápida y pensada para que el cliente coja el teléfono y te llame.</p>
+      </div>
+      <div class="feat-grid">
+        <div class="feat">
+          <span class="fic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span>
+          <div><h3>Web propia y bonita</h3><p>Diseño limpio con la cara de tu negocio, tus servicios y tus precios. Se ve perfecta en el móvil.</p></div>
+        </div>
+        <div class="feat">
+          <span class="fic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 0-8 8c0 5.4 8 12 8 12s8-6.6 8-12a8 8 0 0 0-8-8z"/></svg></span>
+          <div><h3>Ficha de Google Maps</h3><p>Te damos de alta o ponemos a punto tu ficha para que salgas en el mapa cuando te buscan cerca.</p></div>
+        </div>
+        <div class="feat">
+          <span class="fic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></span>
+          <div><h3>Posicionamiento en Google</h3><p>Trabajamos los textos para que aparezcas cuando alguien busca peluquería canina en tu zona.</p></div>
+        </div>
+        <div class="feat">
+          <span class="fic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+          <div><h3>Botón de llamar y WhatsApp</h3><p>El cliente te contacta de un toque. Cada visita es una oportunidad de cita, sin formularios eternos.</p></div>
+        </div>
+        <div class="feat">
+          <span class="fic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.9 6.3 6.8.6-5.1 4.5 1.5 6.7L12 17.3 5.9 20.6l1.5-6.7L2.3 8.9l6.8-.6z"/></svg></span>
+          <div><h3>Tus reseñas a la vista</h3><p>Mostramos las opiniones de tus clientes para dar confianza a quien aún no te conoce.</p></div>
+        </div>
+        <div class="feat">
+          <span class="fic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
+          <div><h3>Lista en pocos días</h3><p>Sin esperas de meses. Nos das el sí y en cuestión de días tienes tu web funcionando.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="resenas">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-kicker">Lo que dicen</div>
+        <h2>Peluquerías que ya están a lo suyo</h2>
+        <p>Ellas cuidan de los perros. Nosotros, de que las encuentren.</p>
+      </div>
+      <div class="rev-grid">
+        <div class="rev">
+          <span class="stars">★★★★★</span>
+          <p>"Yo de ordenadores, cero. Les escribí por WhatsApp y en cuatro días tenía mi web y mi ficha de Google a tope. Ahora me llaman clientes nuevos que ni sabían que existía."</p>
+          <div class="who">
+            <span class="av" style="background:var(--coral)">MC</span>
+            <div><span class="nm">María Castelló</span><span class="pl">Cancan Estética Canina · Valencia</span></div>
+          </div>
+        </div>
+        <div class="rev">
+          <span class="stars">★★★★★</span>
+          <p>"Lo mejor es que no me marearon con palabras raras. Les conté cómo trabajo y me lo dejaron todo montado. Salgo de los primeros cuando buscan peluquería canina en mi barrio."</p>
+          <div class="who">
+            <span class="av" style="background:var(--amarillo)">JR</span>
+            <div><span class="nm">Jorge Ramos</span><span class="pl">Guau Spa Canino · Mislata</span></div>
+          </div>
+        </div>
+        <div class="rev">
+          <span class="stars">★★★★★</span>
+          <p>"Dan la cara y responden rápido. Por fin tengo una web a la altura de mi trabajo y, lo importante, entra más gente por la puerta. Por 99 € no me lo pensé."</p>
+          <div class="who">
+            <span class="av" style="background:var(--coral)">LB</span>
+            <div><span class="nm">Laura Bellver</span><span class="pl">Peluquería Canina Trufa · Torrent</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="precios" id="precios">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-kicker">Precios claros</div>
+        <h2>Sin letra pequeña</h2>
+        <p>Eliges, nos escribes y te lo montamos. Sin permanencias ni sorpresas.</p>
+      </div>
+      <div class="price-grid">
+        <div class="plan basic">
+          <div class="pname">Web básica</div>
+          <div class="pdesc">Tu presencia online lista y de pie, perfecta para empezar a aparecer.</div>
+          <div class="price"><span class="amt">99</span><span class="cur">€</span></div>
+          <div class="pnote">Pago único · sin mensualidades</div>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Web de una página, lista para el móvil</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Tus servicios, horarios y ubicación</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Botón de llamar y WhatsApp</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Alta básica en Google Maps</li>
+          </ul>
+          <a class="btn-wa" href="https://wa.me/34600000000">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.04c-.24.68-1.42 1.31-1.95 1.35-.5.05-.96.24-3.24-.68-2.74-1.08-4.49-3.86-4.62-4.04-.13-.18-1.11-1.48-1.11-2.82s.71-2 .96-2.27c.24-.27.53-.34.71-.34l.5.01c.16 0 .38-.06.59.45.24.58.81 2 .88 2.14.07.14.12.31.02.49-.09.18-.14.29-.27.45-.13.16-.28.36-.4.48-.13.13-.27.28-.12.54.16.27.71 1.17 1.53 1.9 1.05.93 1.94 1.22 2.21 1.36.27.14.43.12.59-.07.16-.18.68-.79.86-1.07.18-.27.36-.22.59-.13.24.09 1.51.71 1.77.85.27.13.45.2.51.31.06.11.06.65-.18 1.32z"/></svg>
+            Quiero la básica
+          </a>
+        </div>
+        <div class="plan pop">
+          <span class="badge">La más elegida</span>
+          <div class="pname">Web personalizada</div>
+          <div class="pdesc">Hecha a tu medida tras una llamada, para destacar de verdad en tu zona.</div>
+          <div class="price"><span class="amt">199</span><span class="cur">€</span></div>
+          <div class="pnote">Pago único · empezamos con una llamada por WhatsApp</div>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Todo lo de la básica, ampliado</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Varias secciones con tus fotos y galería</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Textos a medida para posicionar en Google</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Ficha de Maps optimizada con reseñas</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Llamada previa para dejarlo a tu gusto</li>
+          </ul>
+          <a class="btn-wa" href="https://wa.me/34600000000">
+            <svg viewBox="0 0 24 24" fill="#fff"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.04c-.24.68-1.42 1.31-1.95 1.35-.5.05-.96.24-3.24-.68-2.74-1.08-4.49-3.86-4.62-4.04-.13-.18-1.11-1.48-1.11-2.82s.71-2 .96-2.27c.24-.27.53-.34.71-.34l.5.01c.16 0 .38-.06.59.45.24.58.81 2 .88 2.14.07.14.12.31.02.49-.09.18-.14.29-.27.45-.13.16-.28.36-.4.48-.13.13-.27.28-.12.54.16.27.71 1.17 1.53 1.9 1.05.93 1.94 1.22 2.21 1.36.27.14.43.12.59-.07.16-.18.68-.79.86-1.07.18-.27.36-.22.59-.13.24.09 1.51.71 1.77.85.27.13.45.2.51.31.06.11.06.65-.18 1.32z"/></svg>
+            La quiero personalizada
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="somos" id="somos">
+    <div class="wrap somos-in">
+      <div class="somos-art">
+        <div class="map2" role="img" aria-label="Mapa de Valencia donde trabaja Buena Mano">
+          <span class="pin2" style="top:60px;left:70px"></span>
+          <span class="pin2 b" style="top:120px;left:160px"></span>
+          <span class="pin2" style="top:150px;left:60px"></span>
+          <span class="pin2 b" style="top:50px;left:200px"></span>
+          <span class="lbl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 0-8 8c0 5.4 8 12 8 12s8-6.6 8-12a8 8 0 0 0-8-8z"/></svg> Valencia y alrededores</span>
+        </div>
+      </div>
+      <div class="somos-text">
+        <div class="sec-kicker">Quiénes somos</div>
+        <h2>Somos de aquí y damos la cara</h2>
+        <p>Somos <b>Buena Mano</b>, una pequeña agencia de Valencia. Ayudamos a negocios locales como el tuyo a tener una buena presencia en internet, sin humos ni promesas raras.</p>
+        <p>Empezamos con las <b>peluquerías y estéticas caninas</b> porque conocemos el sector y sabemos lo que cuesta sacar tiempo para el ordenador. Por eso lo hacemos nosotros: hablas con personas reales, en tu idioma, y siempre sabes con quién tratas.</p>
+        <div class="somos-stats">
+          <div class="st"><div class="v">100%</div><div class="k">Valencia, en local</div></div>
+          <div class="st"><div class="v">Pocos días</div><div class="k">y tu web está lista</div></div>
+          <div class="st"><div class="v">Cero</div><div class="k">tecnicismos contigo</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-kicker">Dudas frecuentes</div>
+        <h2>Lo que sueles preguntarnos</h2>
+      </div>
+      <div class="faq-list">
+        <details open>
+          <summary>No entiendo nada de webs, ¿es un problema? <span class="pm">+</span></summary>
+          <p>Para nada, justo por eso estamos. No necesitas saber de tecnología. Nos cuentas cómo es tu peluquería por WhatsApp y nosotros lo montamos todo. Tú a lo tuyo con los perros.</p>
+        </details>
+        <details>
+          <summary>¿Cuánto tarda en estar lista? <span class="pm">+</span></summary>
+          <p>La básica suele estar lista en pocos días desde que nos das el sí y la información. La personalizada lleva un poco más porque la trabajamos a tu medida tras la llamada.</p>
+        </details>
+        <details>
+          <summary>¿El precio es de verdad pago único? <span class="pm">+</span></summary>
+          <p>Sí. 99 € la básica y 199 € la personalizada, sin mensualidades obligatorias ni permanencias. Te decimos siempre qué incluye antes de empezar, sin letra pequeña.</p>
+        </details>
+        <details>
+          <summary>¿De verdad voy a tener más clientes? <span class="pm">+</span></summary>
+          <p>Nuestro trabajo es que te encuentren cuando alguien busca peluquería canina cerca de ti: en Google y en Maps, con botón para llamarte. Más visibilidad significa más oportunidades de que entren por la puerta.</p>
+        </details>
+        <details>
+          <summary>¿Solo trabajáis con peluquerías caninas de Valencia? <span class="pm">+</span></summary>
+          <p>Es donde estamos centrados ahora mismo y lo que mejor conocemos. Si tienes un negocio canino en Valencia o alrededores, escríbenos y lo vemos.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="wrap">
+      <h2>Tú a lo tuyo. De lo demás nos encargamos nosotros.</h2>
+      <p>Escríbenos sin compromiso. Te decimos qué te conviene y, si quieres, te lo montamos.</p>
+      <a class="btn-wa" href="https://wa.me/34600000000">
+        <svg viewBox="0 0 24 24" fill="#D85A30"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.04c-.24.68-1.42 1.31-1.95 1.35-.5.05-.96.24-3.24-.68-2.74-1.08-4.49-3.86-4.62-4.04-.13-.18-1.11-1.48-1.11-2.82s.71-2 .96-2.27c.24-.27.53-.34.71-.34l.5.01c.16 0 .38-.06.59.45.24.58.81 2 .88 2.14.07.14.12.31.02.49-.09.18-.14.29-.27.45-.13.16-.28.36-.4.48-.13.13-.27.28-.12.54.16.27.71 1.17 1.53 1.9 1.05.93 1.94 1.22 2.21 1.36.27.14.43.12.59-.07.16-.18.68-.79.86-1.07.18-.27.36-.22.59-.13.24.09 1.51.71 1.77.85.27.13.45.2.51.31.06.11.06.65-.18 1.32z"/></svg>
+        Escríbenos por WhatsApp y te lo montamos
+      </a>
+      <div class="small">Te contestamos personas de verdad, normalmente el mismo día.</div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <a class="brand" href="#top">
+          <span class="paw" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="#fff"><circle cx="6.2" cy="9" r="2"/><circle cx="11" cy="6.4" r="2.1"/><circle cx="16.2" cy="7.6" r="2"/><circle cx="18.6" cy="12.4" r="1.7"/><path d="M12 11.5c2.6 0 5 1.9 5 4.3 0 1.9-1.7 2.9-3.4 2.4-1-.3-2.2-.3-3.2 0-1.7.5-3.4-.5-3.4-2.4 0-2.4 2.4-4.3 5-4.3z"/></svg>
+          </span>
+          <span><span class="word">Buena<b> Mano</b></span><span class="tag">Tú a lo tuyo</span></span>
+        </a>
+        <p class="fdesc">Webs y visibilidad en Google y Maps para peluquerías caninas de Valencia. Damos la cara y hablamos tu idioma.</p>
+      </div>
+      <div class="foot-cols">
+        <div class="foot-col">
+          <h4>La web</h4>
+          <a href="#como">Cómo funciona</a>
+          <a href="#incluye">Qué incluye</a>
+          <a href="#precios">Precios</a>
+          <a href="#somos">Quiénes somos</a>
+        </div>
+        <div class="foot-col">
+          <h4>Contacto</h4>
+          <a href="https://wa.me/34600000000">WhatsApp</a>
+          <a href="https://wa.me/34600000000">Pide presupuesto</a>
+          <p>Valencia, España</p>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© 2026 Buena Mano · Agencia de presencia digital</span>
+      <span>Hecho en Valencia, con buena mano.</span>
+    </div>
+  </div>
+</footer>
+
+<div class="wa-fixed">
+  <a class="btn-wa" href="https://wa.me/34600000000">
+    <svg viewBox="0 0 24 24" fill="#fff"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.04c-.24.68-1.42 1.31-1.95 1.35-.5.05-.96.24-3.24-.68-2.74-1.08-4.49-3.86-4.62-4.04-.13-.18-1.11-1.48-1.11-2.82s.71-2 .96-2.27c.24-.27.53-.34.71-.34l.5.01c.16 0 .38-.06.59.45.24.58.81 2 .88 2.14.07.14.12.31.02.49-.09.18-.14.29-.27.45-.13.16-.28.36-.4.48-.13.13-.27.28-.12.54.16.27.71 1.17 1.53 1.9 1.05.93 1.94 1.22 2.21 1.36.27.14.43.12.59-.07.16-.18.68-.79.86-1.07.18-.27.36-.22.59-.13.24.09 1.51.71 1.77.85.27.13.45.2.51.31.06.11.06.65-.18 1.32z"/></svg>
+    Escríbenos por WhatsApp y te lo montamos
+  </a>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cercana Studio — Webs y visibilidad en Google para peluquerías caninas</title>
+<meta name="description" content="Creamos la web de tu peluquería canina y hacemos que aparezcas en Google y Maps. Desde 99 €. Cercana Studio, Valencia.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --azul:#1B6FB3;
+    --coral:#FF6B5C;
+    --tinta:#0E2A3F;
+    --nieve:#F5F8FB;
+    --coral-suave:#FFB4A6;
+    --display:'Fraunces', Georgia, 'Times New Roman', serif;
+    --texto:'Sora', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --radio:18px;
+    --radio-s:12px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--texto);
+    color:var(--tinta);
+    background:#fff;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{text-decoration:none;color:inherit}
+  img{max-width:100%}
+  .wrap{width:100%;max-width:1120px;margin:0 auto;padding:0 22px}
+  .seccion{padding:72px 0}
+
+  /* ---------- BARRA SUPERIOR ---------- */
+  .nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:rgba(255,255,255,.88);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(14,42,63,.08);
+  }
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:66px}
+  .logo{display:flex;align-items:center;gap:10px;font-family:var(--texto);font-weight:600}
+  .logo-mark{
+    width:38px;height:38px;border-radius:11px;
+    background:var(--azul);
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;position:relative;
+  }
+  .logo-mark svg{display:block}
+  .logo-txt{display:flex;flex-direction:column;line-height:1}
+  .logo-txt .l1{font-size:1.18rem;font-weight:600;letter-spacing:-.02em;color:var(--tinta)}
+  .logo-txt .l2{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--azul);font-weight:500;margin-top:3px}
+  .nav-links{display:none;gap:30px;align-items:center}
+  .nav-links a{font-size:.92rem;font-weight:500;color:var(--tinta);opacity:.78;transition:opacity .2s}
+  .nav-links a:hover{opacity:1}
+
+  .btn-wa{
+    display:inline-flex;align-items:center;gap:9px;
+    background:#25D366;color:#fff;font-weight:600;font-size:.92rem;
+    padding:11px 18px;border-radius:999px;
+    box-shadow:0 6px 18px rgba(37,211,102,.28);
+    transition:transform .18s ease, box-shadow .18s ease;
+    border:none;cursor:pointer;
+  }
+  .btn-wa:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(37,211,102,.36)}
+  .btn-wa svg{flex-shrink:0}
+  .nav .btn-wa{padding:9px 15px;font-size:.85rem}
+
+  .btn-coral{
+    display:inline-flex;align-items:center;gap:10px;
+    background:var(--coral);color:#fff;font-weight:600;font-size:1.02rem;
+    padding:16px 28px;border-radius:999px;
+    box-shadow:0 10px 28px rgba(255,107,92,.35);
+    transition:transform .18s ease, box-shadow .18s ease;
+    border:none;cursor:pointer;
+  }
+  .btn-coral:hover{transform:translateY(-2px);box-shadow:0 16px 36px rgba(255,107,92,.45)}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:128px 0 78px;
+    background:
+      radial-gradient(circle at 85% 8%, rgba(255,180,166,.30), transparent 42%),
+      radial-gradient(circle at 6% 92%, rgba(27,111,179,.10), transparent 40%),
+      var(--nieve);
+    overflow:hidden;
+  }
+  .hero-in{position:relative;z-index:2;max-width:780px}
+  .pill{
+    display:inline-flex;align-items:center;gap:8px;
+    background:#fff;border:1px solid rgba(27,111,179,.18);
+    color:var(--azul);font-weight:600;font-size:.78rem;
+    padding:7px 15px;border-radius:999px;margin-bottom:26px;
+    letter-spacing:.01em;
+  }
+  .pill .dot{width:7px;height:7px;border-radius:50%;background:var(--coral)}
+  .hero h1{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:clamp(2.3rem,7.4vw,4.1rem);
+    line-height:1.04;
+    letter-spacing:-.02em;
+    color:var(--tinta);
+  }
+  .hero h1 .acento{
+    color:var(--azul);
+    font-style:italic;
+    font-weight:500;
+  }
+  .hero p.sub{
+    font-size:clamp(1.05rem,2.6vw,1.28rem);
+    color:rgba(14,42,63,.74);
+    margin:26px 0 36px;
+    max-width:580px;
+    font-weight:400;
+  }
+  .hero-acciones{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+  .hero-nota{font-size:.84rem;color:rgba(14,42,63,.55);font-weight:500;display:flex;align-items:center;gap:7px}
+  .hero-mini{
+    display:flex;gap:26px;flex-wrap:wrap;margin-top:46px;padding-top:30px;
+    border-top:1px solid rgba(14,42,63,.10);
+  }
+  .hero-mini .item{display:flex;flex-direction:column;gap:2px}
+  .hero-mini .num{font-family:var(--display);font-weight:600;font-size:1.7rem;color:var(--azul);line-height:1}
+  .hero-mini .lab{font-size:.8rem;color:rgba(14,42,63,.62);font-weight:500}
+
+  /* huella decorativa */
+  .paw{position:absolute;opacity:.07;color:var(--azul)}
+  .paw.p1{top:18%;right:8%;width:120px;transform:rotate(18deg)}
+  .paw.p2{bottom:12%;right:26%;width:64px;transform:rotate(-12deg);opacity:.05}
+
+  /* ---------- SECCIONES TÍTULO ---------- */
+  .eyebrow{
+    display:inline-block;font-weight:600;font-size:.78rem;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--coral);margin-bottom:14px;
+  }
+  .h2{
+    font-family:var(--display);font-weight:600;letter-spacing:-.02em;
+    font-size:clamp(1.8rem,4.6vw,2.6rem);line-height:1.1;color:var(--tinta);
+  }
+  .lead{font-size:1.05rem;color:rgba(14,42,63,.70);margin-top:14px;max-width:560px}
+  .centro{text-align:center}
+  .centro .lead{margin-left:auto;margin-right:auto}
+
+  /* ---------- 3 PASOS ---------- */
+  .pasos{display:grid;gap:18px;margin-top:46px}
+  .paso{
+    background:#fff;border:1px solid rgba(14,42,63,.09);
+    border-radius:var(--radio);padding:30px 26px;position:relative;
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .paso:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(14,42,63,.08)}
+  .paso .n{
+    font-family:var(--display);font-weight:600;font-size:2.2rem;color:var(--coral-suave);
+    line-height:1;margin-bottom:16px;
+  }
+  .paso .ico{
+    position:absolute;top:28px;right:26px;width:46px;height:46px;border-radius:13px;
+    background:var(--nieve);display:flex;align-items:center;justify-content:center;color:var(--azul);
+  }
+  .paso h3{font-family:var(--texto);font-weight:600;font-size:1.18rem;margin-bottom:9px;color:var(--tinta)}
+  .paso p{font-size:.96rem;color:rgba(14,42,63,.68)}
+
+  /* ---------- QUÉ INCLUYE ---------- */
+  .incluye-wrap{
+    background:var(--tinta);border-radius:28px;padding:54px 40px;margin-top:46px;
+    position:relative;overflow:hidden;color:#fff;
+  }
+  .incluye-wrap .glow{
+    position:absolute;width:340px;height:340px;border-radius:50%;
+    background:radial-gradient(circle,rgba(27,111,179,.45),transparent 70%);
+    top:-120px;right:-80px;
+  }
+  .incluye-wrap .glow2{
+    position:absolute;width:280px;height:280px;border-radius:50%;
+    background:radial-gradient(circle,rgba(255,107,92,.30),transparent 70%);
+    bottom:-130px;left:-60px;
+  }
+  .incluye-head{position:relative;z-index:2;margin-bottom:34px}
+  .incluye-head .h2{color:#fff}
+  .incluye-head .eyebrow{color:var(--coral-suave)}
+  .incluye-head .lead{color:rgba(255,255,255,.72)}
+  .incluye-grid{position:relative;z-index:2;display:grid;gap:14px}
+  .incluye-item{display:flex;gap:14px;align-items:flex-start;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.10)}
+  .incluye-item:last-child{border-bottom:none}
+  .check{
+    flex-shrink:0;width:30px;height:30px;border-radius:9px;background:var(--coral);
+    display:flex;align-items:center;justify-content:center;color:#fff;margin-top:1px;
+  }
+  .incluye-item h4{font-size:1.02rem;font-weight:600;margin-bottom:3px}
+  .incluye-item p{font-size:.9rem;color:rgba(255,255,255,.68);line-height:1.5}
+
+  /* ---------- RESEÑAS ---------- */
+  .resenas{background:var(--nieve)}
+  .res-grid{display:grid;gap:20px;margin-top:46px}
+  .res{
+    background:#fff;border-radius:var(--radio);padding:30px 28px;
+    border:1px solid rgba(14,42,63,.07);position:relative;
+  }
+  .stars{color:var(--coral);font-size:1rem;letter-spacing:2px;margin-bottom:16px}
+  .res .quote{font-family:var(--display);font-size:1.12rem;line-height:1.5;color:var(--tinta);font-weight:500;margin-bottom:22px}
+  .res-pers{display:flex;align-items:center;gap:13px}
+  .avatar{
+    width:46px;height:46px;border-radius:50%;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+    font-weight:600;color:#fff;font-size:1.05rem;font-family:var(--texto);
+  }
+  .a1{background:var(--azul)}
+  .a2{background:var(--coral)}
+  .a3{background:var(--tinta)}
+  .res-pers .nom{font-weight:600;font-size:.96rem}
+  .res-pers .neg{font-size:.84rem;color:rgba(14,42,63,.6)}
+
+  /* ---------- PRECIOS ---------- */
+  .precios-grid{display:grid;gap:22px;margin-top:46px}
+  .plan{
+    background:#fff;border:1.5px solid rgba(14,42,63,.10);border-radius:24px;
+    padding:36px 30px;position:relative;display:flex;flex-direction:column;
+  }
+  .plan.destacado{border-color:var(--azul);box-shadow:0 24px 60px rgba(27,111,179,.16)}
+  .plan-tag{
+    position:absolute;top:-13px;left:30px;background:var(--azul);color:#fff;
+    font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+    padding:6px 14px;border-radius:999px;
+  }
+  .plan h3{font-family:var(--texto);font-weight:600;font-size:1.3rem;margin-bottom:6px}
+  .plan .desc{font-size:.92rem;color:rgba(14,42,63,.65);margin-bottom:22px;min-height:42px}
+  .plan .precio{display:flex;align-items:baseline;gap:6px;margin-bottom:4px}
+  .plan .precio .eur{font-family:var(--display);font-weight:600;font-size:3rem;color:var(--tinta);line-height:1}
+  .plan .precio .mon{font-family:var(--display);font-weight:600;font-size:1.6rem;color:var(--tinta)}
+  .plan .precio-nota{font-size:.82rem;color:rgba(14,42,63,.55);margin-bottom:26px}
+  .plan ul{list-style:none;margin-bottom:28px;flex-grow:1}
+  .plan li{display:flex;gap:11px;align-items:flex-start;padding:8px 0;font-size:.94rem;color:rgba(14,42,63,.82)}
+  .plan li svg{flex-shrink:0;color:var(--azul);margin-top:3px}
+  .plan.destacado li svg{color:var(--coral)}
+  .plan .btn-wa{width:100%;justify-content:center;padding:14px}
+  .plan .btn-plan-alt{
+    width:100%;justify-content:center;display:inline-flex;align-items:center;gap:9px;
+    background:#fff;color:var(--tinta);border:1.5px solid rgba(14,42,63,.18);
+    font-weight:600;font-size:.92rem;padding:13px;border-radius:999px;transition:border-color .2s;
+  }
+  .plan .btn-plan-alt:hover{border-color:var(--azul);color:var(--azul)}
+  .precios-foot{text-align:center;margin-top:28px;font-size:.9rem;color:rgba(14,42,63,.6)}
+
+  /* ---------- QUIÉNES SOMOS ---------- */
+  .somos{display:grid;gap:36px;align-items:center}
+  .somos-foto{
+    border-radius:24px;background:
+      radial-gradient(circle at 30% 30%, rgba(255,180,166,.5), transparent 55%),
+      linear-gradient(135deg, var(--azul), var(--tinta));
+    aspect-ratio:4/3.4;position:relative;overflow:hidden;
+    display:flex;align-items:flex-end;padding:30px;
+  }
+  .somos-foto .badge-loc{
+    background:rgba(255,255,255,.92);color:var(--tinta);border-radius:14px;
+    padding:14px 18px;display:flex;align-items:center;gap:11px;font-weight:600;font-size:.95rem;
+    backdrop-filter:blur(4px);
+  }
+  .somos-foto .badge-loc svg{color:var(--coral);flex-shrink:0}
+  .somos-foto .big-paw{position:absolute;color:rgba(255,255,255,.14);width:200px;top:-30px;right:-30px;transform:rotate(20deg)}
+  .somos h2{margin-bottom:16px}
+  .somos p{font-size:1.02rem;color:rgba(14,42,63,.74);margin-bottom:16px}
+  .somos p strong{color:var(--tinta);font-weight:600}
+  .firma{display:flex;align-items:center;gap:13px;margin-top:26px;padding-top:24px;border-top:1px solid rgba(14,42,63,.1)}
+  .firma .av{width:48px;height:48px;border-radius:50%;background:var(--azul);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:600}
+  .firma .fn{font-weight:600;font-size:.96rem}
+  .firma .fr{font-size:.84rem;color:rgba(14,42,63,.6)}
+
+  /* ---------- FAQ ---------- */
+  .faq{background:var(--nieve)}
+  .faq-list{margin-top:40px;max-width:760px;margin-left:auto;margin-right:auto}
+  details{
+    background:#fff;border:1px solid rgba(14,42,63,.09);border-radius:var(--radio-s);
+    padding:0 22px;margin-bottom:13px;transition:border-color .2s;
+  }
+  details[open]{border-color:rgba(27,111,179,.3)}
+  summary{
+    list-style:none;cursor:pointer;font-weight:600;font-size:1.04rem;color:var(--tinta);
+    padding:20px 0;display:flex;justify-content:space-between;align-items:center;gap:16px;
+  }
+  summary::-webkit-details-marker{display:none}
+  summary .plus{flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--nieve);display:flex;align-items:center;justify-content:center;color:var(--azul);transition:transform .25s}
+  details[open] summary .plus{transform:rotate(45deg);background:var(--coral);color:#fff}
+  details p{padding:0 0 22px;font-size:.97rem;color:rgba(14,42,63,.72);line-height:1.6}
+
+  /* ---------- CTA FINAL ---------- */
+  .cta-final{
+    background:linear-gradient(135deg,var(--azul),var(--tinta));
+    border-radius:28px;padding:60px 40px;text-align:center;color:#fff;
+    margin:0 auto;position:relative;overflow:hidden;
+  }
+  .cta-final .glow{position:absolute;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(255,107,92,.4),transparent 70%);top:-100px;left:50%;transform:translateX(-50%)}
+  .cta-final h2{font-family:var(--display);font-weight:600;font-size:clamp(1.8rem,5vw,2.7rem);position:relative;z-index:2;letter-spacing:-.02em;line-height:1.1}
+  .cta-final p{position:relative;z-index:2;color:rgba(255,255,255,.82);font-size:1.1rem;margin:18px auto 32px;max-width:480px}
+  .cta-final .btn-wa{position:relative;z-index:2;font-size:1.08rem;padding:17px 30px}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--tinta);color:#fff;padding:54px 0 110px}
+  .foot-top{display:grid;gap:34px;padding-bottom:34px;border-bottom:1px solid rgba(255,255,255,.12)}
+  .foot-brand .logo-txt .l1{color:#fff}
+  .foot-brand p{color:rgba(255,255,255,.6);font-size:.92rem;margin-top:16px;max-width:330px;line-height:1.6}
+  .foot-col h5{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--coral-suave);margin-bottom:16px;font-weight:600}
+  .foot-col a, .foot-col span{display:block;color:rgba(255,255,255,.72);font-size:.93rem;margin-bottom:11px;transition:color .2s}
+  .foot-col a:hover{color:#fff}
+  .foot-bottom{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;padding-top:26px;font-size:.84rem;color:rgba(255,255,255,.5)}
+
+  /* ---------- BOTÓN WHATSAPP FIJO MÓVIL ---------- */
+  .wa-fijo{
+    position:fixed;bottom:0;left:0;right:0;z-index:200;
+    background:rgba(255,255,255,.94);backdrop-filter:blur(12px);
+    border-top:1px solid rgba(14,42,63,.1);
+    padding:11px 16px calc(11px + env(safe-area-inset-bottom));
+    display:block;
+  }
+  .wa-fijo .btn-wa{width:100%;justify-content:center;padding:15px;font-size:1rem}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media(min-width:760px){
+    .pasos{grid-template-columns:repeat(3,1fr)}
+    .incluye-grid{grid-template-columns:1fr 1fr;gap:14px 40px}
+    .res-grid{grid-template-columns:repeat(3,1fr)}
+    .precios-grid{grid-template-columns:1fr 1fr;max-width:840px;margin-left:auto;margin-right:auto}
+    .somos{grid-template-columns:1fr 1fr;gap:54px}
+    .foot-top{grid-template-columns:2fr 1fr 1fr}
+  }
+  @media(min-width:920px){
+    .nav-links{display:flex}
+    .wa-fijo{display:none}
+    footer{padding-bottom:54px}
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= BARRA SUPERIOR FIJA ================= -->
+<header class="nav">
+  <div class="wrap nav-in">
+    <a href="#" class="logo" aria-label="Cercana Studio inicio">
+      <span class="logo-mark">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="7" cy="8" r="2.1" fill="#FFB4A6"/>
+          <circle cx="12" cy="6" r="2.1" fill="#fff"/>
+          <circle cx="17" cy="8" r="2.1" fill="#FFB4A6"/>
+          <path d="M12 10c-3 0-5.4 2.2-5.4 4.6 0 1.9 1.6 2.9 3.4 2.9.9 0 1.4-.4 2-.4s1.1.4 2 .4c1.8 0 3.4-1 3.4-2.9C17.4 12.2 15 10 12 10z" fill="#fff"/>
+        </svg>
+      </span>
+      <span class="logo-txt">
+        <span class="l1">Cercana</span>
+        <span class="l2">Studio</span>
+      </span>
+    </a>
+    <nav class="nav-links">
+      <a href="#como">Cómo funciona</a>
+      <a href="#incluye">Qué incluye</a>
+      <a href="#precios">Precios</a>
+      <a href="#somos">Quiénes somos</a>
+      <a href="#faq">Preguntas</a>
+    </nav>
+    <a href="https://wa.me/34600000000" class="btn-wa">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm0 18.15c-1.52 0-3.01-.41-4.31-1.18l-.31-.18-3.12.82.83-3.04-.2-.32a8.2 8.2 0 01-1.26-4.36c0-4.54 3.7-8.23 8.24-8.23 4.54 0 8.23 3.69 8.23 8.23s-3.69 8.24-8.23 8.24zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07s.89 2.4 1.01 2.56c.12.17 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28z"/></svg>
+      WhatsApp
+    </a>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <svg class="paw p1" viewBox="0 0 24 24" fill="currentColor"><circle cx="7" cy="8" r="2.1"/><circle cx="12" cy="6" r="2.1"/><circle cx="17" cy="8" r="2.1"/><path d="M12 10c-3 0-5.4 2.2-5.4 4.6 0 1.9 1.6 2.9 3.4 2.9.9 0 1.4-.4 2-.4s1.1.4 2 .4c1.8 0 3.4-1 3.4-2.9C17.4 12.2 15 10 12 10z"/></svg>
+  <svg class="paw p2" viewBox="0 0 24 24" fill="currentColor"><circle cx="7" cy="8" r="2.1"/><circle cx="12" cy="6" r="2.1"/><circle cx="17" cy="8" r="2.1"/><path d="M12 10c-3 0-5.4 2.2-5.4 4.6 0 1.9 1.6 2.9 3.4 2.9.9 0 1.4-.4 2-.4s1.1.4 2 .4c1.8 0 3.4-1 3.4-2.9C17.4 12.2 15 10 12 10z"/></svg>
+  <div class="wrap hero-in">
+    <span class="pill"><span class="dot"></span>Peluquerías y estéticas caninas · Valencia</span>
+    <h1>Que tus clientes te encuentren <span class="acento">antes de buscar a otro</span></h1>
+    <p class="sub">Creamos la web de tu peluquería canina y hacemos que aparezcas en Google y Google Maps. Más llamadas, más citas y más perros por tu puerta. Sin líos técnicos: lo hacemos nosotros.</p>
+    <div class="hero-acciones">
+      <a href="https://wa.me/34600000000" class="btn-coral">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm0 18.15c-1.52 0-3.01-.41-4.31-1.18l-.31-.18-3.12.82.83-3.04-.2-.32a8.2 8.2 0 01-1.26-4.36c0-4.54 3.7-8.23 8.24-8.23 4.54 0 8.23 3.69 8.23 8.23s-3.69 8.24-8.23 8.24zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07s.89 2.4 1.01 2.56c.12.17 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28z"/></svg>
+        Hablar por WhatsApp (sin compromiso)
+      </a>
+      <span class="hero-nota">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
+        Te respondemos en el día
+      </span>
+    </div>
+    <div class="hero-mini">
+      <div class="item"><span class="num">99 €</span><span class="lab">Web básica lista</span></div>
+      <div class="item"><span class="num">7 días</span><span class="lab">De media para publicar</span></div>
+      <div class="item"><span class="num">Valencia</span><span class="lab">Damos la cara, en persona</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CÓMO FUNCIONA ================= -->
+<section class="seccion" id="como">
+  <div class="wrap">
+    <div class="centro">
+      <span class="eyebrow">Cómo funciona</span>
+      <h2 class="h2">Tu web lista en 3 pasos</h2>
+      <p class="lead">Tú te dedicas a los perros. De lo digital nos ocupamos nosotros, de principio a fin.</p>
+    </div>
+    <div class="pasos">
+      <div class="paso">
+        <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></div>
+        <div class="n">01</div>
+        <h3>Hablamos por WhatsApp</h3>
+        <p>Nos cuentas cómo es tu peluquería, qué servicios ofreces y a qué clientes quieres llegar. Sin tecnicismos ni reuniones eternas.</p>
+      </div>
+      <div class="paso">
+        <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg></div>
+        <div class="n">02</div>
+        <h3>Creamos tu web</h3>
+        <p>Diseñamos una web bonita y clara con tus fotos, tus precios y tu teléfono. La revisas, ajustamos lo que quieras y la dejamos perfecta.</p>
+      </div>
+      <div class="paso">
+        <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div class="n">03</div>
+        <h3>Apareces en Google</h3>
+        <p>Te ponemos en Google y en Google Maps para que, cuando alguien busque «peluquería canina cerca», te encuentre a ti antes que a la competencia.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= QUÉ INCLUYE ================= -->
+<section class="seccion" id="incluye" style="padding-top:0">
+  <div class="wrap">
+    <div class="incluye-wrap">
+      <div class="glow"></div>
+      <div class="glow2"></div>
+      <div class="incluye-head">
+        <span class="eyebrow">Qué incluye tu web</span>
+        <h2 class="h2">Todo lo que necesitas para que te llamen</h2>
+        <p class="lead">Una web hecha para que el dueño de un perro pase de mirar el móvil a pedir cita en tu peluquería.</p>
+      </div>
+      <div class="incluye-grid">
+        <div class="incluye-item">
+          <span class="check"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+          <div><h4>Diseño pensado para el móvil</h4><p>El 8 de cada 10 buscan desde el teléfono. Tu web se ve perfecta y carga rápido en cualquier pantalla.</p></div>
+        </div>
+        <div class="incluye-item">
+          <span class="check"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+          <div><h4>Botón de WhatsApp y llamada</h4><p>Que reservar cita sea tan fácil como un toque. Sin formularios complicados que nadie rellena.</p></div>
+        </div>
+        <div class="incluye-item">
+          <span class="check"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+          <div><h4>Tu ficha en Google Maps</h4><p>Dirección, horario, teléfono y fotos. Para que aparezcas en el mapa cuando busquen cerca de ti.</p></div>
+        </div>
+        <div class="incluye-item">
+          <span class="check"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+          <div><h4>Tus servicios y precios claros</h4><p>Baño, corte, deslanado, estética… Todo bien explicado para que el cliente sepa qué pedir.</p></div>
+        </div>
+        <div class="incluye-item">
+          <span class="check"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+          <div><h4>Galería de tus trabajos</h4><p>Los antes y después venden solos. Mostramos tus mejores cortes para generar confianza.</p></div>
+        </div>
+        <div class="incluye-item">
+          <span class="check"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+          <div><h4>Reseñas de tus clientes</h4><p>Conectamos tus opiniones de Google para que las buenas valoraciones trabajen por ti.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RESEÑAS ================= -->
+<section class="seccion resenas">
+  <div class="wrap">
+    <div class="centro">
+      <span class="eyebrow">Lo que dicen</span>
+      <h2 class="h2">Peluqueros como tú, contentos</h2>
+      <p class="lead">Negocios pequeños de toda la vida que ahora se encuentran fácil en internet.</p>
+    </div>
+    <div class="res-grid">
+      <div class="res">
+        <div class="stars">★★★★★</div>
+        <p class="quote">«Antes vivía del boca a boca. Ahora me escriben por WhatsApp gente que ni conocía, encontrándome en Google. Y todo me lo dejaron hecho.»</p>
+        <div class="res-pers">
+          <div class="avatar a1">LM</div>
+          <div><div class="nom">Laura Marín</div><div class="neg">Peluquería Canina Patitas · Valencia</div></div>
+        </div>
+      </div>
+      <div class="res">
+        <div class="stars">★★★★★</div>
+        <p class="quote">«Yo de webs no entiendo nada y me daba miedo. Me lo explicaron con paciencia, en persona, y en una semana tenía mi página lista. Cero líos.»</p>
+        <div class="res-pers">
+          <div class="avatar a2">JS</div>
+          <div><div class="nom">Jose Sanchís</div><div class="neg">Estética Canina El Guau · Mislata</div></div>
+        </div>
+      </div>
+      <div class="res">
+        <div class="stars">★★★★★</div>
+        <p class="quote">«Lo mejor es que son de aquí. Si tengo una duda les escribo y me contestan al momento. Por 99 € no esperaba este trato ni este resultado.»</p>
+        <div class="res-pers">
+          <div class="avatar a3">CR</div>
+          <div><div class="nom">Carmen Ribes</div><div class="neg">Spa Canino Lúa · Torrent</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRECIOS ================= -->
+<section class="seccion" id="precios">
+  <div class="wrap">
+    <div class="centro">
+      <span class="eyebrow">Precios claros</span>
+      <h2 class="h2">Sin sorpresas ni letra pequeña</h2>
+      <p class="lead">Eliges el plan que encaja con tu peluquería. Lo demás lo ponemos nosotros.</p>
+    </div>
+    <div class="precios-grid">
+      <div class="plan">
+        <h3>Web básica</h3>
+        <p class="desc">Para empezar a estar en internet ya, con lo esencial bien hecho.</p>
+        <div class="precio"><span class="eur">99</span><span class="mon">€</span></div>
+        <p class="precio-nota">Pago único · sin cuotas sorpresa</p>
+        <ul>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Web de una página, lista para móvil</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Botón de WhatsApp y llamada</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Servicios, precios y horario</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Tu ficha de Google Maps al día</li>
+        </ul>
+        <a href="https://wa.me/34600000000" class="btn-plan-alt">Empezar con la básica</a>
+      </div>
+      <div class="plan destacado">
+        <span class="plan-tag">La más elegida</span>
+        <h3>Web personalizada</h3>
+        <p class="desc">Hecha a tu medida tras una llamada. Para destacar de verdad en tu zona.</p>
+        <div class="precio"><span class="eur">199</span><span class="mon">€</span></div>
+        <p class="precio-nota">Pago único · tras llamada por WhatsApp</p>
+        <ul>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Todo lo de la web básica</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Varias secciones y galería de trabajos</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Diseño a medida con tus colores y fotos</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Optimización para aparecer mejor en Google</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Conexión de reseñas de clientes</li>
+        </ul>
+        <a href="https://wa.me/34600000000" class="btn-wa">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm0 18.15c-1.52 0-3.01-.41-4.31-1.18l-.31-.18-3.12.82.83-3.04-.2-.32a8.2 8.2 0 01-1.26-4.36c0-4.54 3.7-8.23 8.24-8.23 4.54 0 8.23 3.69 8.23 8.23s-3.69 8.24-8.23 8.24zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07s.89 2.4 1.01 2.56c.12.17 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28z"/></svg>
+          Hablar por WhatsApp (sin compromiso)
+        </a>
+      </div>
+    </div>
+    <p class="precios-foot">¿No sabes cuál te encaja? Escríbenos y te lo decimos sin venderte humo.</p>
+  </div>
+</section>
+
+<!-- ================= QUIÉNES SOMOS ================= -->
+<section class="seccion" id="somos">
+  <div class="wrap somos">
+    <div class="somos-foto">
+      <svg class="big-paw" viewBox="0 0 24 24" fill="currentColor"><circle cx="7" cy="8" r="2.1"/><circle cx="12" cy="6" r="2.1"/><circle cx="17" cy="8" r="2.1"/><path d="M12 10c-3 0-5.4 2.2-5.4 4.6 0 1.9 1.6 2.9 3.4 2.9.9 0 1.4-.4 2-.4s1.1.4 2 .4c1.8 0 3.4-1 3.4-2.9C17.4 12.2 15 10 12 10z"/></svg>
+      <div class="badge-loc">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Estamos en Valencia
+      </div>
+    </div>
+    <div>
+      <span class="eyebrow">Quiénes somos</span>
+      <h2 class="h2">Cercanos de verdad, no un número de soporte</h2>
+      <p>Somos <strong>Cercana Studio</strong>, un estudio de Valencia que une el trato de toda la vida con la tecnología de hoy. Sabemos que un negocio de barrio se construye con confianza, así que trabajamos igual: dando la cara.</p>
+      <p>Nada de centralitas ni de irte a la otra punta del mundo. Hablas con una persona, en tu idioma, que entiende tu peluquería y te acompaña paso a paso. <strong>Nuestro éxito es que entren más perros por tu puerta.</strong></p>
+      <div class="firma">
+        <div class="av">CS</div>
+        <div>
+          <div class="fn">El equipo de Cercana Studio</div>
+          <div class="fr">Valencia · Atención por WhatsApp e Instagram</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="seccion faq" id="faq">
+  <div class="wrap">
+    <div class="centro">
+      <span class="eyebrow">Preguntas frecuentes</span>
+      <h2 class="h2">Lo que sueles preguntarnos</h2>
+    </div>
+    <div class="faq-list">
+      <details open>
+        <summary>No entiendo nada de tecnología, ¿es para mí? <span class="plus"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <p>Justo por eso existimos. Tú no tocas nada técnico: nos cuentas cómo es tu peluquería por WhatsApp y nosotros lo montamos todo. Te lo explicamos con palabras normales y, si quieres, en persona.</p>
+      </details>
+      <details>
+        <summary>¿Cuánto tarda en estar lista mi web? <span class="plus"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <p>De media, una semana desde que tenemos tus datos y fotos. Si tienes prisa por una campaña o temporada, dínoslo y lo priorizamos.</p>
+      </details>
+      <details>
+        <summary>¿El precio es de verdad? ¿Hay cuotas escondidas? <span class="plus"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <p>El precio es el que ves: 99 € la básica y 199 € la personalizada, en pago único. Antes de empezar te decimos exactamente qué incluye. Si más adelante quieres cambios o mantenimiento, te lo presupuestamos aparte y siempre con tu visto bueno.</p>
+      </details>
+      <details>
+        <summary>¿De verdad voy a aparecer en Google? <span class="plus"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <p>Configuramos tu web y tu ficha de Google Maps para que te encuentren cuando busquen peluquería canina en tu zona. La visibilidad mejora con el tiempo; te explicamos qué esperar de forma honesta, sin prometerte ser el número uno en una semana.</p>
+      </details>
+      <details>
+        <summary>¿Y si luego quiero cambiar algo? <span class="plus"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <p>Sin problema. Nos escribes por WhatsApp y lo ajustamos. Somos de aquí y cercanos: queremos que tu web siga teniendo cara y ojos según crece tu negocio.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA FINAL ================= -->
+<section class="seccion" style="padding-top:0">
+  <div class="wrap">
+    <div class="cta-final">
+      <div class="glow"></div>
+      <h2>¿Listo para que te encuentren primero?</h2>
+      <p>Cuéntanos en dos líneas cómo es tu peluquería. Te respondemos hoy mismo, sin compromiso y sin tecnicismos.</p>
+      <a href="https://wa.me/34600000000" class="btn-wa">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm0 18.15c-1.52 0-3.01-.41-4.31-1.18l-.31-.18-3.12.82.83-3.04-.2-.32a8.2 8.2 0 01-1.26-4.36c0-4.54 3.7-8.23 8.24-8.23 4.54 0 8.23 3.69 8.23 8.23s-3.69 8.24-8.23 8.24zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07s.89 2.4 1.01 2.56c.12.17 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28z"/></svg>
+        Hablar por WhatsApp (sin compromiso)
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <div class="logo">
+          <span class="logo-mark">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="7" cy="8" r="2.1" fill="#FFB4A6"/><circle cx="12" cy="6" r="2.1" fill="#fff"/><circle cx="17" cy="8" r="2.1" fill="#FFB4A6"/><path d="M12 10c-3 0-5.4 2.2-5.4 4.6 0 1.9 1.6 2.9 3.4 2.9.9 0 1.4-.4 2-.4s1.1.4 2 .4c1.8 0 3.4-1 3.4-2.9C17.4 12.2 15 10 12 10z" fill="#fff"/></svg>
+          </span>
+          <span class="logo-txt"><span class="l1">Cercana</span><span class="l2">Studio</span></span>
+        </div>
+        <p>Webs y visibilidad en Google para peluquerías y estéticas caninas. Cercanía de barrio, tecnología de hoy. Desde Valencia.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Web</h5>
+        <a href="#como">Cómo funciona</a>
+        <a href="#incluye">Qué incluye</a>
+        <a href="#precios">Precios</a>
+        <a href="#faq">Preguntas</a>
+      </div>
+      <div class="foot-col">
+        <h5>Hablemos</h5>
+        <a href="https://wa.me/34600000000">WhatsApp</a>
+        <a href="https://wa.me/34600000000">Instagram</a>
+        <span>Valencia, España</span>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Cercana Studio · Hecho con cariño en Valencia</span>
+      <span>Aviso legal · Privacidad</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= BOTÓN WHATSAPP FIJO MÓVIL ================= -->
+<div class="wa-fijo">
+  <a href="https://wa.me/34600000000" class="btn-wa">
+    <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm0 18.15c-1.52 0-3.01-.41-4.31-1.18l-.31-.18-3.12.82.83-3.04-.2-.32a8.2 8.2 0 01-1.26-4.36c0-4.54 3.7-8.23 8.24-8.23 4.54 0 8.23 3.69 8.23 8.23s-3.69 8.24-8.23 8.24zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07s.89 2.4 1.01 2.56c.12.17 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28z"/></svg>
+    Hablar por WhatsApp (sin compromiso)
+  </a>
+</div>
+
+</body>
+</html>
