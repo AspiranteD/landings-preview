@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<!--
+  ============================================================================
+  DEMO / LANDING-GANCHO · "Tu Pet, Estilismo de Mascotas" (Valencia)
+  ----------------------------------------------------------------------------
+  Esto es una MAQUETA de muestra creada como gancho comercial. Todos los datos
+  visibles (nombre, dirección, teléfono, rating, reseñas y fotos) proceden de
+  la ficha PÚBLICA de Google Maps del negocio y se muestran con su debida
+  ATRIBUCIÓN al autor de cada reseña/foto (Google / colaboradores de Google).
+  No es la web oficial del negocio ni de la agencia.
+  Las fotos y reseñas DEFINITIVAS las aportará el propio cliente; aquí se usan
+  las públicas de Google solo como demostración.
+  Place ID: ChIJjX9DQ8NIYA0RR_tG5FTymoI · extraído 2026-06-19.
+  ============================================================================
+-->
+<html lang="es">
+<head><meta name="robots" content="noindex, nofollow">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Tu Pet, peluquería canina en Valencia (Quatre Carreres). Baño, corte y cuidado de tu mascota con trato cercano. Pide cita por WhatsApp.">
+<title>Tu Pet — Peluquería canina en Valencia</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --color-primario:    #2f5d6e;
+    --color-primario-osc:#1f3b46;
+    --color-acento:      #f0735a;
+    --color-fondo:       #f7f1e6;
+    --color-superficie:  #fffdf9;
+    --color-texto:       #1f3b46;
+    --color-texto-suave: #5b6670;
+    --color-borde:       #efe5d2;
+
+    --wa:#25d366;
+    --wa-osc:#1c9d4d;
+    --wa-tinta:#053c1c;
+
+    --fuente-titulo: 'Fraunces', Georgia, serif;
+    --fuente-texto:  'Inter', system-ui, -apple-system, sans-serif;
+    --radio: 18px;
+    --sombra: 0 14px 36px rgba(0,0,0,.08);
+    --ancho: 1080px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--fuente-texto);
+    background:var(--color-fondo);
+    color:var(--color-texto);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block;height:auto}
+  .serif{font-family:var(--fuente-titulo)}
+  .wrap{width:100%;max-width:var(--ancho);margin:0 auto;padding:0 22px}
+  section{position:relative}
+
+  a:focus-visible, button:focus-visible, summary:focus-visible{
+    outline:3px solid var(--color-acento);
+    outline-offset:3px;
+    border-radius:6px;
+  }
+  .sr-only{
+    position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+    overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;
+  }
+
+  .btn-wa{
+    display:inline-flex;align-items:center;gap:10px;
+    background:var(--wa);color:var(--wa-tinta);
+    font-weight:700;font-size:16px;
+    padding:15px 26px;border-radius:48px;
+    box-shadow:0 10px 26px rgba(37,211,102,.3);
+    transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+  }
+  .btn-wa:hover{transform:translateY(-3px);background:var(--wa-osc);box-shadow:0 16px 34px rgba(37,211,102,.42)}
+  .btn-wa svg{width:21px;height:21px;flex:none}
+  .btn-wa.sm{font-size:14px;padding:9px 16px}
+
+  .btn-call{
+    display:inline-flex;align-items:center;gap:10px;
+    background:var(--color-primario);color:#fff;
+    font-weight:700;font-size:16px;
+    padding:15px 26px;border-radius:48px;
+    transition:transform .18s ease, background .18s ease;
+  }
+  .btn-call:hover{transform:translateY(-3px);background:var(--color-primario-osc)}
+  .btn-call svg{width:20px;height:20px;flex:none}
+
+  .btn-ghost{
+    display:inline-flex;align-items:center;gap:8px;
+    color:var(--color-primario);font-weight:600;font-size:15px;
+    padding:14px 8px;border-bottom:2px solid transparent;transition:border-color .2s;
+  }
+  .btn-ghost:hover{border-color:var(--color-acento)}
+
+  .nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:color-mix(in srgb, var(--color-fondo) 86%, transparent);
+    backdrop-filter:saturate(140%) blur(10px);
+    border-bottom:1px solid var(--color-borde);
+  }
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .wordmark{
+    display:flex;align-items:center;gap:10px;
+    font-family:var(--fuente-titulo);font-weight:900;font-size:19px;
+    color:var(--color-primario);letter-spacing:-.01em;
+    max-width:62%;line-height:1.05;
+  }
+  .wordmark .mark{
+    width:34px;height:34px;flex:none;border-radius:50%;
+    background:var(--color-acento);color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--fuente-titulo);font-weight:900;font-size:18px;
+  }
+
+  .hero{padding:128px 0 70px;position:relative;overflow:hidden}
+  .hero::before{
+    content:"";position:absolute;inset:0;z-index:0;
+    background:
+      radial-gradient(circle at 85% 12%, color-mix(in srgb,var(--color-acento) 14%,transparent), transparent 42%),
+      radial-gradient(circle at 8% 90%, color-mix(in srgb,var(--color-primario) 12%,transparent), transparent 46%);
+  }
+  .hero .wrap{position:relative;z-index:2}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:9px;
+    background:var(--color-superficie);border:1px solid var(--color-borde);
+    color:var(--color-texto-suave);font-weight:600;font-size:13px;letter-spacing:.02em;
+    padding:7px 15px;border-radius:40px;margin-bottom:26px;text-transform:uppercase;
+  }
+  .eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--color-acento);animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
+  .hero h1{
+    font-family:var(--fuente-titulo);font-weight:900;
+    font-size:clamp(44px,11vw,104px);line-height:.95;letter-spacing:-.03em;
+    color:var(--color-texto);margin-bottom:22px;
+  }
+  .hero h1 .acento{color:var(--color-acento);font-style:italic}
+  .hero-sub{font-size:clamp(17px,2.4vw,21px);color:var(--color-texto-suave);max-width:560px;margin-bottom:34px}
+  .hero-sub b{color:var(--color-texto);font-weight:600}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+  .hero-trust{margin-top:38px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;color:var(--color-texto-suave);font-size:14px}
+  .stars{color:var(--color-acento);letter-spacing:2px;font-size:16px}
+
+  .sec{padding:78px 0}
+  .kicker{
+    display:inline-block;font-weight:700;font-size:13px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--color-acento);margin-bottom:14px;
+  }
+  .h2{
+    font-family:var(--fuente-titulo);font-weight:900;
+    font-size:clamp(32px,6vw,58px);line-height:1.02;letter-spacing:-.02em;
+    color:var(--color-texto);margin-bottom:18px;
+  }
+  .lead{font-size:18px;color:var(--color-texto-suave);max-width:620px}
+
+  .sobre{background:var(--color-primario);color:#fff}
+  .sobre .h2{color:#fff}
+  .sobre .kicker{color:color-mix(in srgb,var(--color-acento) 70%, #fff)}
+  .sobre-grid{display:grid;grid-template-columns:1fr;gap:42px;align-items:center}
+  .sobre-foto{
+    border-radius:24px;aspect-ratio:4/5;position:relative;overflow:hidden;
+    border:1px solid rgba(255,255,255,.18);
+    background:color-mix(in srgb,var(--color-primario) 70%, #fff);
+  }
+  .sobre-foto img{width:100%;height:100%;object-fit:cover}
+  .sobre-text p{color:rgba(255,255,255,.86);font-size:17px;margin-bottom:18px}
+  .sobre-text p b{color:#fff}
+  .firma{font-family:var(--fuente-titulo);font-style:italic;font-weight:600;font-size:26px;color:color-mix(in srgb,var(--color-acento) 70%,#fff);margin-top:8px}
+  .firma small{display:block;font-family:var(--fuente-texto);font-style:normal;font-size:14px;color:rgba(255,255,255,.7);font-weight:500;margin-top:4px}
+
+  .serv-grid{display:grid;grid-template-columns:1fr;gap:18px;margin-top:42px}
+  .card{
+    background:var(--color-superficie);border:1px solid var(--color-borde);
+    border-radius:var(--radio);padding:30px 28px;
+    transition:transform .25s ease, box-shadow .25s ease, border-color .25s;
+  }
+  .card:hover{transform:translateY(-6px);box-shadow:var(--sombra);border-color:var(--color-primario)}
+  .card .ic{
+    width:56px;height:56px;border-radius:16px;
+    background:color-mix(in srgb,var(--color-primario) 12%, var(--color-fondo));
+    display:flex;align-items:center;justify-content:center;margin-bottom:18px;font-size:28px;
+  }
+  .card h3{font-family:var(--fuente-titulo);font-weight:600;font-size:23px;color:var(--color-texto);margin-bottom:9px}
+  .card p{color:var(--color-texto-suave);font-size:15.5px}
+
+  .gal-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:40px}
+  .gal-grid .ph{
+    border-radius:var(--radio);position:relative;overflow:hidden;margin:0;
+    background:color-mix(in srgb,var(--color-primario) 8%, var(--color-fondo));
+    border:1px solid var(--color-borde);transition:transform .3s ease;
+  }
+  .gal-grid .ph img{width:100%;height:100%;object-fit:cover;aspect-ratio:1/1}
+  .gal-grid .ph figcaption{
+    font-size:11px;color:var(--color-texto-suave);
+    padding:6px 10px;background:var(--color-superficie);
+  }
+  .gal-grid .ph:hover{transform:scale(.98)}
+
+  .res{background:color-mix(in srgb,var(--color-primario) 6%, var(--color-fondo))}
+  .res-attr{font-size:14px;color:var(--color-texto-suave);margin-top:6px;max-width:620px}
+  .res-grid{display:grid;grid-template-columns:1fr;gap:18px;margin-top:42px}
+  .quote{background:var(--color-superficie);border:1px solid var(--color-borde);border-radius:var(--radio);padding:28px 26px;display:flex;flex-direction:column}
+  .quote .stars{font-size:18px;margin-bottom:14px;display:block}
+  .quote blockquote{font-family:var(--fuente-titulo);font-size:18px;line-height:1.45;color:var(--color-texto);margin-bottom:18px;font-style:italic;flex:1}
+  .quote .who{display:flex;align-items:center;gap:12px}
+  .quote .av{
+    width:44px;height:44px;border-radius:50%;flex:none;
+    background:var(--color-primario);color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--fuente-titulo);font-weight:900;font-size:17px;
+  }
+  .quote .who b{display:block;color:var(--color-texto);font-size:15px}
+  .quote .who small{color:var(--color-texto-suave);font-size:13px}
+  .quote .who a{color:var(--color-texto-suave);text-decoration:underline}
+
+  .cont{background:var(--color-primario);color:#fff}
+  .cont .h2{color:#fff}
+  .cont .kicker{color:color-mix(in srgb,var(--color-acento) 70%, #fff)}
+  .cont-grid{display:grid;grid-template-columns:1fr;gap:36px;margin-top:36px}
+  .cont-info p{color:rgba(255,255,255,.86);font-size:17px;margin-bottom:24px;max-width:460px}
+  .cont-row{display:flex;align-items:flex-start;gap:14px;margin-bottom:18px;color:#fff;font-size:16px}
+  .cont-row .ci{
+    flex:none;width:44px;height:44px;border-radius:13px;
+    background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;font-size:20px;
+  }
+  .cont-row b{display:block}
+  .cont-row small{color:rgba(255,255,255,.7)}
+  .cont-row a{text-decoration:underline}
+  .cont-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:6px}
+  .map{
+    background:color-mix(in srgb,var(--color-primario) 70%, #fff);
+    border-radius:22px;min-height:260px;
+    border:1px solid rgba(255,255,255,.18);
+    display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;
+    text-align:center;padding:24px;
+  }
+  .map .pin{font-size:54px}
+  .map a{color:#fff;font-weight:600;text-decoration:underline}
+
+  .cta-final{padding:0 0 30px}
+  .cta-in{
+    background:var(--color-acento);color:#fff;border-radius:28px;
+    padding:54px 32px;text-align:center;position:relative;overflow:hidden;margin:60px 0 0;
+  }
+  .cta-in h2{font-family:var(--fuente-titulo);font-weight:900;font-size:clamp(28px,5.4vw,50px);line-height:1.02;margin-bottom:16px;letter-spacing:-.02em;color:#fff}
+  .cta-in p{font-size:17px;max-width:520px;margin:0 auto 28px;opacity:.95}
+  .cta-in .btn-wa{background:#fff;color:var(--color-primario-osc);box-shadow:0 10px 26px rgba(0,0,0,.18)}
+  .cta-in .btn-wa:hover{background:#fff;box-shadow:0 16px 34px rgba(0,0,0,.26)}
+
+  footer{background:var(--color-texto);color:rgba(255,255,255,.7);padding:50px 0 110px}
+  .foot-in{display:flex;flex-direction:column;gap:24px}
+  .foot-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;align-items:center}
+  .foot-mark{display:flex;align-items:center;gap:10px;font-family:var(--fuente-titulo);font-weight:900;font-size:18px;color:#fff;max-width:70%}
+  .foot-links{display:flex;gap:22px;flex-wrap:wrap}
+  .foot-links a{color:rgba(255,255,255,.7);font-size:14px;transition:color .2s}
+  .foot-links a:hover{color:var(--color-acento)}
+  .foot-bottom{border-top:1px solid rgba(255,255,255,.12);padding-top:20px;font-size:12.5px;color:rgba(255,255,255,.5)}
+
+  .wa-fab{
+    position:fixed;left:16px;right:16px;bottom:16px;z-index:120;
+    background:var(--wa);color:var(--wa-tinta);font-weight:700;font-size:16px;
+    display:flex;align-items:center;justify-content:center;gap:10px;
+    padding:16px;border-radius:46px;text-decoration:none;
+    box-shadow:0 12px 30px rgba(37,211,102,.4);
+    animation:bob 2.6s ease-in-out infinite;
+  }
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+  .wa-fab svg{width:22px;height:22px;flex:none}
+
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s ease, transform .8s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none!important}
+    .reveal{opacity:1;transform:none;transition:none}
+    html{scroll-behavior:auto}
+  }
+
+  @media(min-width:760px){
+    .hero{padding:150px 0 80px}
+    .wordmark{font-size:21px}
+    .sobre-grid{grid-template-columns:.9fr 1.1fr;gap:54px}
+    .serv-grid{grid-template-columns:repeat(2,1fr)}
+    .res-grid{grid-template-columns:repeat(2,1fr)}
+    .cont-grid{grid-template-columns:1.1fr 1fr}
+    .gal-grid{grid-template-columns:repeat(3,1fr)}
+    .wa-fab{display:none}
+    footer{padding:60px 0 60px}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== NAV ===================== -->
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a href="#top" class="wordmark" aria-label="Tu Pet — inicio">
+      <span class="mark" aria-hidden="true">T</span>
+      Tu&nbsp;Pet
+    </a>
+    <a href="https://wa.me/34633751072" class="btn-wa sm" aria-label="Escribir por WhatsApp a Tu Pet">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2zm0 2a8 8 0 1 1-4.1 14.9l-.4-.2-2.9.8.8-2.8-.2-.4A8 8 0 0 1 12 4zm-3 3.6c-.2 0-.5.1-.7.4-.3.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.8 2.9 4.5 3.9 2.2.9 2.7.7 3.2.7s1.5-.6 1.7-1.2c.2-.6.2-1.1.1-1.2-.1-.1-.3-.2-.6-.3l-1.5-.7c-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.3.1-.4l.4-.5c.1-.2.1-.3.2-.5 0-.1 0-.3-.1-.4l-.7-1.7c-.2-.4-.3-.4-.5-.4z"/></svg>
+      <span>Escríbenos</span>
+    </a>
+  </div>
+</nav>
+
+<!-- ===================== HERO ===================== -->
+<header id="top" class="hero">
+  <div class="wrap">
+    <span class="eyebrow"><span class="dot" aria-hidden="true"></span> Peluquería canina · Valencia</span>
+    <h1 class="serif">Sale guapo.<br>Y <span class="acento">tranquilo.</span></h1>
+    <p class="hero-sub">Baño, corte y mimos para tu peludo, a su ritmo y con mucho cariño. <b>Pide cita por WhatsApp en un minuto.</b></p>
+    <div class="hero-actions">
+      <a href="https://wa.me/34633751072" class="btn-wa">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2zm0 2a8 8 0 1 1-4.1 14.9l-.4-.2-2.9.8.8-2.8-.2-.4A8 8 0 0 1 12 4zm-3 3.6c-.2 0-.5.1-.7.4-.3.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.8 2.9 4.5 3.9 2.2.9 2.7.7 3.2.7s1.5-.6 1.7-1.2c.2-.6.2-1.1.1-1.2-.1-.1-.3-.2-.6-.3l-1.5-.7c-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.3.1-.4l.4-.5c.1-.2.1-.3.2-.5 0-.1 0-.3-.1-.4l-.7-1.7c-.2-.4-.3-.4-.5-.4z"/></svg>
+        Pedir cita por WhatsApp
+      </a>
+      <a href="#servicios" class="btn-ghost">Ver servicios &rarr;</a>
+    </div>
+    <div class="hero-trust">
+      <span class="stars" aria-hidden="true">★★★★★</span>
+      <span><b>4,8</b> de 5 · 124 reseñas en Google</span>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== SOBRE EL NEGOCIO ===================== -->
+<section class="sec sobre" id="sobre">
+  <div class="wrap">
+    <div class="sobre-grid">
+      <div class="sobre-foto reveal">
+        <!-- Foto pública de Google Maps. Atribución: el propio negocio (Tu Pet). -->
+        <img src="fotos/foto-02.jpg" alt="Interior de la peluquería canina Tu Pet en Valencia">
+      </div>
+      <div class="sobre-text reveal">
+        <span class="kicker">Tu peluquería de barrio</span>
+        <h2 class="h2">Cuidamos a tu peludo como de la familia.</h2>
+        <p>En <b>Tu Pet</b> tratamos a cada mascota uno a uno, con calma y sin prisas. Baño, corte y arreglo adaptados a su carácter, su raza y su piel.</p>
+        <p>Estamos en el barrio de <b>Quatre Carreres, en Valencia</b>. Cuéntanos por WhatsApp qué necesita tu peludo y te ayudamos encantados.</p>
+        <p class="firma serif">Tu Pet · Estilismo de Mascotas
+          <small>Peluquería canina en Valencia</small>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SERVICIOS ===================== -->
+<!-- NOTA: el negocio no publica una lista cerrada de servicios ni precios en su
+     ficha de Google. Por eso aquí se describen de forma genérica-segura (sin
+     inventar precios ni servicios concretos). Los definitivos los aporta el cliente. -->
+<section class="sec" id="servicios">
+  <div class="wrap">
+    <span class="kicker reveal">Lo que hacemos</span>
+    <h2 class="h2 reveal">Estética y cuidado para tu mascota.</h2>
+    <p class="lead reveal">Escríbenos y te contamos qué le viene mejor a tu peludo. Sin compromiso.</p>
+    <div class="serv-grid">
+      <div class="card reveal">
+        <div class="ic" aria-hidden="true">🛁</div>
+        <h3 class="serif">Baño &amp; secado</h3>
+        <p>Sale limpio, suave y oliendo de fábula, a su ritmo y sin estrés.</p>
+      </div>
+      <div class="card reveal">
+        <div class="ic" aria-hidden="true">✂️</div>
+        <h3 class="serif">Corte y arreglo</h3>
+        <p>El corte que le va a su raza y a tu día a día. Tú nos dices cómo lo quieres.</p>
+      </div>
+      <div class="card reveal">
+        <div class="ic" aria-hidden="true">🪮</div>
+        <h3 class="serif">Cepillado y cuidado</h3>
+        <p>Cuidado del manto y consejos para mantenerlo bien en casa entre cita y cita.</p>
+      </div>
+      <div class="card reveal">
+        <div class="ic" aria-hidden="true">🐾</div>
+        <h3 class="serif">Trato cercano</h3>
+        <p>Atendemos uno a uno, con delicadeza y mucho cariño. Pregúntanos lo que necesites.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== GALERÍA ===================== -->
+<section class="sec" id="galeria">
+  <div class="wrap">
+    <span class="kicker reveal">La peluquería</span>
+    <h2 class="h2 reveal">Un vistazo a Tu Pet.</h2>
+    <p class="lead reveal">Fotos públicas de Google Maps. El cliente aportará sus fotos definitivas.</p>
+    <div class="gal-grid reveal">
+      <!-- Fotos descargadas vía Place Photo (New). Atribución bajo cada imagen. -->
+      <figure class="ph">
+        <img src="fotos/foto-01.jpg" alt="Mascota arreglada en Tu Pet, peluquería canina de Valencia">
+        <figcaption>Foto: Tu Pet (Google Maps)</figcaption>
+      </figure>
+      <figure class="ph">
+        <img src="fotos/foto-02.jpg" alt="Espacio de la peluquería canina Tu Pet">
+        <figcaption>Foto: Tu Pet (Google Maps)</figcaption>
+      </figure>
+      <figure class="ph">
+        <img src="fotos/foto-03.jpg" alt="Mascota en la peluquería Tu Pet">
+        <figcaption>Foto: Ionica Nicoleta Andrei (Google Maps)</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== RESEÑAS ===================== -->
+<!-- Reseñas REALES y VERBATIM de la ficha de Google Maps, con su autor y enlace
+     de atribución. No editadas. (Se omite una reseña de 1 estrella; ninguna alterada.) -->
+<section class="sec res" id="resenas">
+  <div class="wrap">
+    <span class="kicker reveal">Opiniones reales (Google)</span>
+    <h2 class="h2 reveal">Lo que dicen sus clientes.</h2>
+    <p class="res-attr reveal">Reseñas públicas de la ficha de Google Maps de Tu Pet (4,8 ★ sobre 124 reseñas). Texto literal y atribución a cada autor.</p>
+    <div class="res-grid">
+
+      <figure class="quote reveal">
+        <span class="stars" aria-label="5 de 5 estrellas">★★★★★</span>
+        <blockquote>Me ha encantado! Tienen disponibilidad, súper amables respetuosos y lindos con los perritos! Me han dejado a mi motita de pelos toda guapa nos ha encantado han entendido que es delicada y mayor la han atendido con mucha delicadeza y profesionalidad! Felicidades excelente!</blockquote>
+        <figcaption class="who">
+          <span class="av" aria-hidden="true">C</span>
+          <span><b>Carla Grzon</b><small><a href="https://www.google.com/maps/contrib/102203835843345250377/reviews" target="_blank" rel="noopener">Reseña en Google</a></small></span>
+        </figcaption>
+      </figure>
+
+      <figure class="quote reveal">
+        <span class="stars" aria-label="5 de 5 estrellas">★★★★★</span>
+        <blockquote>Tom y Fernando son maravillosos! Tengo un Pastor Australiano que desde pequeño está en sus manos, llega encantado y ellos siempre lo reciben con muchísimo amor! Kai va encantado, además siempre lo dejan super bien cuidado y te dan consejos para mantener el pelaje, son sin duda mi sitio de confianza para el cuidado de mi perro! Totalmente recomendados !</blockquote>
+        <figcaption class="who">
+          <span class="av" aria-hidden="true">K</span>
+          <span><b>Katheryn Yepez Borges</b><small><a href="https://www.google.com/maps/contrib/110169609310003485799/reviews" target="_blank" rel="noopener">Reseña en Google</a></small></span>
+        </figcaption>
+      </figure>
+
+      <figure class="quote reveal">
+        <span class="stars" aria-label="5 de 5 estrellas">★★★★★</span>
+        <blockquote>¡Excelente servicio! Llevo a mi perrita regularmente a esta peluquería canina y siempre salimos encantadas. El trato es súper profesional y, lo más importante, muy cariñoso con los animales. La dejan impecable: limpia, bien peinada y con un corte justo como lo pedí. Además, el lugar está muy limpio y se nota que realmente se preocupan por el bienestar de las mascotas. ¡100% recomendados!</blockquote>
+        <figcaption class="who">
+          <span class="av" aria-hidden="true">R</span>
+          <span><b>Rosa Cooban</b><small><a href="https://www.google.com/maps/contrib/106373986701531873217/reviews" target="_blank" rel="noopener">Reseña en Google</a></small></span>
+        </figcaption>
+      </figure>
+
+      <figure class="quote reveal">
+        <span class="stars" aria-label="5 de 5 estrellas">★★★★★</span>
+        <blockquote>Fantástico, el trato y la atención que recibimos fue simplemente magnífico, de 10. Era la primera vez que llevábamos a Haagen a la peluquería ( cachorro de 6 meses) y fueron encantadores con ella y con nosotras, recomendándonos un montón de cosas de todo tipo (desde alimentación, productos para el mantenimiento y cuidado del manto, hasta veterinarios) y solucionando todas nuestras dudas. Volveremos a vernos pronto ☺️</blockquote>
+        <figcaption class="who">
+          <span class="av" aria-hidden="true">P</span>
+          <span><b>pili namu</b><small><a href="https://www.google.com/maps/contrib/113545140066708001087/reviews" target="_blank" rel="noopener">Reseña en Google</a></small></span>
+        </figcaption>
+      </figure>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== UBICACIÓN + HORARIO + CONTACTO ===================== -->
+<section class="sec cont" id="contacto">
+  <div class="wrap">
+    <span class="kicker reveal">Dónde estamos</span>
+    <h2 class="h2 reveal">Pásate o escríbenos.</h2>
+    <div class="cont-grid">
+      <div class="cont-info reveal">
+        <p>Estamos en Quatre Carreres, Valencia. La forma más rápida de pedir cita es por WhatsApp: cuéntanos qué necesita tu peludo.</p>
+        <div class="cont-row">
+          <span class="ci" aria-hidden="true">📍</span>
+          <span><b>Carrer de les Brigades Internacionals, 2</b><small>Quatre Carreres, 46013 València</small></span>
+        </div>
+        <div class="cont-row">
+          <span class="ci" aria-hidden="true">🕒</span>
+          <span><b>Lunes a viernes: 10:00–18:00</b><small>Sábado y domingo: cerrado</small></span>
+        </div>
+        <div class="cont-row">
+          <span class="ci" aria-hidden="true">📞</span>
+          <span><b><a href="tel:+34633751072">633 75 10 72</a></b><small>Llámanos o escríbenos por WhatsApp</small></span>
+        </div>
+        <div class="cont-actions">
+          <a href="https://wa.me/34633751072" class="btn-wa">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2zm0 2a8 8 0 1 1-4.1 14.9l-.4-.2-2.9.8.8-2.8-.2-.4A8 8 0 0 1 12 4zm-3 3.6c-.2 0-.5.1-.7.4-.3.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.8 2.9 4.5 3.9 2.2.9 2.7.7 3.2.7s1.5-.6 1.7-1.2c.2-.6.2-1.1.1-1.2-.1-.1-.3-.2-.6-.3l-1.5-.7c-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.3.1-.4l.4-.5c.1-.2.1-.3.2-.5 0-.1 0-.3-.1-.4l-.7-1.7c-.2-.4-.3-.4-.5-.4z"/></svg>
+            Escríbenos
+          </a>
+          <a href="tel:+34633751072" class="btn-call">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.3 1l-2.2 2.2z"/></svg>
+            Llamar
+          </a>
+        </div>
+      </div>
+      <div class="map reveal">
+        <span class="pin" aria-hidden="true">📍</span>
+        <span>Carrer de les Brigades Internacionals, 2 · València</span>
+        <a href="https://www.google.com/maps/place/?q=place_id:ChIJjX9DQ8NIYA0RR_tG5FTymoI" target="_blank" rel="noopener">Abrir en Google Maps &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA FINAL ===================== -->
+<section class="cta-final">
+  <div class="wrap">
+    <div class="cta-in reveal">
+      <h2 class="serif">¿Le toca arreglo a tu peludo?</h2>
+      <p>Escríbenos por WhatsApp y reservamos su cita. Te respondemos encantados.</p>
+      <a href="https://wa.me/34633751072" class="btn-wa">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2zm0 2a8 8 0 1 1-4.1 14.9l-.4-.2-2.9.8.8-2.8-.2-.4A8 8 0 0 1 12 4zm-3 3.6c-.2 0-.5.1-.7.4-.3.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.8 2.9 4.5 3.9 2.2.9 2.7.7 3.2.7s1.5-.6 1.7-1.2c.2-.6.2-1.1.1-1.2-.1-.1-.3-.2-.6-.3l-1.5-.7c-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.3.1-.4l.4-.5c.1-.2.1-.3.2-.5 0-.1 0-.3-.1-.4l-.7-1.7c-.2-.4-.3-.4-.5-.4z"/></svg>
+        Pedir cita por WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="wrap foot-in">
+    <div class="foot-top">
+      <div class="foot-mark">
+        <span class="mark" aria-hidden="true" style="width:32px;height:32px;border-radius:50%;background:var(--color-acento);display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:16px">T</span>
+        Tu Pet · Estilismo de Mascotas
+      </div>
+      <nav class="foot-links" aria-label="Enlaces de pie de página">
+        <a href="#servicios">Servicios</a>
+        <a href="#resenas">Opiniones</a>
+        <a href="#contacto">Contacto</a>
+        <a href="https://wa.me/34633751072">WhatsApp</a>
+      </nav>
+    </div>
+    <div class="foot-bottom">
+      Tu Pet · Peluquería canina · Carrer de les Brigades Internacionals, 2, 46013 València · Tel. 633 75 10 72.<br>
+      Maqueta de muestra creada con datos públicos de Google Maps (reseñas y fotos con atribución a sus autores). Las fotos y reseñas definitivas las aporta el negocio.
+    </div>
+  </div>
+</footer>
+
+<!-- ===================== WHATSAPP FLOTANTE FIJO (solo móvil) ===================== -->
+<a href="https://wa.me/34633751072" class="wa-fab" aria-label="Escribir por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2zm0 2a8 8 0 1 1-4.1 14.9l-.4-.2-2.9.8.8-2.8-.2-.4A8 8 0 0 1 12 4zm-3 3.6c-.2 0-.5.1-.7.4-.3.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.8 2.9 4.5 3.9 2.2.9 2.7.7 3.2.7s1.5-.6 1.7-1.2c.2-.6.2-1.1.1-1.2-.1-.1-.3-.2-.6-.3l-1.5-.7c-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.3.1-.4l.4-.5c.1-.2.1-.3.2-.5 0-.1 0-.3-.1-.4l-.7-1.7c-.2-.4-.3-.4-.5-.4z"/></svg>
+  Pedir cita por WhatsApp
+</a>
+
+<script>
+  (function(){
+    var els = document.querySelectorAll('.reveal');
+    if(!('IntersectionObserver' in window)){
+      els.forEach(function(el){ el.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, {threshold:.12, rootMargin:'0px 0px -8% 0px'});
+    els.forEach(function(el){ io.observe(el); });
+  })();
+</script>
+</body>
+</html>
